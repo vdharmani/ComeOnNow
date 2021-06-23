@@ -276,3 +276,17 @@ extension UITextField{
     }
 }
 
+extension UIImageView {
+    func setRounded() {
+        self.layoutIfNeeded()
+        self.layer.cornerRadius = (self.frame.width / 2)
+        self.layer.masksToBounds = true
+    }
+}
+extension UIView {
+    func setRound() {
+        self.layoutIfNeeded()
+        self.layer.cornerRadius = (self.frame.width / 2)
+        self.layer.masksToBounds = true
+    }
+}

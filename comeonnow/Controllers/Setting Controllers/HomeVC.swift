@@ -27,7 +27,11 @@ class HomeVC: UIViewController {
         
     }
    
-
+    @IBAction func addChildBtnAction(_ sender: Any) {
+        let vc = AddChildVC.instantiate(fromAppStoryboard: .Setting)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 extension HomeVC : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

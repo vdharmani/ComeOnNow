@@ -12,30 +12,60 @@ import Alamofire
 
 class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerControllerDelegate{
     var userDetailDict = [String:AnyHashable]()
+    var imgArray = [Data]()
 
     @IBOutlet weak var userChildProfileImgView: UIImageView!
     
+    @IBOutlet weak var genderPickerViewObj: UIPickerView!
     
     @IBOutlet weak var userNameTF: UITextField!
     
     @IBOutlet weak var dOBTF: UITextField!
     
     @IBOutlet weak var genderTF: UITextField!
-    
+    var genderArr = [AnyHashable]()
+     var datePicker = UIDatePicker()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    
-        
+        genderPickerViewObj.isHidden = true
+        genderArr = ["Boy","Girl"]
+        setDatePicker()
         // Do any additional setup after loading the view.
     }
-    
-    @IBAction func openGenderPickerBtnAction(_ sender: Any) {
+    open func setDatePicker() {
+        datePicker.datePickerMode = .date
+        dOBTF.inputView = datePicker
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
+        toolBar.tintColor = UIColor.gray
+        let doneBtn = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(showSelectedDate))
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolBar.items = [space, doneBtn]
+        dOBTF.inputAccessoryView = toolBar
         
+    }
+    @objc func showSelectedDate() {
+        if dOBTF.isFirstResponder{
+//            datePlaceholderLbl.isHidden = true
+            let formatter = DateFormatter()
+            
+            //   [formatter setDateFormat:@"dd MMMM yyyy"];
+            formatter.dateFormat = "YYYY-MM-dd"
+            dOBTF.text = "\(formatter.string(from: datePicker.date))"
+            dOBTF.resignFirstResponder()
+        }
+        
+    }
+    @IBAction func openGenderPickerBtnAction(_ sender: Any) {
+        genderPickerViewObj.isHidden = false
+        genderPickerViewObj.delegate = self
+        genderPickerViewObj.dataSource = self
     }
     
     
     @IBAction func addChildBtnAction(_ sender: Any) {
+        addChildApi()
     }
     
     open func takePhoto() {
@@ -119,106 +149,110 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
 
     }
     
-    @IBAction func saveEditProfileBtnAction(_ sender: Any) {
-        if userNameTF.text?.trimmingCharacters(in: .whitespaces) == ""{
-            Alert.present(
-                title: AppAlertTitle.appName.rawValue,
-                message: AppSignInForgotSignUpAlertNessage.enterName,
-                actions: .ok(handler: {
-                }),
-                from: self
-            )
+    func requestWith(endUrl: String, parameters: [AnyHashable : Any]){
+        
+        let url = endUrl /* your API url */
+        let authToken = getSAppDefault(key: "AuthToken") as? String ?? ""
+
+        let headers: HTTPHeaders = [
+            /* "Authorization": "your_access_token",  in case you need authorization header */
+            "Content-type": "multipart/form-data",
+            "Token":authToken
+        ]
+        SVProgressHUD.show()
+        AF.upload(multipartFormData: { (multipartFormData) in
+            
+            for (key, value) in parameters {
+                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as! String)
+            }
+          
+            
+            for i in 0..<self.imgArray.count{
+                let imageData1 = self.imgArray[i]
+                debugPrint("mime type is\(imageData1.mimeType)")
+                let ranStr = String.random(length: 7)
+                if imageData1.mimeType == "application/pdf" ||
+                    imageData1.mimeType == "application/vnd" ||
+                    imageData1.mimeType == "text/plain"{
+                    multipartFormData.append(imageData1, withName: "children[\(i + 1)]" , fileName: ranStr + String(i + 1) + ".pdf", mimeType: imageData1.mimeType)
+                }else{
+                    multipartFormData.append(imageData1, withName: "children[\(i + 1)]" , fileName: ranStr + String(i + 1) + ".jpg", mimeType: imageData1.mimeType)
+                }
+                
+                
+                
+            }
+            
+            
+        }, to: url, usingThreshold: UInt64.init(), method: .post, headers: headers, interceptor: nil, fileManager: .default)
+        
+        .uploadProgress(closure: { (progress) in
+            print("Upload Progress: \(progress.fractionCompleted)")
+            
+        })
+        .responseJSON { (response) in
+            SVProgressHUD.dismiss()
+
+            print("Succesfully uploaded\(response)")
+            let respDict =  response.value as? [String : AnyObject] ?? [:]
+            if respDict.count != 0{
+                let signUpStepData =  ForgotPasswordData(dict: respDict)
+                if signUpStepData?.status == 1{
+                    self.navigationController?.popViewController(animated: true)
+                }else{
+                    
+                }
+            }else{
+                
+            }
+            
+            
         }
-//      else if emailTF.text?.trimmingCharacters(in: .whitespaces) == ""{
-//            Alert.present(
-//                title: AppAlertTitle.appName.rawValue,
-//                message: AppSignInForgotSignUpAlertNessage.enterEmail,
-//                actions: .ok(handler: {
-//                }),
-//                from: self
-//            )
-//        }
-//        else  if !validateEmail(strEmail: emailTF.text ?? ""){
-//            Alert.present(
-//                title: AppAlertTitle.appName.rawValue,
-//                message: AppSignInForgotSignUpAlertNessage.validEmail,
-//                actions: .ok(handler: {
-//                }),
-//                from: self
-//            )
-//        }
-        else if phoneNumberTF.text?.trimmingCharacters(in: .whitespaces) == ""{
-            Alert.present(
-                title: AppAlertTitle.appName.rawValue,
-                message: AppSignInForgotSignUpAlertNessage.enterPhonenumber,
-                actions: .ok(handler: {
-                }),
-                from: self
-            )
-        }else{
-            editProfileApi()
-        }
+        
+        
+        
     }
-    func editProfileApi() {
-        let compressedData = userChildProfileImgView.image?.jpegData(compressionQuality: 0.2)
-        let base64:String = compressedData?.base64EncodedString(options: .lineLength64Characters) ?? ""
-        debugPrint("base64------> \(base64)")
+    func addChildApi() {
+        let compressedData = (userChildProfileImgView.image?.jpegData(compressionQuality: 0.3))!
+        imgArray.removeAll()
+       
+                imgArray.append(compressedData)
         let userId = getSAppDefault(key: "UserId") as? String ?? ""
 
-        let token = getSAppDefault(key: "AuthToken") as? String ?? ""
+        let paramds = ["dob":dOBTF.text ?? "" ,"gender":genderTF.text ?? "","name":userNameTF.text ?? "","userID":userId] as [String : Any]
     
-        let paramds = ["name":userNameTF.text ?? "" ,"email":emailTF.text ?? "","phone_number":phoneNumberTF.text ?? "","country":"","image":base64,"country_image":"","userId":userId] as [String : Any]
+        let strURL = kBASEURL + WSMethods.addchildren
+
+        self.requestWith(endUrl: strURL , parameters: paramds)
         
-        let strURL = kBASEURL + WSMethods.editProfile
+
+    }
+}
+extension AddChildVC:UIPickerViewDelegate,UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return genderArr.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        let urlwithPercentEscapes = strURL.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        SVProgressHUD.show()
-        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","Token":token])
-            .responseJSON { (response) in
-                SVProgressHUD.dismiss()
+            return genderArr[row] as? String ?? ""
 
-                switch response.result {
-                case .success(let value):
-                    if let JSON = value as? [String: Any] {
-                        print(JSON as NSDictionary)
-                        let editProfileResp =  LoginData.init(dict: JSON )
-                        
-                        //                let status = jsonResult?["status"] as? Int ?? 0
-                        if editProfileResp?.status == 1{
-                            self.navigationController?.popViewController(animated: true)
-
-                            
-                        }else{
-                            DispatchQueue.main.async {
-
-                            Alert.present(
-                                title: AppAlertTitle.appName.rawValue,
-                                message: editProfileResp?.message ?? "",
-                                actions: .ok(handler: {
-                                }),
-                                from: self
-                            )
-                            }
-                        }
-                        
-                        
-                    }
-                case .failure(let error):
-                    let error : NSError = error as NSError
-                    print(error)
-                    DispatchQueue.main.async {
-
-                    Alert.present(
-                        title: AppAlertTitle.appName.rawValue,
-                        message: AppAlertTitle.connectionError.rawValue,
-                        actions: .ok(handler: {
-                        }),
-                        from: self
-                    )
-                    }
-                }
-            }
-     
+        
+        
         
     }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+       
+        genderTF.text = genderArr[row] as? String ?? ""
+        
+                
+        genderPickerViewObj.isHidden = true
+        
+    }
+    
+    
 }

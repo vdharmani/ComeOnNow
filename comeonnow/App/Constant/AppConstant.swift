@@ -21,6 +21,7 @@ let appScene = (UIApplication.shared.delegate as! SceneDelegate)
 struct WSMethods {
     static let signIn = "logIn.php"
     static let signUp = "signUp.php"
+    static let addchildren = "addchildren.php"
     static let getAllDailyInventoryDetail = "GetAllDailyInventoryDetail.php"
     static let getAllBiweeklyInventoryDetail = "GetAllBiweeklyInventoryDetail.php"
     static let addDailyInventoryDetail = "AddDailyInventory.php"

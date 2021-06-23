@@ -40,7 +40,6 @@
 		B3FF55362680A20E006B6901 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FF55352680A20E006B6901 /* SceneDelegate.swift */; };
 		B3FF55382680A20E006B6901 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FF55372680A20E006B6901 /* ViewController.swift */; };
 		B3FF553B2680A20E006B6901 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3FF55392680A20E006B6901 /* Main.storyboard */; };
-		B3FF553D2680A210006B6901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3FF553C2680A210006B6901 /* Assets.xcassets */; };
 		B3FF55402680A210006B6901 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3FF553E2680A210006B6901 /* LaunchScreen.storyboard */; };
 		B3FF554B2680A210006B6901 /* comeonnowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FF554A2680A210006B6901 /* comeonnowTests.swift */; };
 		B3FF55562680A210006B6901 /* comeonnowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FF55552680A210006B6901 /* comeonnowUITests.swift */; };
@@ -53,6 +52,13 @@
 		FCC6AD6A268304E700F99B9C /* LoginSignUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC6AD69268304E700F99B9C /* LoginSignUpEntity.swift */; };
 		FCC6AD7C268316DF00F99B9C /* ForgotPasswordEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC6AD7B268316DF00F99B9C /* ForgotPasswordEntity.swift */; };
 		FCC6AD812683191600F99B9C /* AddChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC6AD802683191600F99B9C /* AddChildVC.swift */; };
+		FCC6AD9026833F0100F99B9C /* AppointmentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC6AD8F26833F0100F99B9C /* AppointmentTVC.swift */; };
+		FCC6AD9526833F0C00F99B9C /* AppointmentTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCC6AD9426833F0C00F99B9C /* AppointmentTVC.xib */; };
+		FCC6AD9A26833F1300F99B9C /* ProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC6AD9926833F1300F99B9C /* ProfileTVC.swift */; };
+		FCC6AD9F26833F1800F99B9C /* ProfileTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCC6AD9E26833F1800F99B9C /* ProfileTVC.xib */; };
+		FCC6ADA426833F2100F99B9C /* AppointmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC6ADA326833F2100F99B9C /* AppointmentVC.swift */; };
+		FCC6ADA926833F2600F99B9C /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC6ADA826833F2600F99B9C /* ProfileVC.swift */; };
+		FCC6ADAE2683401800F99B9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCC6ADAD2683401800F99B9C /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,7 +118,6 @@
 		B3FF55352680A20E006B6901 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B3FF55372680A20E006B6901 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B3FF553A2680A20E006B6901 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B3FF553C2680A210006B6901 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3FF553F2680A210006B6901 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3FF55412680A210006B6901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3FF55462680A210006B6901 /* comeonnowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = comeonnowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +137,13 @@
 		FCC6AD69268304E700F99B9C /* LoginSignUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpEntity.swift; sourceTree = "<group>"; };
 		FCC6AD7B268316DF00F99B9C /* ForgotPasswordEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordEntity.swift; sourceTree = "<group>"; };
 		FCC6AD802683191600F99B9C /* AddChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChildVC.swift; sourceTree = "<group>"; };
+		FCC6AD8F26833F0100F99B9C /* AppointmentTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentTVC.swift; sourceTree = "<group>"; };
+		FCC6AD9426833F0C00F99B9C /* AppointmentTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentTVC.xib; sourceTree = "<group>"; };
+		FCC6AD9926833F1300F99B9C /* ProfileTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTVC.swift; sourceTree = "<group>"; };
+		FCC6AD9E26833F1800F99B9C /* ProfileTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTVC.xib; sourceTree = "<group>"; };
+		FCC6ADA326833F2100F99B9C /* AppointmentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentVC.swift; sourceTree = "<group>"; };
+		FCC6ADA826833F2600F99B9C /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		FCC6ADAD2683401800F99B9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +216,8 @@
 			children = (
 				B33480CA2681A8C50067BE71 /* TabBarVC.swift */,
 				B326A4452681D8AE00E4C0D2 /* HomeVC.swift */,
+				FCC6ADA326833F2100F99B9C /* AppointmentVC.swift */,
+				FCC6ADA826833F2600F99B9C /* ProfileVC.swift */,
 				FCC6AD802683191600F99B9C /* AddChildVC.swift */,
 			);
 			path = "Setting Controllers";
@@ -213,6 +227,10 @@
 			isa = PBXGroup;
 			children = (
 				B33480F92681D1A90067BE71 /* HomeTVC.swift */,
+				FCC6AD8F26833F0100F99B9C /* AppointmentTVC.swift */,
+				FCC6AD9426833F0C00F99B9C /* AppointmentTVC.xib */,
+				FCC6AD9926833F1300F99B9C /* ProfileTVC.swift */,
+				FCC6AD9E26833F1800F99B9C /* ProfileTVC.xib */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -393,7 +411,7 @@
 		B3FF55762680AA83006B6901 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				B3FF553C2680A210006B6901 /* Assets.xcassets */,
+				FCC6ADAD2683401800F99B9C /* Assets.xcassets */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -522,6 +540,8 @@
 				B33480EC2681B64F0067BE71 /* LATO-HEAVYITALIC.TTF in Resources */,
 				B33480ED2681B64F0067BE71 /* LATO-THINITALIC.TTF in Resources */,
 				B33480EB2681B64F0067BE71 /* LATO-HEAVY.TTF in Resources */,
+				FCC6AD9F26833F1800F99B9C /* ProfileTVC.xib in Resources */,
+				FCC6ADAE2683401800F99B9C /* Assets.xcassets in Resources */,
 				B33480E82681B64F0067BE71 /* LATO-MEDIUM.TTF in Resources */,
 				B33480E62681B64F0067BE71 /* LATO-LIGHT.TTF in Resources */,
 				B33480EF2681B64F0067BE71 /* LATO-REGULAR.TTF in Resources */,
@@ -530,9 +550,9 @@
 				B3FF55402680A210006B6901 /* LaunchScreen.storyboard in Resources */,
 				B33480F02681B64F0067BE71 /* LATO-SEMIBOLD.TTF in Resources */,
 				B33480EA2681B64F0067BE71 /* LATO-BOLD.TTF in Resources */,
+				FCC6AD9526833F0C00F99B9C /* AppointmentTVC.xib in Resources */,
 				B33480E52681B64F0067BE71 /* LATO-BOLDITALIC.TTF in Resources */,
 				B33480C52681A7C70067BE71 /* Setting.storyboard in Resources */,
-				B3FF553D2680A210006B6901 /* Assets.xcassets in Resources */,
 				B33480E42681B64F0067BE71 /* LATO-BLACK.TTF in Resources */,
 				B3FF553B2680A20E006B6901 /* Main.storyboard in Resources */,
 				B33480E32681B64F0067BE71 /* LATO-THIN.TTF in Resources */,
@@ -667,8 +687,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCC6AD9026833F0100F99B9C /* AppointmentTVC.swift in Sources */,
 				FCC6AD7C268316DF00F99B9C /* ForgotPasswordEntity.swift in Sources */,
 				FC41D8EC268242140095B24A /* AppNavigations.swift in Sources */,
+				FCC6ADA426833F2100F99B9C /* AppointmentVC.swift in Sources */,
 				B324B11B2680CBE00082590E /* Storyboard Class.swift in Sources */,
 				B3FF55382680A20E006B6901 /* ViewController.swift in Sources */,
 				FC41D8E7268241F70095B24A /* AppAlert.swift in Sources */,
@@ -677,6 +699,8 @@
 				B33480CB2681A8C50067BE71 /* TabBarVC.swift in Sources */,
 				FC41D8D026823F200095B24A /* RestManager.swift in Sources */,
 				B324B1162680CAAC0082590E /* ForgotPasswordVC.swift in Sources */,
+				FCC6ADA926833F2600F99B9C /* ProfileVC.swift in Sources */,
+				FCC6AD9A26833F1300F99B9C /* ProfileTVC.swift in Sources */,
 				FC41D8CB26821BFF0095B24A /* AppConstant.swift in Sources */,
 				B33480FB2681D1A90067BE71 /* HomeTVC.swift in Sources */,
 				B3FF55342680A20E006B6901 /* AppDelegate.swift in Sources */,
