@@ -1,0 +1,76 @@
+//
+//  AppDelegate.swift
+//  comeonnow
+//
+//  Created by Vivek Dharmani on 21/06/21.
+//
+
+import UIKit
+import IQKeyboardManagerSwift
+
+
+
+func appDelegate() -> AppDelegate {
+    return UIApplication.shared.delegate as! AppDelegate
+}
+
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    var window: UIWindow?
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        IQKeyboardManager.shared.enable = true
+        sleep(1)
+        window = UIWindow(frame: UIScreen.main.bounds)
+//        if #available(iOS 10.0, *) {
+//            // For iOS 10 display notification (sent via APNS)
+//            UNUserNotificationCenter.current().delegate = self
+//
+//            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+//            UNUserNotificationCenter.current().requestAuthorization(
+//                options: authOptions,
+//                completionHandler: {_, _ in })
+//        } else {
+//            let settings: UIUserNotificationSettings =
+//                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+//            application.registerUserNotificationSettings(settings)
+//        }
+//
+//        application.registerForRemoteNotifications()
+        // Override point for customization after application launch.
+        return true
+    }
+  
+    func loginToHomePage(){
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Setting", bundle: nil)
+        let homeViewController = mainStoryboard.instantiateViewController(withIdentifier:"TabBarVC") as! TabBarVC
+        homeViewController.selectedIndex = 0
+        let nav = UINavigationController(rootViewController: homeViewController)
+        nav.setNavigationBarHidden(true, animated: true)
+        appdelegate.window?.rootViewController = nav
+    }
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let deviceTokenString = deviceToken.map { String(format: "%02x", $0) }.joined()
+        setAppDefaults(deviceTokenString, key: "DeviceToken")
+    }
+
+    // MARK: UISceneSession Lifecycle
+
+    @available(iOS 13.0, *)
+   
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        // Called when a new scene sessiif #available(iOS 13.0, *) {
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+            
+    }
+
+@available(iOS 13.0, *)
+func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+        // Called when the user discards a scene session.
+        // If any sessions were discarded while the application was not running, this will be ca@available(iOS 13.0, *)
+        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+
+}
