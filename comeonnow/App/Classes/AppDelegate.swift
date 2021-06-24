@@ -23,6 +23,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         sleep(1)
         window = UIWindow(frame: UIScreen.main.bounds)
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.window = self.window
+        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
+        if authToken != ""{
+           
+                appDelegate?.loginToHomePage()
+                
+            
+        }else{
+            appDelegate?.logOut()
+        }
 //        if #available(iOS 10.0, *) {
 //            // For iOS 10 display notification (sent via APNS)
 //            UNUserNotificationCenter.current().delegate = self
@@ -41,7 +52,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         return true
     }
-  
+    func logOut(){
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: StoryboardName.Main, bundle: nil)
+        let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: ViewControllerIdentifier.LogInVC) as! LogInVC
+        let nav = UINavigationController(rootViewController: homeViewController)
+        nav.setNavigationBarHidden(true, animated: true)
+        appdelegate.window?.rootViewController = nav
+    }
     func loginToHomePage(){
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Setting", bundle: nil)

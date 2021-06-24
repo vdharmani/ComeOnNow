@@ -64,6 +64,7 @@
 		FCCED11E26846B920071E12B /* AppointmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCED11D26846B920071E12B /* AppointmentVC.swift */; };
 		FCCED14926847AC40071E12B /* ProfileTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCCED14826847AC40071E12B /* ProfileTVC.xib */; };
 		FCCED14E26847AE30071E12B /* AppointmentTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCCED14D26847AE30071E12B /* AppointmentTVC.xib */; };
+		FCCED1532684A6360071E12B /* GetUserProfileDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCED1522684A6360071E12B /* GetUserProfileDetailEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +155,7 @@
 		FCCED11D26846B920071E12B /* AppointmentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentVC.swift; sourceTree = "<group>"; };
 		FCCED14826847AC40071E12B /* ProfileTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTVC.xib; sourceTree = "<group>"; };
 		FCCED14D26847AE30071E12B /* AppointmentTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentTVC.xib; sourceTree = "<group>"; };
+		FCCED1522684A6360071E12B /* GetUserProfileDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileDetailEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +330,7 @@
 				FCC6AD69268304E700F99B9C /* LoginSignUpEntity.swift */,
 				FCC6AD7B268316DF00F99B9C /* ForgotPasswordEntity.swift */,
 				FCCED0F9268460050071E12B /* HomeChildListEntity.swift */,
+				FCCED1522684A6360071E12B /* GetUserProfileDetailEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 			files = (
 				FCC6AD9026833F0100F99B9C /* AppointmentTVC.swift in Sources */,
 				FCC6AD7C268316DF00F99B9C /* ForgotPasswordEntity.swift in Sources */,
+				FCCED1532684A6360071E12B /* GetUserProfileDetailEntity.swift in Sources */,
 				FC41D8EC268242140095B24A /* AppNavigations.swift in Sources */,
 				B324B11B2680CBE00082590E /* Storyboard Class.swift in Sources */,
 				FCCED1052684682F0071E12B /* ChangePasswordVC.swift in Sources */,

@@ -32,7 +32,7 @@ struct AppSignInForgotSignUpAlertNessage {
     static let enterName = "Please enter name"
     static let selectInterestedGender = "Please select interested gender"
     static let selectGender = "Please select gender"
-    static let selectCategory = "Please select category"
+    static let enterBio = "Please enter your bio"
     static let enterText = "Please enter text"
     static let maxLimitInterest = "You can add maximum 5 interest"
     static let addInterest = "Please add an interest"

@@ -10,6 +10,8 @@ import SVProgressHUD
 
 class HomeVC: UIViewController {
      let restHCL = RestManager()
+    var lastChildId = "0"
+
     @IBOutlet weak var homeTableView: UITableView!
     var homeArray = [ChildListData<AnyHashable>]()
     override func viewDidLoad() {
@@ -30,10 +32,10 @@ class HomeVC: UIViewController {
 
         
         restHCL.requestHttpHeaders.add(value: "application/json", forKey: "Content-Type")
-        restHCL.requestHttpHeaders.add(value: authToken, forKey: "Token")
+        restHCL.requestHttpHeaders.add(value: authToken, forKey: "token")
 
         restHCL.httpBodyParameters.add(value: userId, forKey: "user_id")
-        restHCL.httpBodyParameters.add(value:"" , forKey: "lastChildId")
+        restHCL.httpBodyParameters.add(value:lastChildId , forKey: "lastChildId")
     
         
         SVProgressHUD.show()
@@ -52,21 +54,23 @@ class HomeVC: UIViewController {
                 //
                 let loginResp =   HomeChildListData.init(dict: jsonResult ?? [:])
                 if loginResp?.status == 1{
+                    self.lastChildId = loginResp!.homeArray.last?.child_id ?? ""
                     self.homeArray = loginResp!.homeArray
+                    
 
                 DispatchQueue.main.async {
                     self.homeTableView.reloadData()
                 }
                 }else{
-                    DispatchQueue.main.async {
-                        Alert.present(
-                            title: AppAlertTitle.appName.rawValue,
-                            message: loginResp?.message ?? "",
-                            actions: .ok(handler: {
-                            }),
-                            from: self
-                        )
-                    }
+//                    DispatchQueue.main.async {
+//                        Alert.present(
+//                            title: AppAlertTitle.appName.rawValue,
+//                            message: loginResp?.message ?? "",
+//                            actions: .ok(handler: {
+//                            }),
+//                            from: self
+//                        )
+//                    }
                 }
                 
             }else{
@@ -100,7 +104,11 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTVC", for: indexPath) as! HomeTVC
-        cell.mainImage.image = UIImage(named: homeArray[indexPath.row].image)
+        var sPhotoStr = homeArray[indexPath.row].image
+        sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+        if sPhotoStr != ""{
+            cell.mainImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:UIImage(named:"img"))
+        }
         cell.nameLabel.text = homeArray[indexPath.row].name
         cell.ageLabel.text = homeArray[indexPath.row].dob
         cell.genderLabel.text = homeArray[indexPath.row].gender

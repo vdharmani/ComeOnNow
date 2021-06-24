@@ -1766,6 +1766,7 @@
                         <outlet property="bioView" destination="2U7-Cd-Qpx" id="N65-gO-y5v"/>
                         <outlet property="emailTextField" destination="oqY-4z-tiU" id="z4K-tP-mpu"/>
                         <outlet property="emailView" destination="8KY-OZ-o57" id="csA-Me-PvX"/>
+                        <outlet property="userImgView" destination="Xw4-eg-RRi" id="l4y-kF-SQQ"/>
                         <outlet property="userNameView" destination="rI6-xC-u6l" id="GuJ-7t-dOb"/>
                         <outlet property="usernameTextField" destination="oO6-gd-nhc" id="hGE-WO-XGE"/>
                     </connections>

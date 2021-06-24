@@ -65,7 +65,35 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     
     
     @IBAction func addChildBtnAction(_ sender: Any) {
-        addChildApi()
+        if userNameTF.text?.trimmingCharacters(in: .whitespaces) == ""{
+            Alert.present(
+                title: AppAlertTitle.appName.rawValue,
+                message: AppSignInForgotSignUpAlertNessage.enterName,
+                actions: .ok(handler: {
+                }),
+                from: self
+            )
+        }else if dOBTF.text?.trimmingCharacters(in: .whitespaces) == ""{
+            Alert.present(
+                title: AppAlertTitle.appName.rawValue,
+                message: AppSignInForgotSignUpAlertNessage.enterDOB,
+                actions: .ok(handler: {
+                }),
+                from: self
+            )
+        }else if genderTF.text?.trimmingCharacters(in: .whitespaces) == ""{
+            Alert.present(
+                title: AppAlertTitle.appName.rawValue,
+                message: AppSignInForgotSignUpAlertNessage.selectGender,
+                actions: .ok(handler: {
+                }),
+                from: self
+            )
+        }else{
+            addChildApi()
+        }
+        
+        
     }
     
     open func takePhoto() {
@@ -157,7 +185,7 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
         let headers: HTTPHeaders = [
             /* "Authorization": "your_access_token",  in case you need authorization header */
             "Content-type": "multipart/form-data",
-            "Token":authToken
+            "token":authToken
         ]
         SVProgressHUD.show()
         AF.upload(multipartFormData: { (multipartFormData) in
@@ -176,7 +204,7 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
                     imageData1.mimeType == "text/plain"{
                     multipartFormData.append(imageData1, withName: "image[\(i + 1)]" , fileName: ranStr + String(i + 1) + ".pdf", mimeType: imageData1.mimeType)
                 }else{
-                    multipartFormData.append(imageData1, withName: "image[\(i + 1)]" , fileName: ranStr + String(i + 1) + ".jpg", mimeType: imageData1.mimeType)
+                    multipartFormData.append(imageData1, withName: "image" , fileName: ranStr + String(i + 1) + ".jpg", mimeType: imageData1.mimeType)
                 }
                 
                 

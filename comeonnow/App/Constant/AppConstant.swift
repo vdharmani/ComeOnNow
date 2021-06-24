@@ -23,8 +23,8 @@ struct WSMethods {
     static let signUp = "signUp.php"
     static let addchildren = "addchildren.php"
     static let getChildrenDetails = "getChildrenDetails.php"
-    static let getAllBiweeklyInventoryDetail = "GetAllBiweeklyInventoryDetail.php"
-    static let addDailyInventoryDetail = "AddDailyInventory.php"
+    static let getProfileDetails = "getProfileDetails.php"
+    static let changePassword = "changePassword.php"
     static let addBiWeeklyInventory = "AddBiWeeklyInventory.php"
     static let getAllProduct = "GetAllProduct.php"
     static let addProduct = "AddProduct.php"
@@ -40,25 +40,23 @@ struct WSMethods {
     static let getNotificationDetailById = "GetNotificationDetailById.php"
 
     
-    static let logOut = "Logout.php"
-    static let getUserDetail = "GetProfileDetail.php"
-    static let editProfile = "EditUserProfile.php"
+    static let logOut = "logOut.php"
+    static let getUserDetail = "getProfileDetails.php"
+    static let editProfile = "editProfile.php"
     static let forgotPassword = "forgetPassword.php"
    
     
 }
-
 
 let WS_Live = ""
 let WS_Staging = "https://www.dharmani.com/ComeOnNow/webservice/"
 
 let kBASEURL = WS_Staging
 
-
 struct SettingWebLinks {
-    static let privacyPolicy = "PrivacyPolicy.php"
-    static let aboutUs = "AboutUs.php"
-    static let termsAndConditions = "TermsAndCondition.php"
+    static let privacyPolicy = "PrivacyAndPolicy.html"
+    static let aboutUs = "about.html"
+    static let termsAndConditions = "terms&services.html"
 }
 struct NavBarTitle {
     static let privacyPolicy = "Privacy policy"
@@ -69,7 +67,7 @@ struct NavBarTitle {
 struct ViewControllerIdentifier {
     static let SignUpVC = "SignUpVC"
     static let HomeTabVC = "HomeTabVC"
-    static let HomeChildTabVC = "HomeChildTabVC"
+    static let LogInVC = "LogInVC"
     static let ForgotPasswordVC = "ForgotPasswordVC"
     static let ViewController = "ViewController"
     static let DailyInventoryListVC = "DailyInventoryListVC"
