@@ -174,9 +174,9 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
                 if imageData1.mimeType == "application/pdf" ||
                     imageData1.mimeType == "application/vnd" ||
                     imageData1.mimeType == "text/plain"{
-                    multipartFormData.append(imageData1, withName: "children[\(i + 1)]" , fileName: ranStr + String(i + 1) + ".pdf", mimeType: imageData1.mimeType)
+                    multipartFormData.append(imageData1, withName: "image[\(i + 1)]" , fileName: ranStr + String(i + 1) + ".pdf", mimeType: imageData1.mimeType)
                 }else{
-                    multipartFormData.append(imageData1, withName: "children[\(i + 1)]" , fileName: ranStr + String(i + 1) + ".jpg", mimeType: imageData1.mimeType)
+                    multipartFormData.append(imageData1, withName: "image[\(i + 1)]" , fileName: ranStr + String(i + 1) + ".jpg", mimeType: imageData1.mimeType)
                 }
                 
                 
@@ -219,7 +219,7 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
                 imgArray.append(compressedData)
         let userId = getSAppDefault(key: "UserId") as? String ?? ""
 
-        let paramds = ["dob":dOBTF.text ?? "" ,"gender":genderTF.text ?? "","name":userNameTF.text ?? "","userID":userId] as [String : Any]
+        let paramds = ["dob":dOBTF.text ?? "" ,"gender":genderTF.text ?? "","name":userNameTF.text ?? "","user_id":userId] as [String : Any]
     
         let strURL = kBASEURL + WSMethods.addchildren
 

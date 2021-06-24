@@ -30,7 +30,7 @@
                         <rect key="frame" x="10" y="10" width="362" height="122"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RUL-li-xxf">
-                                <rect key="frame" x="10" y="10" width="29" height="29"/>
+                                <rect key="frame" x="10" y="10" width="32.5" height="32.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RUL-li-xxf" secondAttribute="height" multiplier="1:1" id="n1u-V5-QSJ"/>
                                 </constraints>
@@ -41,7 +41,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vQn-si-kgS">
-                                <rect key="frame" x="49" y="9" width="29" height="30.5"/>
+                                <rect key="frame" x="52.5" y="11" width="29" height="30.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Alj-IN-1KP">
                                         <rect key="frame" x="0.0" y="0.0" width="29" height="14.5"/>
@@ -58,13 +58,13 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbb-y5-shz">
-                                <rect key="frame" x="328.5" y="10.5" width="23.5" height="12"/>
+                                <rect key="frame" x="328.5" y="12.5" width="23.5" height="12"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="10"/>
                                 <color key="textColor" red="0.0011665690690000001" green="0.48976916069999998" blue="0.56152278180000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLI-yi-U3r">
-                                <rect key="frame" x="10" y="47" width="362" height="1"/>
+                                <rect key="frame" x="10" y="50.5" width="351" height="1"/>
                                 <color key="backgroundColor" red="0.9180143476" green="0.89772045609999995" blue="0.91402560470000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="X1g-dM-EPe"/>
@@ -74,24 +74,27 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="4EG-s8-aeh">
-                                <rect key="frame" x="10" y="56" width="26" height="25.5"/>
+                                <rect key="frame" x="10" y="59.5" width="23.5" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vht-5i-WUE">
-                                        <rect key="frame" x="0.0" y="0.0" width="26" height="11"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="23.5" height="11"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="9"/>
                                         <color key="textColor" red="0.20389500260000001" green="0.20393687490000001" blue="0.20389232039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L10-qq-lNK">
-                                        <rect key="frame" x="0.0" y="12" width="26" height="13.5"/>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="11"/>
+                                        <rect key="frame" x="0.0" y="12" width="23.5" height="12"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="10"/>
                                         <color key="textColor" red="0.1019446626" green="0.10197005419999999" blue="0.1019430831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="L10-qq-lNK" firstAttribute="leading" secondItem="Vht-5i-WUE" secondAttribute="leading" id="598-MP-dRv"/>
+                                </constraints>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vou-hN-h8l">
-                                <rect key="frame" x="333" y="54" width="14.5" height="14.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calender" translatesAutoresizingMaskIntoConstraints="NO" id="vou-hN-h8l">
+                                <rect key="frame" x="331" y="56" width="18.5" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="vou-hN-h8l" secondAttribute="height" multiplier="1:1" id="7f0-ox-BJa"/>
                                 </constraints>
@@ -109,11 +112,11 @@
                             <constraint firstAttribute="trailing" secondItem="jbb-y5-shz" secondAttribute="trailing" constant="10" id="SpR-mb-JS5"/>
                             <constraint firstItem="4EG-s8-aeh" firstAttribute="leading" secondItem="gLI-yi-U3r" secondAttribute="leading" id="UgB-9y-AGy"/>
                             <constraint firstItem="gLI-yi-U3r" firstAttribute="top" secondItem="RUL-li-xxf" secondAttribute="bottom" constant="8" symbolic="YES" id="WHr-TD-p58"/>
-                            <constraint firstItem="RUL-li-xxf" firstAttribute="width" secondItem="dyP-54-A5G" secondAttribute="width" multiplier="0.08" id="cGZ-Gh-4VX"/>
+                            <constraint firstItem="RUL-li-xxf" firstAttribute="width" secondItem="dyP-54-A5G" secondAttribute="width" multiplier="0.09" id="cGZ-Gh-4VX"/>
                             <constraint firstItem="gLI-yi-U3r" firstAttribute="leading" secondItem="RUL-li-xxf" secondAttribute="leading" id="cHx-mZ-YWr"/>
                             <constraint firstItem="vQn-si-kgS" firstAttribute="centerY" secondItem="RUL-li-xxf" secondAttribute="centerY" id="gLc-TC-Ls5"/>
-                            <constraint firstItem="vou-hN-h8l" firstAttribute="width" secondItem="dyP-54-A5G" secondAttribute="width" multiplier="0.04" id="gyH-LT-JHq"/>
-                            <constraint firstItem="gLI-yi-U3r" firstAttribute="width" secondItem="dyP-54-A5G" secondAttribute="width" id="rxi-iB-5Jr"/>
+                            <constraint firstItem="vou-hN-h8l" firstAttribute="width" secondItem="dyP-54-A5G" secondAttribute="width" multiplier="0.05" id="gyH-LT-JHq"/>
+                            <constraint firstItem="gLI-yi-U3r" firstAttribute="width" secondItem="dyP-54-A5G" secondAttribute="width" multiplier="0.97" id="rxi-iB-5Jr"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -152,6 +155,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="calender" width="59" height="59"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

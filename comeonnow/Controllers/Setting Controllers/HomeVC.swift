@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class HomeVC: UIViewController {
-
+     let restHCL = RestManager()
     @IBOutlet weak var homeTableView: UITableView!
-    var HomeArray = [HomeData]()
+    var homeArray = [ChildListData<AnyHashable>]()
     override func viewDidLoad() {
         super.viewDidLoad()
         homeTableView.dataSource = self
@@ -18,15 +19,74 @@ class HomeVC: UIViewController {
 
         homeTableView.register(UINib(nibName: "HomeTVC", bundle: nil), forCellReuseIdentifier: "HomeTVC")
         
-        self.HomeArray.append(HomeData(image: "baby1", name: "Jose Montero", age: "3 years 10 month", gender: "Girl"))
-        self.HomeArray.append(HomeData(image: "baby2", name: "Eischens", age: "5 years 8 month", gender: "Boy"))
-        self.HomeArray.append(HomeData(image: "baby3", name: "Alexander", age: "4 years 5 month", gender: "Girl"))
-        self.HomeArray.append(HomeData(image: "baby4", name: "Allen", age: "2 years 9 month", gender: "Boy"))
-        self.HomeArray.append(HomeData(image: "baby5", name: "Allen", age: "2 years 9 month", gender: "Boy"))
-        
+//        self.homeArray.append(HomeChildListData(image: "baby2", name: "Eischens", age: "5 years 8 month", gender: "Boy"))
+       
         
     }
-   
+    open func homeChildListApi(){
+        guard let url = URL(string: kBASEURL + WSMethods.getChildrenDetails) else { return }
+        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
+        let userId  = getSAppDefault(key: "UserId") as? String ?? ""
+
+        
+        restHCL.requestHttpHeaders.add(value: "application/json", forKey: "Content-Type")
+        restHCL.requestHttpHeaders.add(value: authToken, forKey: "Token")
+
+        restHCL.httpBodyParameters.add(value: userId, forKey: "user_id")
+        restHCL.httpBodyParameters.add(value:"" , forKey: "lastChildId")
+    
+        
+        SVProgressHUD.show()
+        restHCL.makeRequest(toURL: url, withHttpMethod: .post) { (results) in
+            SVProgressHUD.dismiss()
+
+            guard let response = results.response else { return }
+            if response.httpStatusCode == 200 {
+                guard let data = results.data else { return }
+                
+                let jsonResult = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:AnyHashable] ?? [:]
+                //                    let dataString = String(data: data, encoding: .utf8)
+                //                    let jsondata = dataString?.data(using: .utf8)
+                //                    let decoder = JSONDecoder()
+                //                    let jobUser = try? decoder.decode(LoginData, from: jsondata!)
+                //
+                let loginResp =   HomeChildListData.init(dict: jsonResult ?? [:])
+                if loginResp?.status == 1{
+                    self.homeArray = loginResp!.homeArray
+
+                DispatchQueue.main.async {
+                    self.homeTableView.reloadData()
+                }
+                }else{
+                    DispatchQueue.main.async {
+                        Alert.present(
+                            title: AppAlertTitle.appName.rawValue,
+                            message: loginResp?.message ?? "",
+                            actions: .ok(handler: {
+                            }),
+                            from: self
+                        )
+                    }
+                }
+                
+            }else{
+                DispatchQueue.main.async {
+
+                Alert.present(
+                    title: AppAlertTitle.appName.rawValue,
+                    message: AppAlertTitle.connectionError.rawValue,
+                    actions: .ok(handler: {
+                    }),
+                    from: self
+                )
+                }
+            }
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        homeChildListApi()
+    }
     @IBAction func addChildBtnAction(_ sender: Any) {
         let vc = AddChildVC.instantiate(fromAppStoryboard: .Setting)
         self.navigationController?.pushViewController(vc, animated: true)
@@ -35,15 +95,15 @@ class HomeVC: UIViewController {
 }
 extension HomeVC : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return HomeArray.count
+        return homeArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTVC", for: indexPath) as! HomeTVC
-        cell.mainImage.image = UIImage(named: HomeArray[indexPath.row].image)
-        cell.nameLabel.text = HomeArray[indexPath.row].name
-        cell.ageLabel.text = HomeArray[indexPath.row].age
-        cell.genderLabel.text = HomeArray[indexPath.row].gender
+        cell.mainImage.image = UIImage(named: homeArray[indexPath.row].image)
+        cell.nameLabel.text = homeArray[indexPath.row].name
+        cell.ageLabel.text = homeArray[indexPath.row].dob
+        cell.genderLabel.text = homeArray[indexPath.row].gender
         
         return cell
     }
@@ -54,15 +114,4 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
     
     
 }
-struct HomeData {
-    var image : String
-    var name : String
-    var age : String
-    var gender : String
-    init(image : String, name : String , age : String, gender : String) {
-        self.image = image
-        self.name = name
-        self.age = age
-        self.gender = gender
-    }
-}
+
