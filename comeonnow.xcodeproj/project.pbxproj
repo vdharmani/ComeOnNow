@@ -16,6 +16,7 @@
 		B324B11B2680CBE00082590E /* Storyboard Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = B324B11A2680CBE00082590E /* Storyboard Class.swift */; };
 		B324B1202680CCF70082590E /* Validation Managers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B324B11F2680CCF70082590E /* Validation Managers.swift */; };
 		B326A4462681D8AE00E4C0D2 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B326A4452681D8AE00E4C0D2 /* HomeVC.swift */; };
+		B32D1C8A26849D78003103E5 /* NotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32D1C8926849D78003103E5 /* NotificationsVC.swift */; };
 		B33480C52681A7C70067BE71 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B33480C42681A7C70067BE71 /* Setting.storyboard */; };
 		B33480CB2681A8C50067BE71 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33480CA2681A8C50067BE71 /* TabBarVC.swift */; };
 		B33480E22681B64F0067BE71 /* LATO-SEMIBOLDITALIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = B33480D22681B64C0067BE71 /* LATO-SEMIBOLDITALIC.TTF */; };
@@ -36,6 +37,7 @@
 		B33480F12681B64F0067BE71 /* LATO-MEDIUMITALIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = B33480E12681B64F0067BE71 /* LATO-MEDIUMITALIC.TTF */; };
 		B33480FB2681D1A90067BE71 /* HomeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33480F92681D1A90067BE71 /* HomeTVC.swift */; };
 		B33480FC2681D1A90067BE71 /* HomeTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B33480FA2681D1A90067BE71 /* HomeTVC.xib */; };
+		B3BEB82C2685A7F600C9DE3E /* ChildDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEB82B2685A7F500C9DE3E /* ChildDetailVC.swift */; };
 		B3FF55342680A20E006B6901 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FF55332680A20E006B6901 /* AppDelegate.swift */; };
 		B3FF55362680A20E006B6901 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FF55352680A20E006B6901 /* SceneDelegate.swift */; };
 		B3FF55382680A20E006B6901 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FF55372680A20E006B6901 /* ViewController.swift */; };
@@ -49,6 +51,7 @@
 		FC41D8E22682417C0095B24A /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC41D8E12682417C0095B24A /* AppDefaults.swift */; };
 		FC41D8E7268241F70095B24A /* AppAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC41D8E6268241F70095B24A /* AppAlert.swift */; };
 		FC41D8EC268242140095B24A /* AppNavigations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC41D8EB268242140095B24A /* AppNavigations.swift */; };
+		FC8859BD2685B9E10098DCF3 /* GetUserProfileDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8859BC2685B9E10098DCF3 /* GetUserProfileDetailEntity.swift */; };
 		FCC6AD6A268304E700F99B9C /* LoginSignUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC6AD69268304E700F99B9C /* LoginSignUpEntity.swift */; };
 		FCC6AD7C268316DF00F99B9C /* ForgotPasswordEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC6AD7B268316DF00F99B9C /* ForgotPasswordEntity.swift */; };
 		FCC6AD812683191600F99B9C /* AddChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC6AD802683191600F99B9C /* AddChildVC.swift */; };
@@ -64,7 +67,6 @@
 		FCCED11E26846B920071E12B /* AppointmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCED11D26846B920071E12B /* AppointmentVC.swift */; };
 		FCCED14926847AC40071E12B /* ProfileTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCCED14826847AC40071E12B /* ProfileTVC.xib */; };
 		FCCED14E26847AE30071E12B /* AppointmentTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCCED14D26847AE30071E12B /* AppointmentTVC.xib */; };
-		FCCED1532684A6360071E12B /* GetUserProfileDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCED1522684A6360071E12B /* GetUserProfileDetailEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,7 @@
 		B324B11A2680CBE00082590E /* Storyboard Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard Class.swift"; sourceTree = "<group>"; };
 		B324B11F2680CCF70082590E /* Validation Managers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Validation Managers.swift"; sourceTree = "<group>"; };
 		B326A4452681D8AE00E4C0D2 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		B32D1C8926849D78003103E5 /* NotificationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsVC.swift; sourceTree = "<group>"; };
 		B33480C42681A7C70067BE71 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		B33480CA2681A8C50067BE71 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		B33480D22681B64C0067BE71 /* LATO-SEMIBOLDITALIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LATO-SEMIBOLDITALIC.TTF"; sourceTree = "<group>"; };
@@ -119,6 +122,7 @@
 		B33480E12681B64F0067BE71 /* LATO-MEDIUMITALIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LATO-MEDIUMITALIC.TTF"; sourceTree = "<group>"; };
 		B33480F92681D1A90067BE71 /* HomeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTVC.swift; sourceTree = "<group>"; };
 		B33480FA2681D1A90067BE71 /* HomeTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTVC.xib; sourceTree = "<group>"; };
+		B3BEB82B2685A7F500C9DE3E /* ChildDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailVC.swift; sourceTree = "<group>"; };
 		B3FF55302680A20E006B6901 /* comeonnow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = comeonnow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3FF55332680A20E006B6901 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3FF55352680A20E006B6901 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 		FC41D8E6268241F70095B24A /* AppAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAlert.swift; sourceTree = "<group>"; };
 		FC41D8EB268242140095B24A /* AppNavigations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigations.swift; sourceTree = "<group>"; };
 		FC41D8F5268249FB0095B24A /* comeonnow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = comeonnow.entitlements; sourceTree = "<group>"; };
+		FC8859BC2685B9E10098DCF3 /* GetUserProfileDetailEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserProfileDetailEntity.swift; sourceTree = "<group>"; };
 		FCC6AD69268304E700F99B9C /* LoginSignUpEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpEntity.swift; sourceTree = "<group>"; };
 		FCC6AD7B268316DF00F99B9C /* ForgotPasswordEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordEntity.swift; sourceTree = "<group>"; };
 		FCC6AD802683191600F99B9C /* AddChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChildVC.swift; sourceTree = "<group>"; };
@@ -155,7 +160,6 @@
 		FCCED11D26846B920071E12B /* AppointmentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentVC.swift; sourceTree = "<group>"; };
 		FCCED14826847AC40071E12B /* ProfileTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTVC.xib; sourceTree = "<group>"; };
 		FCCED14D26847AE30071E12B /* AppointmentTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentTVC.xib; sourceTree = "<group>"; };
-		FCCED1522684A6360071E12B /* GetUserProfileDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileDetailEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +237,8 @@
 				FCC6AD802683191600F99B9C /* AddChildVC.swift */,
 				FCCED1042684682F0071E12B /* ChangePasswordVC.swift */,
 				FCCED1092684687E0071E12B /* EditProfileVC.swift */,
+				B32D1C8926849D78003103E5 /* NotificationsVC.swift */,
+				B3BEB82B2685A7F500C9DE3E /* ChildDetailVC.swift */,
 			);
 			path = "Setting Controllers";
 			sourceTree = "<group>";
@@ -330,7 +336,7 @@
 				FCC6AD69268304E700F99B9C /* LoginSignUpEntity.swift */,
 				FCC6AD7B268316DF00F99B9C /* ForgotPasswordEntity.swift */,
 				FCCED0F9268460050071E12B /* HomeChildListEntity.swift */,
-				FCCED1522684A6360071E12B /* GetUserProfileDetailEntity.swift */,
+				FC8859BC2685B9E10098DCF3 /* GetUserProfileDetailEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -708,7 +714,6 @@
 			files = (
 				FCC6AD9026833F0100F99B9C /* AppointmentTVC.swift in Sources */,
 				FCC6AD7C268316DF00F99B9C /* ForgotPasswordEntity.swift in Sources */,
-				FCCED1532684A6360071E12B /* GetUserProfileDetailEntity.swift in Sources */,
 				FC41D8EC268242140095B24A /* AppNavigations.swift in Sources */,
 				B324B11B2680CBE00082590E /* Storyboard Class.swift in Sources */,
 				FCCED1052684682F0071E12B /* ChangePasswordVC.swift in Sources */,
@@ -719,6 +724,7 @@
 				FCC6AD6A268304E700F99B9C /* LoginSignUpEntity.swift in Sources */,
 				FCCED0FA268460050071E12B /* HomeChildListEntity.swift in Sources */,
 				B33480CB2681A8C50067BE71 /* TabBarVC.swift in Sources */,
+				B3BEB82C2685A7F600C9DE3E /* ChildDetailVC.swift in Sources */,
 				FC41D8D026823F200095B24A /* RestManager.swift in Sources */,
 				B324B1162680CAAC0082590E /* ForgotPasswordVC.swift in Sources */,
 				FCC6ADA926833F2600F99B9C /* ProfileVC.swift in Sources */,
@@ -733,6 +739,8 @@
 				FCCED10A2684687E0071E12B /* EditProfileVC.swift in Sources */,
 				FC41D8E22682417C0095B24A /* AppDefaults.swift in Sources */,
 				B326A4462681D8AE00E4C0D2 /* HomeVC.swift in Sources */,
+				FC8859BD2685B9E10098DCF3 /* GetUserProfileDetailEntity.swift in Sources */,
+				B32D1C8A26849D78003103E5 /* NotificationsVC.swift in Sources */,
 				B324B1112680C9030082590E /* SignUpVC.swift in Sources */,
 				B324B0FD2680B0110082590E /* AppExtensions.swift in Sources */,
 			);

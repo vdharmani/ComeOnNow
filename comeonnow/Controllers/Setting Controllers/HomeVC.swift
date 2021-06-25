@@ -11,6 +11,7 @@ import SVProgressHUD
 class HomeVC: UIViewController {
      let restHCL = RestManager()
     var lastChildId = "0"
+    var refreshControl =  UIRefreshControl()
 
     @IBOutlet weak var homeTableView: UITableView!
     var homeArray = [ChildListData<AnyHashable>]()
@@ -20,11 +21,20 @@ class HomeVC: UIViewController {
         homeTableView.delegate = self
 
         homeTableView.register(UINib(nibName: "HomeTVC", bundle: nil), forCellReuseIdentifier: "HomeTVC")
-        
+        let refreshView = UIView(frame: CGRect(x: 0, y: 0, width: 55, height: 0))
+        homeTableView.insertSubview(refreshView, at: 0)
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(reloadtV), for: .valueChanged)
+        refreshView.addSubview(refreshControl)
 //        self.homeArray.append(HomeChildListData(image: "baby2", name: "Eischens", age: "5 years 8 month", gender: "Boy"))
        
         
     }
+    @objc func reloadtV() {
+        homeChildListApi()
+        self.refreshControl.endRefreshing()
+    }
+
     open func homeChildListApi(){
         guard let url = URL(string: kBASEURL + WSMethods.getChildrenDetails) else { return }
         let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
@@ -54,9 +64,16 @@ class HomeVC: UIViewController {
                 //
                 let loginResp =   HomeChildListData.init(dict: jsonResult ?? [:])
                 if loginResp?.status == 1{
-                    self.lastChildId = loginResp!.homeArray.last?.child_id ?? ""
-                    self.homeArray = loginResp!.homeArray
-                    
+//                    if self.homeArray.count > 20{
+                        self.lastChildId = loginResp!.homeArray.last?.child_id ?? ""
+                    //}
+                    let hArr = loginResp!.homeArray
+                    if hArr.count != 0{
+                        for i in 0..<hArr.count {
+                            self.homeArray.append(hArr[i])
+                        }
+                   
+                    }
 
                 DispatchQueue.main.async {
                     self.homeTableView.reloadData()
@@ -119,7 +136,18 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
         return 67
         
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
+        vc.name = homeArray[indexPath.row].name
+        vc.dob = homeArray[indexPath.row].dob
+        vc.gender = homeArray[indexPath.row].gender
+        vc.image = homeArray[indexPath.row].image
+
+        
+                  self.navigationController?.pushViewController(vc, animated: false)
+    }
     
 }
+
+
 

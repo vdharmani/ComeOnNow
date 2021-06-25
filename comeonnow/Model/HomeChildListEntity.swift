@@ -26,7 +26,10 @@ import Foundation
 struct HomeChildListData<T>{
   
   
-    
+    //{
+    //    "status": 1,
+    //    "message": "New password has been sent to the entered email, please check your email."
+    //}
     var status: Int
     var message: String
     var homeArray:[ChildListData<T>]
