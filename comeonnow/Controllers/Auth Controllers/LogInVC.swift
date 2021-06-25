@@ -91,6 +91,66 @@ class LogInVC: UIViewController, UITextFieldDelegate {
       
 
     }
+    open func resendEmailVerificationApi(){
+        
+        
+        guard let url = URL(string: WS_Staging + WSMethods.resentVerficationEmail) else { return }
+    
+        rest.requestHttpHeaders.add(value: "application/json", forKey: "Content-Type")
+        rest.httpBodyParameters.add(value:emailTextField.text ?? "", forKey:"email")
+
+       
+        SVProgressHUD.show()
+        
+        rest.makeRequest(toURL: url, withHttpMethod: .post) { (results) in
+
+            SVProgressHUD.dismiss()
+            guard let response = results.response else { return }
+            if response.httpStatusCode == 200 {
+                guard let data = results.data else { return }
+                
+                let jsonResult = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:AnyHashable] ?? [:]
+                
+                let forgotResp = ForgotPasswordData.init(dict: jsonResult ?? [:])
+
+                if forgotResp?.status == 1{
+                    DispatchQueue.main.async {
+                        Alert.present(
+                            title: AppAlertTitle.appName.rawValue,
+                            message: forgotResp?.message ?? "",
+                            actions: .ok(handler: {
+                                self.navigationController?.popViewController(animated: true)
+                            }),
+                            from: self
+                        )
+                    }                }else{
+                    DispatchQueue.main.async {
+
+                    Alert.present(
+                        title: AppAlertTitle.appName.rawValue,
+                        message: forgotResp?.message ?? "",
+                        actions: .ok(handler: {
+                        }),
+                        from: self
+                    )
+                    }
+                }
+
+               
+            }else{
+                DispatchQueue.main.async {
+
+                Alert.present(
+                    title: AppAlertTitle.appName.rawValue,
+                    message: AppAlertTitle.connectionError.rawValue,
+                    actions: .ok(handler: {
+                    }),
+                    from: self
+                )
+                }
+            }
+        }
+    }
     open func loginApi(){
         guard let url = URL(string: kBASEURL + WSMethods.signIn) else { return }
         var deviceToken  = getSAppDefault(key: "DeviceToken") as? String ?? ""
@@ -135,7 +195,23 @@ class LogInVC: UIViewController, UITextFieldDelegate {
                             }
                        
                 }
-                }else{
+                }
+                
+              else if loginResp?.status == 2{
+                let alert = UIAlertController(title: AppAlertTitle.appName.rawValue, message: loginResp?.alertMessage, preferredStyle: UIAlertController.Style.alert)
+
+                alert.addAction(UIAlertAction(title: "Skip", style: UIAlertAction.Style.default, handler: { _ in
+                           //Cancel Action
+                       }))
+                       alert.addAction(UIAlertAction(title: "Resend",
+                                                     style: UIAlertAction.Style.destructive,
+                                                     handler: {(_: UIAlertAction!) in
+                                                       //Sign out action
+                                                        self.resendEmailVerificationApi()
+                       }))
+                       self.present(alert, animated: true, completion: nil)
+              }
+                else{
                     DispatchQueue.main.async {
                         Alert.present(
                             title: AppAlertTitle.appName.rawValue,

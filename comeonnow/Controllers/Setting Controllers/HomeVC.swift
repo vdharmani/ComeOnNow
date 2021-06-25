@@ -12,9 +12,12 @@ class HomeVC: UIViewController {
      let restHCL = RestManager()
     var lastChildId = "0"
     var refreshControl =  UIRefreshControl()
+    var isFromPagination = false
 
     @IBOutlet weak var homeTableView: UITableView!
     var homeArray = [ChildListData<AnyHashable>]()
+    var homeNUArray = [ChildListData<AnyHashable>]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         homeTableView.dataSource = self
@@ -32,6 +35,7 @@ class HomeVC: UIViewController {
     }
     @objc func reloadtV() {
         homeChildListApi()
+        isFromPagination = true
         self.refreshControl.endRefreshing()
     }
 
@@ -64,16 +68,33 @@ class HomeVC: UIViewController {
                 //
                 let loginResp =   HomeChildListData.init(dict: jsonResult ?? [:])
                 if loginResp?.status == 1{
+                    self.isFromPagination = false
+
 //                    if self.homeArray.count > 20{
-                        self.lastChildId = loginResp!.homeArray.last?.child_id ?? ""
+//                    if self.isFromPagination == true{
+//                        self.lastChildId = loginResp!.homeArray.last?.child_id ?? ""
+//                    }else{
+//
+//                    }
                     //}
-                    let hArr = loginResp!.homeArray
-                    if hArr.count != 0{
-                        for i in 0..<hArr.count {
-                            self.homeArray.append(hArr[i])
+                    self.lastChildId = loginResp!.homeArray.last?.child_id ?? ""
+                    if self.lastChildId == ""{
+                        self.homeArray = loginResp!.homeArray
+                    }else{
+                        let hArr = loginResp!.homeArray
+                        if hArr.count != 0{
+                            for i in 0..<hArr.count {
+                                self.homeNUArray.append(hArr[i])
+                            }
+                            self.homeNUArray.sort {
+                                $0.created_at > $1.created_at
+                            }
+                            let uniquePosts = self.homeNUArray.unique{$0.child_id }
+
+                            self.homeArray = uniquePosts
                         }
-                   
                     }
+                   
 
                 DispatchQueue.main.async {
                     self.homeTableView.reloadData()
@@ -106,6 +127,7 @@ class HomeVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        lastChildId = ""
         homeChildListApi()
     }
     @IBAction func addChildBtnAction(_ sender: Any) {
@@ -151,3 +173,17 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
 
 
 
+extension Array {
+    func unique<T:Hashable>(map: ((Element) -> (T)))  -> [Element] {
+        var set = Set<T>() //the unique list kept in a Set for fast retrieval
+        var arrayOrdered = [Element]() //keeping the unique list of elements but ordered
+        for value in self {
+            if !set.contains(map(value)) {
+                set.insert(map(value))
+                arrayOrdered.append(value)
+            }
+        }
+
+        return arrayOrdered
+    }
+}

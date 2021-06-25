@@ -36,6 +36,7 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     }
     open func setDatePicker() {
         datePicker.datePickerMode = .date
+        datePicker.maximumDate = Date()
         dOBTF.inputView = datePicker
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
         toolBar.tintColor = UIColor.gray
@@ -226,6 +227,7 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
             if respDict.count != 0{
                 let signUpStepData =  ForgotPasswordData(dict: respDict)
                 if signUpStepData?.status == 1{
+                    
                     self.navigationController?.popViewController(animated: true)
                 }else{
                     

@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         sleep(1)
         window = UIWindow(frame: UIScreen.main.bounds)
+//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2668271065, green: 0.2587364316, blue: 0.2627768517, alpha: 1)  ], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.5227575898, green: 0.1487583816, blue: 0.471519649, alpha: 1) ], for: .selected)
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         appDelegate?.window = self.window
         let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""

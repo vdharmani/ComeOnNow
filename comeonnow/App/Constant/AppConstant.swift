@@ -25,7 +25,7 @@ struct WSMethods {
     static let getChildrenDetails = "getChildrenDetails.php"
     static let getProfileDetails = "getProfileDetails.php"
     static let changePassword = "changePassword.php"
-    static let addBiWeeklyInventory = "AddBiWeeklyInventory.php"
+    static let resentVerficationEmail = "ResentVerficationEmail.php"
     static let getAllProduct = "GetAllProduct.php"
     static let addProduct = "AddProduct.php"
     static let getAllIngredient = "GetAllIngredient.php"
