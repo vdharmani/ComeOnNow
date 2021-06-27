@@ -18,7 +18,7 @@ func appDelegate() -> AppDelegate {
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+//vddvd
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         IQKeyboardManager.shared.enable = true
         sleep(1)
