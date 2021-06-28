@@ -45,6 +45,10 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTextField.delegate = self
+                userTextField.delegate = self
+        passwordTextField.delegate = self
+
 
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

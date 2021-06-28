@@ -9,23 +9,52 @@ import UIKit
 import SVProgressHUD
 import Alamofire
 
-class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePickerControllerDelegate{
+class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextFieldDelegate{
+
 
     @IBOutlet weak var userNameView: UIView!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var bioView: UIView!
-    
     @IBOutlet weak var bioTextField: UITextField!
-    
     @IBOutlet weak var userImgView: UIImageView!
     var imgArray = [Data]()
     var getProfileResp: GetUserProfileData<Any>?
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        switch textField {
+        case usernameTextField:
+            userNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+        case emailTextField :
+            emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+        case bioTextField :
+            bioView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+        default:break
+            
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField {
+    
+        case emailTextField:
+            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        case bioTextField :
+            bioView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        case usernameTextField:
+            userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        
+      
+        default:break
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTextField.delegate = self
+         bioTextField.delegate = self
+         usernameTextField.delegate = self
+        self.userImgView.setRounded()
         emailTextField.text = getProfileResp?.email
         bioTextField.text = getProfileResp?.description
         usernameTextField.text = getProfileResp?.username
