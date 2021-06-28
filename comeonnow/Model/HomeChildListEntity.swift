@@ -50,6 +50,18 @@ struct HomeChildListData<T>{
         self.homeArray = hArray
     }
 }
+
+//"appointmentDetails": {
+//               "id": "2",
+//               "user_id": "16",
+//               "child_id": "23",
+//               "title": "Vaccine against Hepatitis B",
+//               "appointment_date": "2021-06-29",
+//               "appointment_time_to": "10:00 AM",
+//               "appointment_time_from": "11:00 AM",
+//               "status": "0",
+//               "create_date": "1624877778"
+//           }
 struct ChildListData<T>{
     var child_id:String
     var user_id:String
@@ -58,6 +70,7 @@ struct ChildListData<T>{
     var gender:String
     var image:String
     var created_at:String
+    var appointmentDetailsDict:AppointmentDetailsDict<T>
     init?(dataDict:[String:T]) {
    
         let child_id = dataDict["child_id"] as? String ?? ""
@@ -67,6 +80,7 @@ struct ChildListData<T>{
         let gender = dataDict["gender"] as? String ?? ""
         let image = dataDict["image"] as? String ?? ""
         let created_at = dataDict["created_at"] as? String ?? ""
+        let appointmentDetailsDict = dataDict["appointmentDetails"] as? [String :T] ?? [:]
 
        
       
@@ -77,6 +91,43 @@ struct ChildListData<T>{
         self.gender = gender
         self.image = image
         self.created_at = created_at
+        self.appointmentDetailsDict = AppointmentDetailsDict(dataDict:appointmentDetailsDict)!
+    }
+
+}
+struct AppointmentDetailsDict<T>{
+
+    var id:String
+    var user_id:String
+    var child_id:String
+    var title:String
+    var appointment_date:String
+    var appointment_time_to:String
+    var appointment_time_from:String
+    var status:String
+    var create_date:String
+    init?(dataDict:[String:T]) {
+        let id = dataDict["id"] as? String ?? ""
+        let user_id = dataDict["user_id"] as? String ?? ""
+        let child_id = dataDict["child_id"] as? String ?? ""
+        let title = dataDict["title"] as? String ?? ""
+        let appointment_date = dataDict["appointment_date"] as? String ?? ""
+        let appointment_time_to = dataDict["appointment_time_to"] as? String ?? ""
+        let appointment_time_from = dataDict["appointment_time_from"] as? String ?? ""
+        let status = dataDict["status"] as? String ?? ""
+        let create_date = dataDict["create_date"] as? String ?? ""
+
+        
+        self.id = id
+        self.user_id = user_id
+        self.child_id = child_id
+        self.title = title
+        self.appointment_date = appointment_date
+        self.appointment_time_to = appointment_time_to
+        self.appointment_time_from = appointment_time_from
+        self.status = status
+        self.create_date = create_date
+
     }
 
 }

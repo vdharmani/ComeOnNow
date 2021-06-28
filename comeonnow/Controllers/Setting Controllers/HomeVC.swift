@@ -164,7 +164,7 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
         vc.dob = homeArray[indexPath.row].dob
         vc.gender = homeArray[indexPath.row].gender
         vc.image = homeArray[indexPath.row].image
-
+        vc.appointmentDetailsDict = homeArray[indexPath.row].appointmentDetailsDict
         
                   self.navigationController?.pushViewController(vc, animated: false)
     }

@@ -26,9 +26,16 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
         switch textField {
         case usernameTextField:
             userNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            bioView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
         case emailTextField :
             emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            bioView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         case bioTextField :
+            userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             bioView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
         default:break
             
@@ -39,11 +46,17 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
     
         case emailTextField:
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            userNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            bioView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+
         case bioTextField :
             bioView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            userNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
         case usernameTextField:
             userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        
+            emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            bioView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
       
         default:break
         }

@@ -22,10 +22,18 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
         switch textField {
         case userTextField:
             userView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
         case emailTextField:
             emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            userView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
         case passwordTextField :
             passwordView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            userView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         default:break
             
         }
@@ -34,9 +42,16 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
         switch textField {
         case userTextField:
             userView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            passwordView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+
         case emailTextField:
+            userView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            passwordView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         case passwordTextField :
+            emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            userView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
             passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
       
         default:break
