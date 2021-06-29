@@ -135,9 +135,9 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationsTVC", for: indexPath) as! NotificationsTVC
         var sPhotoStr = notificationArray[indexPath.row].image
         sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        if sPhotoStr != ""{
+//        if sPhotoStr != ""{
             cell.mainImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:UIImage(named:"img"))
-        }
+        //}
         cell.appointmentLabel.text = notificationArray[indexPath.row].description
         
         let createdDate : String = notificationArray[indexPath.row].created //time stamp

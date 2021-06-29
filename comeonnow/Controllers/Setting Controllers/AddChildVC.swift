@@ -30,7 +30,7 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
         super.viewDidLoad()
         
         genderPickerViewObj.isHidden = true
-        genderArr = ["Boy","Girl"]
+        genderArr = ["Boy","Girl","Other"]
         setDatePicker()
         // Do any additional setup after loading the view.
     }

@@ -73,9 +73,9 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
         usernameTextField.text = getProfileResp?.username
         var sPhotoStr = getProfileResp?.photo
         sPhotoStr = sPhotoStr?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        if sPhotoStr != ""{
+//        if sPhotoStr != ""{
             userImgView.sd_setImage(with: URL(string: sPhotoStr ?? ""), placeholderImage:UIImage(named:"img"))
-        }
+        //}
         
     }
     open func takePhoto() {

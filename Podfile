@@ -9,7 +9,7 @@ target 'comeonnow' do
    pod 'Alamofire', '~> 5.2'
    pod 'SDWebImage'
    pod 'SVProgressHUD'
- 
+   pod 'KRPullLoader'
 
   # Pods for comeonnow
 

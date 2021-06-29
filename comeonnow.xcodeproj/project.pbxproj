@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		059B43EECB4692115AFA39B8 /* Pods_comeonnowTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67F12C86FA70DCCC51581465 /* Pods_comeonnowTests.framework */; };
+		18342FCF268AF8DD00BC9E4C /* AppointmentListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */; };
 		18F31C372689EAA100867B25 /* NotificationListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F31C362689EAA100867B25 /* NotificationListEntity.swift */; };
 		90C2B7CA48E74D93FBFD3D13 /* Pods_comeonnow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F503B245F78C2F8B082C2F7 /* Pods_comeonnow.framework */; };
 		B324B0FD2680B0110082590E /* AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B324B0FC2680B0110082590E /* AppExtensions.swift */; };
@@ -88,6 +89,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentListEntity.swift; sourceTree = "<group>"; };
 		18F31C362689EAA100867B25 /* NotificationListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListEntity.swift; sourceTree = "<group>"; };
 		4F503B245F78C2F8B082C2F7 /* Pods_comeonnow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_comeonnow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B11D47DA383A7EAAA3EBF7 /* Pods-comeonnowTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-comeonnowTests.release.xcconfig"; path = "Target Support Files/Pods-comeonnowTests/Pods-comeonnowTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				FCCED0F9268460050071E12B /* HomeChildListEntity.swift */,
 				FC8859BC2685B9E10098DCF3 /* GetUserProfileDetailEntity.swift */,
 				18F31C362689EAA100867B25 /* NotificationListEntity.swift */,
+				18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -736,6 +739,7 @@
 				FC41D8CB26821BFF0095B24A /* AppConstant.swift in Sources */,
 				B33480FB2681D1A90067BE71 /* HomeTVC.swift in Sources */,
 				B3FF55342680A20E006B6901 /* AppDelegate.swift in Sources */,
+				18342FCF268AF8DD00BC9E4C /* AppointmentListEntity.swift in Sources */,
 				B324B1202680CCF70082590E /* Validation Managers.swift in Sources */,
 				B3FF55362680A20E006B6901 /* SceneDelegate.swift in Sources */,
 				18F31C372689EAA100867B25 /* NotificationListEntity.swift in Sources */,

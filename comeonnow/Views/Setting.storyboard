@@ -1432,7 +1432,7 @@
                                         <rect key="frame" x="29" y="16" width="8.5" height="8.5"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAH-sL-H2r">
-                                        <rect key="frame" x="126" y="12" width="68" height="16.5"/>
+                                        <rect key="frame" x="126.5" y="11.5" width="67.5" height="17"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1511,7 +1511,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="288" height="80"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UoP-B3-4Fi">
-                                                                <rect key="frame" x="13" y="5" width="64.5" height="15"/>
+                                                                <rect key="frame" x="13" y="5" width="63" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="KXf-eF-UCf"/>
                                                                 </constraints>
@@ -1573,7 +1573,7 @@
                                                         <rect key="frame" x="0.0" y="90" width="288" height="80"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6g0-z5-bMw">
-                                                                <rect key="frame" x="13" y="5" width="34.5" height="15"/>
+                                                                <rect key="frame" x="13" y="5" width="33.5" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="bKd-FE-XlQ"/>
                                                                 </constraints>
@@ -1635,7 +1635,7 @@
                                                         <rect key="frame" x="0.0" y="180" width="288" height="110"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fhn-dO-srd">
-                                                                <rect key="frame" x="13" y="5" width="21" height="15"/>
+                                                                <rect key="frame" x="13" y="5" width="20.5" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="2kI-Sx-X2p"/>
                                                                 </constraints>

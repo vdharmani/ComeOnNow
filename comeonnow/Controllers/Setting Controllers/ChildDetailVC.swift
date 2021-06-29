@@ -29,9 +29,9 @@ class ChildDetailVC: UIViewController {
         genderLabel.text = gender
         var sPhotoStr = image
         sPhotoStr = sPhotoStr?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        if sPhotoStr != ""{
+//        if sPhotoStr != ""{
             mainImg.sd_setImage(with: URL(string: sPhotoStr ?? ""), placeholderImage:nil)
-        }
+       // }
         dateLabel.text = appointmentDetailsDict?.appointment_date
         let time1 = appointmentDetailsDict?.appointment_time_to ?? ""
            let time2 = appointmentDetailsDict?.appointment_time_from ?? ""

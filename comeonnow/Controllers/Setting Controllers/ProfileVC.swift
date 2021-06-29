@@ -59,9 +59,9 @@ class ProfileVC: UIViewController {
        
         var sPhotoStr = dict?.photo ?? ""
         sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        if sPhotoStr != ""{
+//        if sPhotoStr != ""{
             profileImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:nil)
-        }
+       // }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)

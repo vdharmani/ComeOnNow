@@ -7,13 +7,16 @@
 
 import UIKit
 import SVProgressHUD
+import SDWebImage
+import KRPullLoader
 
-class HomeVC: UIViewController {
+class HomeVC: UIViewController{
+   
+    
      let restHCL = RestManager()
     var lastChildId = "0"
     var refreshControl =  UIRefreshControl()
     var isFromPagination = false
-
     @IBOutlet weak var homeTableView: UITableView!
     var homeArray = [ChildListData<AnyHashable>]()
     var homeNUArray = [ChildListData<AnyHashable>]()
@@ -24,11 +27,15 @@ class HomeVC: UIViewController {
         homeTableView.delegate = self
 
         homeTableView.register(UINib(nibName: "HomeTVC", bundle: nil), forCellReuseIdentifier: "HomeTVC")
-        let refreshView = UIView(frame: CGRect(x: 0, y: 0, width: 55, height: 0))
-        homeTableView.insertSubview(refreshView, at: 0)
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(reloadtV), for: .valueChanged)
-        refreshView.addSubview(refreshControl)
+        let loadMoreView = KRPullLoadView()
+        loadMoreView.delegate = self
+        homeTableView.addPullLoadableView(loadMoreView, type: .loadMore)
+        
+//        let refreshView = UIView(frame: CGRect(x: 0, y: 0, width: 55, height: 0))
+//        homeTableView.insertSubview(refreshView, at: 0)
+//        refreshControl = UIRefreshControl()
+//        refreshControl.addTarget(self, action: #selector(reloadtV), for: .valueChanged)
+//        refreshView.addSubview(refreshControl)
 //        self.homeArray.append(HomeChildListData(image: "baby2", name: "Eischens", age: "5 years 8 month", gender: "Boy"))
        
         
@@ -78,9 +85,9 @@ class HomeVC: UIViewController {
 //                    }
                     //}
                     self.lastChildId = loginResp!.homeArray.last?.child_id ?? ""
-                    if self.lastChildId == ""{
-                        self.homeArray = loginResp!.homeArray
-                    }else{
+//                    if self.lastChildId == ""{
+//                        self.homeArray = loginResp!.homeArray
+//                    }else{
                         let hArr = loginResp!.homeArray
                         if hArr.count != 0{
                             for i in 0..<hArr.count {
@@ -92,7 +99,7 @@ class HomeVC: UIViewController {
                             let uniquePosts = self.homeNUArray.unique{$0.child_id }
 
                             self.homeArray = uniquePosts
-                        }
+                        //}
                     }
                    
 
@@ -144,10 +151,16 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTVC", for: indexPath) as! HomeTVC
         var sPhotoStr = homeArray[indexPath.row].image
-        sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        if sPhotoStr != ""{
-            cell.mainImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:UIImage(named:"img"))
-        }
+//        sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+//        if sPhotoStr != ""{
+        
+        
+//            cell.mainImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:UIImage(named:"img"))
+        
+        
+                    cell.mainImage.sd_setImage(with: URL(string: homeArray[indexPath.row].image), placeholderImage: UIImage(named: "img"), options: SDWebImageOptions.continueInBackground, completed: nil)
+        
+       // }
         cell.nameLabel.text = homeArray[indexPath.row].name
         cell.ageLabel.text = homeArray[indexPath.row].dob
         cell.genderLabel.text = homeArray[indexPath.row].gender
@@ -169,6 +182,7 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
                   self.navigationController?.pushViewController(vc, animated: false)
     }
     
+    
 }
 
 
@@ -186,4 +200,45 @@ extension Array {
 
         return arrayOrdered
     }
+}
+extension HomeVC:KRPullLoadViewDelegate{
+    func pullLoadView(_ pullLoadView: KRPullLoadView, didChangeState state: KRPullLoaderState, viewType type: KRPullLoaderType) {
+        if type == .loadMore {
+            switch state {
+            case let .loading(completionHandler):
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
+                    completionHandler()
+//                    self.index += 1
+//                    self.tableView.reloadData()
+                    self.homeChildListApi()
+
+                }
+            default: break
+            }
+            return
+        }
+
+        switch state {
+        case .none:
+            pullLoadView.messageLabel.text = ""
+
+        case let .pulling(offset, threshould):
+            if offset.y > threshould {
+                pullLoadView.messageLabel.text = "Pull more. offset: \(Int(offset.y)), threshould: \(Int(threshould)))"
+            } else {
+                pullLoadView.messageLabel.text = "Release to refresh. offset: \(Int(offset.y)), threshould: \(Int(threshould)))"
+            }
+
+        case let .loading(completionHandler):
+            pullLoadView.messageLabel.text = "Updating..."
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
+                completionHandler()
+                self.homeChildListApi()
+//                self.index += 1
+//                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    
 }
