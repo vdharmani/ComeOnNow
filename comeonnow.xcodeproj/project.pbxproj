@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		059B43EECB4692115AFA39B8 /* Pods_comeonnowTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67F12C86FA70DCCC51581465 /* Pods_comeonnowTests.framework */; };
 		18342FCF268AF8DD00BC9E4C /* AppointmentListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */; };
+		18342FF2268B3C8000BC9E4C /* ApproveRejectEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18342FF1268B3C8000BC9E4C /* ApproveRejectEntity.swift */; };
 		18F31C372689EAA100867B25 /* NotificationListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F31C362689EAA100867B25 /* NotificationListEntity.swift */; };
 		90C2B7CA48E74D93FBFD3D13 /* Pods_comeonnow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F503B245F78C2F8B082C2F7 /* Pods_comeonnow.framework */; };
 		B324B0FD2680B0110082590E /* AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B324B0FC2680B0110082590E /* AppExtensions.swift */; };
@@ -90,6 +91,7 @@
 
 /* Begin PBXFileReference section */
 		18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentListEntity.swift; sourceTree = "<group>"; };
+		18342FF1268B3C8000BC9E4C /* ApproveRejectEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveRejectEntity.swift; sourceTree = "<group>"; };
 		18F31C362689EAA100867B25 /* NotificationListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListEntity.swift; sourceTree = "<group>"; };
 		4F503B245F78C2F8B082C2F7 /* Pods_comeonnow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_comeonnow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B11D47DA383A7EAAA3EBF7 /* Pods-comeonnowTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-comeonnowTests.release.xcconfig"; path = "Target Support Files/Pods-comeonnowTests/Pods-comeonnowTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				FC8859BC2685B9E10098DCF3 /* GetUserProfileDetailEntity.swift */,
 				18F31C362689EAA100867B25 /* NotificationListEntity.swift */,
 				18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */,
+				18342FF1268B3C8000BC9E4C /* ApproveRejectEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -751,6 +754,7 @@
 				B32D1C8A26849D78003103E5 /* NotificationsVC.swift in Sources */,
 				B324B1112680C9030082590E /* SignUpVC.swift in Sources */,
 				B324B0FD2680B0110082590E /* AppExtensions.swift in Sources */,
+				18342FF2268B3C8000BC9E4C /* ApproveRejectEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -928,15 +932,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = A9LY334MYG;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.comeonnow.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaohar.jaoharuklimited;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Jaohar Uk Ltd Dev 2 Nov 2020";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -949,15 +956,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = A9LY334MYG;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.comeonnow.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jaohar.jaoharuklimited;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Jaohar Uk Ltd Dev 2 Nov 2020";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

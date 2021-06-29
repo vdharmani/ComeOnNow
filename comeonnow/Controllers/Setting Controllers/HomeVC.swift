@@ -15,8 +15,6 @@ class HomeVC: UIViewController{
     
      let restHCL = RestManager()
     var lastChildId = "0"
-    var refreshControl =  UIRefreshControl()
-    var isFromPagination = false
     @IBOutlet weak var homeTableView: UITableView!
     var homeArray = [ChildListData<AnyHashable>]()
     var homeNUArray = [ChildListData<AnyHashable>]()
@@ -40,12 +38,7 @@ class HomeVC: UIViewController{
        
         
     }
-    @objc func reloadtV() {
-        homeChildListApi()
-        isFromPagination = true
-        self.refreshControl.endRefreshing()
-    }
-
+   
     open func homeChildListApi(){
         guard let url = URL(string: kBASEURL + WSMethods.getChildrenDetails) else { return }
         let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
@@ -75,7 +68,6 @@ class HomeVC: UIViewController{
                 //
                 let loginResp =   HomeChildListData.init(dict: jsonResult ?? [:])
                 if loginResp?.status == 1{
-                    self.isFromPagination = false
 
 //                    if self.homeArray.count > 20{
 //                    if self.isFromPagination == true{
