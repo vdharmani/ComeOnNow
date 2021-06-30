@@ -100,7 +100,7 @@ class ChangePasswordVC: UIViewController {
         if currentPasswordTextField.text?.trimmingCharacters(in: .whitespaces) == ""{
             Alert.present(
                 title: AppAlertTitle.appName.rawValue,
-                message: "Please enter old password",
+                message: "Please enter current password",
                 actions: .ok(handler: {
                 }),
                 from: self

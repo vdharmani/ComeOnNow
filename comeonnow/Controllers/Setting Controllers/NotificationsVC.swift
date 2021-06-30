@@ -123,13 +123,13 @@ class NotificationsVC: UIViewController {
      
         
     }
-    open func acceptRejectApi(status:String,id:String){
+    open func acceptRejectApi(status:String,id:String,notificationId:String){
         
         let userId = getSAppDefault(key: "UserId") as? String ?? ""
 
         let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
 
-        let paramds = ["user_id":userId,"id":id,"status":status] as [String : Any]
+        let paramds = ["user_id":userId,"id":id,"status":status,"notification_id":notificationId] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.approveRejectAppointment
         
@@ -192,8 +192,10 @@ class NotificationsVC: UIViewController {
         var indexPath: IndexPath? = nil
         let cell1 = parentCell as? NotificationsTVC
         indexPath = notificationsTableView.indexPath(for: cell1!)
+        let detailId = notificationArray[indexPath!.row].detail_id
+
         let notificationId = notificationArray[indexPath!.row].notification_id
-        acceptRejectApi(status: "1", id: notificationId)
+        acceptRejectApi(status: "1", id: detailId,notificationId: notificationId)
 
 
     }
@@ -206,8 +208,12 @@ class NotificationsVC: UIViewController {
         var indexPath: IndexPath? = nil
         let cell1 = parentCell as? NotificationsTVC
         indexPath = notificationsTableView.indexPath(for: cell1!)
+       
+        let detailId = notificationArray[indexPath!.row].detail_id
+
         let notificationId = notificationArray[indexPath!.row].notification_id
-        acceptRejectApi(status: "2", id: notificationId)
+        acceptRejectApi(status: "2", id: detailId,notificationId: notificationId)
+        
 
     }
     

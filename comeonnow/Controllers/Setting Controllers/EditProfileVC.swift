@@ -17,12 +17,17 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var bioView: UIView!
-    @IBOutlet weak var bioTextField: UITextField!
+    
+    @IBOutlet weak var bioTV: UITextView!
+    
     @IBOutlet weak var userImgView: UIImageView!
     var imgArray = [Data]()
     var getProfileResp: GetUserProfileData<Any>?
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+      
+        
+        
         switch textField {
         case usernameTextField:
             userNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
@@ -33,10 +38,7 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
             emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
             userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             bioView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        case bioTextField :
-            userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            bioView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+        
         default:break
             
         }
@@ -49,10 +51,6 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
             userNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
             bioView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
 
-        case bioTextField :
-            bioView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            userNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-            emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
         case usernameTextField:
             userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
@@ -65,11 +63,10 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.delegate = self
-         bioTextField.delegate = self
          usernameTextField.delegate = self
         self.userImgView.setRounded()
         emailTextField.text = getProfileResp?.email
-        bioTextField.text = getProfileResp?.description
+        bioTV.text = getProfileResp?.description
         usernameTextField.text = getProfileResp?.username
         var sPhotoStr = getProfileResp?.photo
         sPhotoStr = sPhotoStr?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
@@ -193,7 +190,7 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
         let userId = getSAppDefault(key: "UserId") as? String ?? ""
 
     
-        let paramds = ["userName":usernameTextField.text ?? "" ,"email":emailTextField.text ?? "","description":bioTextField.text ?? "","user_id":userId] as [String : Any]
+        let paramds = ["userName":usernameTextField.text ?? "" ,"email":emailTextField.text ?? "","description":bioTV.text ?? "","user_id":userId] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.editProfile
         
@@ -274,7 +271,7 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
                 from: self
             )
         }
-        else if bioTextField.text?.trimmingCharacters(in: .whitespaces) == ""{
+        else if bioTV.text?.trimmingCharacters(in: .whitespaces) == ""{
             Alert.present(
                 title: AppAlertTitle.appName.rawValue,
                 message: AppSignInForgotSignUpAlertNessage.enterBio,
@@ -285,5 +282,17 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
         }else{
             editProfileApi()
         }
+    }
+}
+extension EditProfileVC:UITextViewDelegate{
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        bioView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        bioView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        userNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+        emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
     }
 }
