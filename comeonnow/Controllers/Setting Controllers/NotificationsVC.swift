@@ -15,6 +15,7 @@ class NotificationsVC: UIViewController {
     var lastChildId = "0"
     var notificationArray = [NotificationListData<Any>]()
     var notificationNUArray = [NotificationListData<Any>]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         notificationsTableView.dataSource = self
@@ -37,7 +38,7 @@ class NotificationsVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        lastChildId = ""
+        notificationArray.removeAll(); notificationNUArray.removeAll();        lastChildId = ""
         getNotificationListApi()
     }
   
@@ -144,24 +145,36 @@ class NotificationsVC: UIViewController {
                         print(JSON as NSDictionary)
                         let getProfileResp =  ForgotPasswordData.init(dict: JSON )
                         
-                        //                let status = jsonResult?["status"] as? Int ?? 0
-//                        if getProfileResp?.status == 0{
-                        self.lastChildId = ""
-                        self.getNotificationListApi()
-                           
+                                       
+                        if getProfileResp?.status == 1{
+                        
+                            for i in 0..<self.notificationArray.count {
+
+                                let bhh = self.notificationArray[i].notification_id
+                                if bhh == notificationId{
+                                    if status == "2"{
+                                    self.notificationArray.remove(at:i)
+                                    }else{
+                                        self.notificationArray[i].notification_type = "3"
+                                    }
+                                    break
+                                }
+                                
+                            }
+                            self.notificationsTableView.reloadData()
                             
-//                        }else{
-//                            DispatchQueue.main.async {
-//
-//                            Alert.present(
-//                                title: AppAlertTitle.appName.rawValue,
-//                                message: getProfileResp?.message ?? "",
-//                                actions: .ok(handler: {
-//                                }),
-//                                from: self
-//                            )
-//                            }
-//                        }
+                        }else{
+                            DispatchQueue.main.async {
+
+                            Alert.present(
+                                title: AppAlertTitle.appName.rawValue,
+                                message: getProfileResp?.message ?? "",
+                                actions: .ok(handler: {
+                                }),
+                                from: self
+                            )
+                            }
+                        }
                         
                         
                     }
@@ -225,10 +238,11 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationsTVC", for: indexPath) as! NotificationsTVC
+        if notificationArray.count > 0{
         var sPhotoStr = notificationArray[indexPath.row].image
         sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
 //        if sPhotoStr != ""{
-            cell.mainImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:UIImage(named:"img"))
+            cell.mainImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:UIImage(named:"notifyplaceholderImg"))
         //}
         cell.acceptButton.addTarget(self, action: #selector(acceptBtnAction(_:)), for: .touchUpInside)
         cell.declineButton.addTarget(self, action: #selector(rejectBtnAction(_:)), for: .touchUpInside)
@@ -247,7 +261,7 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
         if notificationArray[indexPath.row].notification_type == "2"{
 
             cell.stackView.isHidden = false
-            cell.daysHIdeLabel.isHidden = true
+            cell.daysHIdeLabel.isHidden = false
 
         }else{
           
@@ -255,11 +269,12 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
             cell.daysHIdeLabel.isHidden = false
             cell.daysLabel.isHidden = true
         }
+        }
         
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return UIScreen.main.bounds.size.height * 0.12
     }
    
   

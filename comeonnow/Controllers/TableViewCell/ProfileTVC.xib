@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="LATO-REGULAR.TTF">
-            <string>Lato-Regular</string>
+        <array key="LATO-SEMIBOLD.TTF">
+            <string>Lato-Semibold</string>
         </array>
     </customFonts>
     <objects>
@@ -23,22 +23,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Be2-ER-Jbm">
-                        <rect key="frame" x="15" y="28" width="11" height="11"/>
+                        <rect key="frame" x="18" y="24.5" width="18.5" height="18.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Be2-ER-Jbm" secondAttribute="height" multiplier="1:1" id="wm9-q4-39r"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s57-UE-Vl1">
-                        <rect key="frame" x="41" y="27" width="26" height="13.5"/>
-                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="11"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="51.5" y="24" width="38" height="19.5"/>
+                        <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="16"/>
+                        <color key="textColor" red="0.18821030855178833" green="0.18824970722198486" blue="0.18820786476135254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9U-cx-86K">
-                        <rect key="frame" x="41" y="66" width="370" height="1"/>
-                        <color key="backgroundColor" red="0.96068006750000001" green="0.96084433790000001" blue="0.96066969629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <rect key="frame" x="51.5" y="65" width="370" height="2"/>
+                        <color key="backgroundColor" red="0.91754716634750366" green="0.91770458221435547" blue="0.91753727197647095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="1" id="j9d-XO-unP"/>
+                            <constraint firstAttribute="height" constant="2" id="j9d-XO-unP"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -47,11 +47,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="b9U-cx-86K" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="2qi-eB-upp"/>
-                    <constraint firstItem="Be2-ER-Jbm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="87H-nt-csj"/>
+                    <constraint firstItem="Be2-ER-Jbm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="87H-nt-csj"/>
                     <constraint firstAttribute="bottom" secondItem="b9U-cx-86K" secondAttribute="bottom" id="ARc-WO-LEb"/>
                     <constraint firstItem="s57-UE-Vl1" firstAttribute="centerY" secondItem="Be2-ER-Jbm" secondAttribute="centerY" id="VUg-mc-FVA"/>
                     <constraint firstItem="s57-UE-Vl1" firstAttribute="leading" secondItem="Be2-ER-Jbm" secondAttribute="trailing" constant="15" id="a8U-Ey-3Cs"/>
-                    <constraint firstItem="Be2-ER-Jbm" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.03" id="n9Z-YZ-K65"/>
+                    <constraint firstItem="Be2-ER-Jbm" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.05" id="n9Z-YZ-K65"/>
                     <constraint firstItem="Be2-ER-Jbm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="y3T-WQ-HwI"/>
                     <constraint firstItem="b9U-cx-86K" firstAttribute="leading" secondItem="s57-UE-Vl1" secondAttribute="leading" id="zxc-QS-S42"/>
                 </constraints>

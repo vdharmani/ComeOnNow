@@ -150,7 +150,7 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
 //            cell.mainImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:UIImage(named:"img"))
         
         
-                    cell.mainImage.sd_setImage(with: URL(string: homeArray[indexPath.row].image), placeholderImage: UIImage(named: "img"), options: SDWebImageOptions.continueInBackground, completed: nil)
+                    cell.mainImage.sd_setImage(with: URL(string: homeArray[indexPath.row].image), placeholderImage: UIImage(named: "notifyplaceholderImg"), options: SDWebImageOptions.continueInBackground, completed: nil)
         
        // }
         cell.nameLabel.text = homeArray[indexPath.row].name
@@ -160,7 +160,8 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 67
+        return UIScreen.main.bounds.size.height * 0.12
+        
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -20,6 +20,7 @@ class AppointmentVC: UIViewController {
     @IBOutlet weak var confirmedDownLabel: UILabel!
     @IBOutlet weak var pendingLabel: UILabel!
     @IBOutlet weak var pendingDownLabel: UILabel!
+
     var appointmentArray = [AppointmentsListData<Any>]()
     var appointmentNUArray = [AppointmentsListData<Any>]()
     override func viewDidLoad() {
@@ -136,29 +137,29 @@ class AppointmentVC: UIViewController {
     @IBAction func allButton(_ sender: Any) {
         self.allLabel.textColor = #colorLiteral(red: 0.5030716658, green: 0.1234851256, blue: 0.4518293738, alpha: 1)
         self.allDownLabel.backgroundColor = #colorLiteral(red: 0.5030716658, green: 0.1234851256, blue: 0.4518293738, alpha: 1)
-        self.confirmedLabel.textColor = #colorLiteral(red: 0.3725051284, green: 0.3725742996, blue: 0.3725007772, alpha: 1)
+        self.confirmedLabel.textColor = #colorLiteral(red: 0.2587913573, green: 0.2588421106, blue: 0.2587881684, alpha: 1)
         self.confirmedDownLabel.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        self.pendingLabel.textColor = #colorLiteral(red: 0.3725051284, green: 0.3725742996, blue: 0.3725007772, alpha: 1)
+        self.pendingLabel.textColor = #colorLiteral(red: 0.2587913573, green: 0.2588421106, blue: 0.2587881684, alpha: 1)
         self.pendingDownLabel.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         getAppointmentListApi(type: "2")
 
     }
     
     @IBAction func confirmedButton(_ sender: Any) {
-              self.allLabel.textColor = #colorLiteral(red: 0.3725051284, green: 0.3725742996, blue: 0.3725007772, alpha: 1)
+              self.allLabel.textColor = #colorLiteral(red: 0.2587913573, green: 0.2588421106, blue: 0.2587881684, alpha: 1)
               self.allDownLabel.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
               self.confirmedLabel.textColor = #colorLiteral(red: 0.5030716658, green: 0.1234851256, blue: 0.4518293738, alpha: 1)
               self.confirmedDownLabel.backgroundColor = #colorLiteral(red: 0.5030716658, green: 0.1234851256, blue: 0.4518293738, alpha: 1)
-              self.pendingLabel.textColor = #colorLiteral(red: 0.3725051284, green: 0.3725742996, blue: 0.3725007772, alpha: 1)
+              self.pendingLabel.textColor = #colorLiteral(red: 0.2587913573, green: 0.2588421106, blue: 0.2587881684, alpha: 1)
               self.pendingDownLabel.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         getAppointmentListApi(type: "1")
 
     }
     
     @IBAction func pendingButton(_ sender: Any) {
-        self.allLabel.textColor = #colorLiteral(red: 0.3725051284, green: 0.3725742996, blue: 0.3725007772, alpha: 1)
+        self.allLabel.textColor = #colorLiteral(red: 0.2587913573, green: 0.2588421106, blue: 0.2587881684, alpha: 1)
               self.allDownLabel.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-              self.confirmedLabel.textColor = #colorLiteral(red: 0.3725051284, green: 0.3725742996, blue: 0.3725007772, alpha: 1)
+              self.confirmedLabel.textColor = #colorLiteral(red: 0.2587913573, green: 0.2588421106, blue: 0.2587881684, alpha: 1)
               self.confirmedDownLabel.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
               self.pendingLabel.textColor = #colorLiteral(red: 0.5030716658, green: 0.1234851256, blue: 0.4518293738, alpha: 1)
               self.pendingDownLabel.backgroundColor = #colorLiteral(red: 0.5030716658, green: 0.1234851256, blue: 0.4518293738, alpha: 1)
@@ -212,7 +213,8 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
 
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 105
+        return UIScreen.main.bounds.size.height * 0.2
+        
     }
     
 }

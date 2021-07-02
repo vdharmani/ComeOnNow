@@ -220,7 +220,9 @@ extension ProfileVC : UITableViewDelegate,UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return  50
+        return  UIScreen.main.bounds.size.height * 0.09
+        
+        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             switch indexPath.row {

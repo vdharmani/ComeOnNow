@@ -28,7 +28,7 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        userChildProfileImgView.setRounded()
         genderPickerViewObj.isHidden = true
         genderArr = ["Boy","Girl","Other"]
         setDatePicker()

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -30,7 +29,7 @@
                         <rect key="frame" x="15" y="8" width="278" height="87"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qsc-Lx-vGp">
-                                <rect key="frame" x="8" y="29" width="29" height="29"/>
+                                <rect key="frame" x="8" y="27" width="33.5" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Qsc-Lx-vGp" secondAttribute="height" multiplier="1:1" id="V7b-X4-Ot3"/>
                                 </constraints>
@@ -41,37 +40,37 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="7yN-j0-RsP">
-                                <rect key="frame" x="47" y="28.5" width="29" height="30.5"/>
+                                <rect key="frame" x="51.5" y="26" width="33.5" height="35.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5y5-Zm-cpj">
-                                        <rect key="frame" x="0.0" y="0.0" width="29" height="14.5"/>
-                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="33.5" height="17"/>
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fbc-fP-5Uh">
-                                        <rect key="frame" x="0.0" y="18.5" width="29" height="12"/>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="10"/>
+                                        <rect key="frame" x="0.0" y="21" width="33.5" height="14.5"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                         <color key="textColor" red="0.68227726219999996" green="0.68239653109999998" blue="0.68226975199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fk4-Zm-kxN">
-                                <rect key="frame" x="244.5" y="29.5" width="23.5" height="12"/>
-                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="10"/>
+                                <rect key="frame" x="237.5" y="26.5" width="30.5" height="16"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
                                 <color key="textColor" red="0.0011665690690000001" green="0.48976916069999998" blue="0.56152278180000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="fk4-Zm-kxN" firstAttribute="centerY" secondItem="5y5-Zm-cpj" secondAttribute="centerY" id="805-Z7-VOm"/>
                             <constraint firstItem="7yN-j0-RsP" firstAttribute="centerY" secondItem="Qsc-Lx-vGp" secondAttribute="centerY" id="Ccb-Aw-JJu"/>
                             <constraint firstItem="Qsc-Lx-vGp" firstAttribute="centerY" secondItem="Zl3-gO-yoU" secondAttribute="centerY" id="J1R-ca-Ylo"/>
                             <constraint firstItem="Qsc-Lx-vGp" firstAttribute="leading" secondItem="Zl3-gO-yoU" secondAttribute="leading" constant="8" id="dgj-SJ-qPa"/>
                             <constraint firstAttribute="trailing" secondItem="fk4-Zm-kxN" secondAttribute="trailing" constant="10" id="p9c-9f-4py"/>
-                            <constraint firstItem="Qsc-Lx-vGp" firstAttribute="width" secondItem="Zl3-gO-yoU" secondAttribute="width" multiplier="0.105" id="uCe-TJ-e8a"/>
+                            <constraint firstItem="Qsc-Lx-vGp" firstAttribute="width" secondItem="Zl3-gO-yoU" secondAttribute="width" multiplier="0.12" id="uCe-TJ-e8a"/>
                             <constraint firstItem="7yN-j0-RsP" firstAttribute="leading" secondItem="Qsc-Lx-vGp" secondAttribute="trailing" constant="10" id="ygb-U1-hK7"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -108,9 +107,4 @@
             <point key="canvasLocation" x="127.53623188405798" y="92.745535714285708"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
