@@ -8,11 +8,11 @@
 import UIKit
 import SVProgressHUD
 import Alamofire
+import KRPullLoader
 
 class AppointmentVC: UIViewController {
     var lastChildId = "0"
-    var refreshControl =  UIRefreshControl()
-    var isFromPagination = false
+    
     @IBOutlet weak var appointmentTableView: UITableView!
     @IBOutlet weak var allLabel: UILabel!
     @IBOutlet weak var allDownLabel: UILabel!
@@ -29,11 +29,10 @@ class AppointmentVC: UIViewController {
         appointmentTableView.delegate = self
 
         appointmentTableView.register(UINib(nibName: "AppointmentTVC", bundle: nil), forCellReuseIdentifier: "AppointmentTVC")
-        let refreshView = UIView(frame: CGRect(x: 0, y: 0, width: 55, height: 0))
-        appointmentTableView.insertSubview(refreshView, at: 0)
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(reloadtV), for: .valueChanged)
-        refreshView.addSubview(refreshControl)
+        let loadMoreView = KRPullLoadView()
+        loadMoreView.delegate = self
+        appointmentTableView.addPullLoadableView(loadMoreView, type: .loadMore)
+        
 //        self.AppointArray.append(AppointmentData(image: "baby1", name: "Jose Montero", age: "3 years 10 month", gender: "Girl",date: "28,Jan 2019" ,time: "10:00 AM - 10:30AM (30 min))"))
 //        self.AppointArray.append(AppointmentData(image: "baby2", name: "Eischens", age: "5 years 8 month", gender: "Boy",date: "12,Jan 2019",time: "11:00 AM - 11:30AM (30 min)"))
 //        self.AppointArray.append(AppointmentData(image: "baby3", name: "Alexander", age: "4 years 5 month", gender: "Girl",date: "28,Jan 2019",time: "10:00 AM - 10:30AM (30 min)"))
@@ -45,11 +44,7 @@ class AppointmentVC: UIViewController {
         lastChildId = ""
         getAppointmentListApi(type: "2")
     }
-    @objc func reloadtV() {
-        getAppointmentListApi(type: "2")
-        isFromPagination = true
-        self.refreshControl.endRefreshing()
-    }
+   
     open func getAppointmentListApi(type:String){
         
         let userId = getSAppDefault(key: "UserId") as? String ?? ""
@@ -74,7 +69,6 @@ class AppointmentVC: UIViewController {
                         if getProfileResp?.status == 1{
                             self.appointmentTableView.isHidden = false
 
-                            self.isFromPagination = false
                             self.lastChildId = getProfileResp!.appointmentArray.last?.child_id ?? ""
                             if self.lastChildId == ""{
                                 self.appointmentArray = getProfileResp!.appointmentArray
@@ -182,7 +176,7 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
         var sPhotoStr = appointmentArray[indexPath.row].childDetailsDict.image
         sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
 //        if sPhotoStr != ""{
-            cell.mainImage.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:nil)
+            cell.mainImage.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"notifyplaceholderImg"))
         //}
         cell.dateLabel.text = appointmentArray[indexPath.row].appointment_date
         let time1 = appointmentArray[indexPath.row].appointment_time_to
@@ -219,3 +213,44 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
     
 }
 
+extension AppointmentVC:KRPullLoadViewDelegate{
+    func pullLoadView(_ pullLoadView: KRPullLoadView, didChangeState state: KRPullLoaderState, viewType type: KRPullLoaderType) {
+        if type == .loadMore {
+            switch state {
+            case let .loading(completionHandler):
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
+                    completionHandler()
+//                    self.index += 1
+//                    self.tableView.reloadData()
+                    self.getAppointmentListApi(type: "2")
+
+                }
+            default: break
+            }
+            return
+        }
+
+        switch state {
+        case .none:
+            pullLoadView.messageLabel.text = ""
+
+        case let .pulling(offset, threshould):
+            if offset.y > threshould {
+                pullLoadView.messageLabel.text = "Pull more. offset: \(Int(offset.y)), threshould: \(Int(threshould)))"
+            } else {
+                pullLoadView.messageLabel.text = "Release to refresh. offset: \(Int(offset.y)), threshould: \(Int(threshould)))"
+            }
+
+        case let .loading(completionHandler):
+            pullLoadView.messageLabel.text = "Updating..."
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
+                completionHandler()
+                self.getAppointmentListApi(type: "2")
+//                self.index += 1
+//                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    
+}

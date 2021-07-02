@@ -261,7 +261,7 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
         if notificationArray[indexPath.row].notification_type == "2"{
 
             cell.stackView.isHidden = false
-            cell.daysHIdeLabel.isHidden = false
+            cell.daysHIdeLabel.isHidden = true
 
         }else{
           
@@ -274,7 +274,7 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.size.height * 0.12
+        return UITableView.automaticDimension
     }
    
   

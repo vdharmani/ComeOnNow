@@ -229,6 +229,9 @@
 			isa = PBXGroup;
 			children = (
 				B33480FA2681D1A90067BE71 /* HomeTVC.xib */,
+				FCCED11826846AEB0071E12B /* NotificationsTVC.xib */,
+				FCCED14826847AC40071E12B /* ProfileTVC.xib */,
+				FCCED14D26847AE30071E12B /* AppointmentTVC.xib */,
 			);
 			path = TableViewCellXib;
 			sourceTree = "<group>";
@@ -254,11 +257,8 @@
 			children = (
 				B33480F92681D1A90067BE71 /* HomeTVC.swift */,
 				FCC6AD8F26833F0100F99B9C /* AppointmentTVC.swift */,
-				FCCED14D26847AE30071E12B /* AppointmentTVC.xib */,
 				FCC6AD9926833F1300F99B9C /* ProfileTVC.swift */,
-				FCCED14826847AC40071E12B /* ProfileTVC.xib */,
 				FCCED11326846AE30071E12B /* NotificationsTVC.swift */,
-				FCCED11826846AEB0071E12B /* NotificationsTVC.xib */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -932,9 +932,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -944,7 +944,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.comeonnow.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = come_on_now_1_july_2021_dev;
+				PROVISIONING_PROFILE_SPECIFIER = come_on_now_1_july_2021_dist;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -957,9 +957,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -969,7 +969,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.comeonnow.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = come_on_now_1_july_2021_dev;
+				PROVISIONING_PROFILE_SPECIFIER = come_on_now_1_july_2021_dist;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
