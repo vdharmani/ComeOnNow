@@ -47,22 +47,19 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have appointment." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOT-FU-3TY">
-                        <rect key="frame" x="69" y="6" width="199" height="22"/>
+                        <rect key="frame" x="69" y="6" width="199" height="19"/>
                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 days ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDN-MR-JZT" userLabel="2 days ago">
-                        <rect key="frame" x="69" y="42" width="56" height="15"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="15" id="x1x-Dn-kjy"/>
-                        </constraints>
+                        <rect key="frame" x="69" y="32" width="56" height="14.5"/>
                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                         <color key="textColor" red="0.4470990896" green="0.44307750460000001" blue="0.4471167922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="NT7-c1-Psp">
-                        <rect key="frame" x="69" y="37" width="148" height="25"/>
+                        <rect key="frame" x="69" y="34" width="148" height="25"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dCR-7s-ae8">
                                 <rect key="frame" x="0.0" y="0.0" width="70.5" height="25"/>
@@ -125,7 +122,7 @@
                             <constraint firstItem="pL4-fC-cJt" firstAttribute="width" secondItem="dCR-7s-ae8" secondAttribute="width" id="jI1-hJ-Nba"/>
                         </constraints>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="3 days ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMB-nh-WmK">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="3 days ago" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMB-nh-WmK">
                         <rect key="frame" x="281.5" y="6" width="65" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="yul-aF-D7J"/>
@@ -141,18 +138,18 @@
                     <constraint firstAttribute="trailing" secondItem="LMB-nh-WmK" secondAttribute="trailing" constant="15" id="1HH-P7-fgA"/>
                     <constraint firstItem="7fr-NX-97E" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.13" id="8v7-Fs-Enx"/>
                     <constraint firstItem="nOT-FU-3TY" firstAttribute="leading" secondItem="7fr-NX-97E" secondAttribute="trailing" constant="12" id="DFc-cZ-5LZ"/>
-                    <constraint firstItem="mkt-Wr-f7K" firstAttribute="top" secondItem="PDN-MR-JZT" secondAttribute="bottom" constant="13" id="FIU-XQ-AJN"/>
+                    <constraint firstItem="mkt-Wr-f7K" firstAttribute="top" secondItem="NT7-c1-Psp" secondAttribute="bottom" constant="11" id="FGw-7s-MJc"/>
                     <constraint firstAttribute="bottom" secondItem="mkt-Wr-f7K" secondAttribute="bottom" id="ITI-TC-m5y"/>
                     <constraint firstItem="mkt-Wr-f7K" firstAttribute="leading" secondItem="7fr-NX-97E" secondAttribute="leading" id="JjW-xE-KWq"/>
                     <constraint firstItem="7fr-NX-97E" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="MtQ-5V-THh"/>
                     <constraint firstItem="nOT-FU-3TY" firstAttribute="top" secondItem="7fr-NX-97E" secondAttribute="top" constant="-3" id="NzC-4c-sJe"/>
                     <constraint firstItem="dCR-7s-ae8" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.195" id="OBa-Je-2De"/>
                     <constraint firstItem="LMB-nh-WmK" firstAttribute="top" secondItem="nOT-FU-3TY" secondAttribute="top" id="Qzk-bp-9Q8"/>
+                    <constraint firstItem="PDN-MR-JZT" firstAttribute="top" secondItem="nOT-FU-3TY" secondAttribute="bottom" constant="7" id="RNa-Sy-3tl"/>
                     <constraint firstItem="NT7-c1-Psp" firstAttribute="top" secondItem="nOT-FU-3TY" secondAttribute="bottom" constant="9" id="bUT-it-cZX"/>
+                    <constraint firstItem="PDN-MR-JZT" firstAttribute="leading" secondItem="NT7-c1-Psp" secondAttribute="leading" id="eHw-Db-lHz"/>
                     <constraint firstItem="NT7-c1-Psp" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.409218" id="mpw-zE-8nM"/>
                     <constraint firstItem="7fr-NX-97E" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="qPz-nF-3t2"/>
-                    <constraint firstItem="PDN-MR-JZT" firstAttribute="leading" secondItem="NT7-c1-Psp" secondAttribute="leading" id="sUg-m2-F2n"/>
-                    <constraint firstItem="PDN-MR-JZT" firstAttribute="centerY" secondItem="NT7-c1-Psp" secondAttribute="centerY" id="vUt-76-IaI"/>
                     <constraint firstItem="LMB-nh-WmK" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.18" id="y9y-1c-sMt"/>
                     <constraint firstItem="NT7-c1-Psp" firstAttribute="leading" secondItem="nOT-FU-3TY" secondAttribute="leading" id="yWh-oj-Ndg"/>
                     <constraint firstItem="mkt-Wr-f7K" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="yia-O3-8Kd"/>
@@ -172,7 +169,7 @@
                 <outlet property="mainImage" destination="7fr-NX-97E" id="tLg-Ae-N30"/>
                 <outlet property="stackView" destination="NT7-c1-Psp" id="r78-oO-EUp"/>
             </connections>
-            <point key="canvasLocation" x="88.405797101449281" y="59.263392857142854"/>
+            <point key="canvasLocation" x="88.125" y="58.62676056338028"/>
         </tableViewCell>
     </objects>
 </document>

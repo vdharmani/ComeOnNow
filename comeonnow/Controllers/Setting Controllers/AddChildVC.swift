@@ -22,12 +22,54 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     @IBOutlet weak var dOBTF: UITextField!
     
     @IBOutlet weak var genderTF: UITextField!
+    
+    @IBOutlet weak var nameTFView: UIView!
+    
+    @IBOutlet weak var dOBTFView: UIView!
+    
+    @IBOutlet weak var genderTFView: UIView!
+    
     var genderArr = [AnyHashable]()
      var datePicker = UIDatePicker()
     lazy var genderPickerView = UIPickerView()
 
+    
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        switch textField {
+        case userNameTF:
+            nameTFView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            dOBTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            genderTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
+
+        case dOBTF :
+            nameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            dOBTFView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            genderTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            
+        case genderTF :
+            nameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            dOBTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            genderTFView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+
+        default:break
+            
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    
+        nameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        dOBTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        genderTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
+       
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        dOBTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        genderTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         userChildProfileImgView.setRounded()
         genderArr = ["Boy","Girl","Other"]
         genderPickerView.delegate = self
@@ -201,7 +243,11 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
             "Content-type": "multipart/form-data",
             "token":authToken
         ]
-        SVProgressHUD.show()
+        DispatchQueue.main.async {
+
+        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
+
         AF.upload(multipartFormData: { (multipartFormData) in
             
             for (key, value) in parameters {
@@ -233,7 +279,9 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
             
         })
         .responseJSON { (response) in
-            SVProgressHUD.dismiss()
+            DispatchQueue.main.async {
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            }
 
             print("Succesfully uploaded\(response)")
             let respDict =  response.value as? [String : AnyObject] ?? [:]

@@ -35,7 +35,9 @@ class NotificationsVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        notificationArray.removeAll(); notificationNUArray.removeAll();        lastChildId = ""
+        notificationArray.removeAll()
+        notificationNUArray.removeAll()
+        lastChildId = ""
         getNotificationListApi()
     }
     
@@ -51,16 +53,18 @@ class NotificationsVC: UIViewController {
         let strURL = kBASEURL + WSMethods.notificationDetails
         
         let urlwithPercentEscapes = strURL.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        SVProgressHUD.show()
         DispatchQueue.main.async {
-            UIApplication.shared.beginIgnoringInteractionEvents()
+
+        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
+
         AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":authToken])
             .responseJSON { (response) in
-                SVProgressHUD.dismiss()
                 DispatchQueue.main.async {
-                    UIApplication.shared.endIgnoringInteractionEvents()
+
+                AFWrapperClass.svprogressHudDismiss(view: self)
                 }
+
                 switch response.result {
                 case .success(let value):
                     if let JSON = value as? [String: Any] {
@@ -98,9 +102,18 @@ class NotificationsVC: UIViewController {
                             
                             
                         }else{
-                            DispatchQueue.main.async {
+                            if self.notificationArray.count>0{
+                                DispatchQueue.main.async {
+
+                                self.noDataFoundView.isHidden = true
+                                }
+                            }else{
+                                DispatchQueue.main.async {
+
                                 self.noDataFoundView.isHidden = false
+                                }
                             }
+                          
 //                            DispatchQueue.main.async {
 //
 //                                Alert.present(
@@ -145,10 +158,18 @@ class NotificationsVC: UIViewController {
         let strURL = kBASEURL + WSMethods.approveRejectAppointment
         
         let urlwithPercentEscapes = strURL.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        SVProgressHUD.show()
+        DispatchQueue.main.async {
+
+        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
+
         AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":authToken])
             .responseJSON { (response) in
-                SVProgressHUD.dismiss()
+                DispatchQueue.main.async {
+
+                AFWrapperClass.svprogressHudDismiss(view: self)
+                }
+
                 switch response.result {
                 case .success(let value):
                     if let JSON = value as? [String: Any] {
@@ -284,7 +305,11 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if notificationArray[indexPath.row].notification_type == "2"{
         return UITableView.automaticDimension
+        }else{
+            return UIScreen.main.bounds.size.height * 0.1249
+        }
     }
     
     

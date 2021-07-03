@@ -48,18 +48,16 @@ class HomeVC: UIViewController{
         restHCL.httpBodyParameters.add(value:lastChildId , forKey: "lastChildId")
         
         
-        SVProgressHUD.show()
         DispatchQueue.main.async {
-            UIApplication.shared.beginIgnoringInteractionEvents()
-            
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
         
         restHCL.makeRequest(toURL: url, withHttpMethod: .post) { (results) in
-            SVProgressHUD.dismiss()
             DispatchQueue.main.async {
-                
-                UIApplication.shared.endIgnoringInteractionEvents()
+
+            AFWrapperClass.svprogressHudDismiss(view: self)
             }
+            
             
             guard let response = results.response else { return }
             if response.httpStatusCode == 200 {
@@ -102,6 +100,18 @@ class HomeVC: UIViewController{
                         self.homeTableView.reloadData()
                     }
                 }else{
+                    if self.homeArray.count>0{
+                        DispatchQueue.main.async {
+
+                        self.noDataFoundView.isHidden = true
+                        }
+                    }else{
+                        DispatchQueue.main.async {
+
+                        self.noDataFoundView.isHidden = false
+                        }
+                    }
+                    
                     //                    DispatchQueue.main.async {
                     //                        Alert.present(
                     //                            title: AppAlertTitle.appName.rawValue,

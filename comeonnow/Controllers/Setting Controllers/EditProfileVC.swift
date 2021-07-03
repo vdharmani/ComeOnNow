@@ -52,6 +52,8 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         emailTextField.delegate = self
          usernameTextField.delegate = self
         bioTV.delegate = self
@@ -119,7 +121,11 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
             "Content-type": "multipart/form-data",
             "token":authToken
         ]
-        SVProgressHUD.show()
+        DispatchQueue.main.async {
+
+        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
+
         AF.upload(multipartFormData: { (multipartFormData) in
             
             for (key, value) in parameters {
@@ -151,7 +157,10 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
             
         })
         .responseJSON { (response) in
-            SVProgressHUD.dismiss()
+            DispatchQueue.main.async {
+
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            }
 
             print("Succesfully uploaded\(response)")
             let respDict =  response.value as? [String : AnyObject] ?? [:]

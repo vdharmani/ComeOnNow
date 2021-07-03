@@ -35,13 +35,17 @@ class ForgotPasswordVC: UIViewController,UITextFieldDelegate {
     
         restF.requestHttpHeaders.add(value: "application/json", forKey: "Content-Type")
         restF.httpBodyParameters.add(value:emailTextField.text ?? "", forKey:"email")
+        DispatchQueue.main.async {
 
        
-        SVProgressHUD.show()
-        
-        restF.makeRequest(toURL: url, withHttpMethod: .post) { (results) in
+        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
 
-            SVProgressHUD.dismiss()
+        restF.makeRequest(toURL: url, withHttpMethod: .post) { (results) in
+            DispatchQueue.main.async {
+
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            }
             guard let response = results.response else { return }
             if response.httpStatusCode == 200 {
                 guard let data = results.data else { return }

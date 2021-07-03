@@ -21,6 +21,8 @@ class NotificationsTVC: UITableViewCell {
     @IBOutlet weak var daysLabel: UILabel!
     @IBOutlet weak var daysHIdeLabel: UILabel!
     
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

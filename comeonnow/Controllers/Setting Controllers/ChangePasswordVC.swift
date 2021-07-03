@@ -49,6 +49,9 @@ class ChangePasswordVC: UIViewController,UITextFieldDelegate{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentPasswordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        newPasswordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        confirmNewView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         currentPasswordTextField.delegate = self
         newPasswordTextField.delegate = self
         confirmNewTextField.delegate = self
@@ -65,11 +68,17 @@ class ChangePasswordVC: UIViewController,UITextFieldDelegate{
         restCP.httpBodyParameters.add(value:newPasswordTextField.text ?? "", forKey: "newPassword")
         restCP.httpBodyParameters.add(value:currentPasswordTextField.text ?? "", forKey: "oldPassword")
         restCP.httpBodyParameters.add(value:confirmNewTextField.text ?? "", forKey: "confirmPassword")
+        DispatchQueue.main.async {
 
-        SVProgressHUD.show()
+        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
+
 
         restCP.makeRequest(toURL: url, withHttpMethod: .post) { (results) in
-            SVProgressHUD.dismiss()
+            DispatchQueue.main.async {
+
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            }
 
             
             guard let response = results.response else { return }

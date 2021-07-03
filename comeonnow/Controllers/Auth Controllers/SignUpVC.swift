@@ -105,10 +105,15 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
         rest.httpBodyParameters.add(value: userTextField.text ?? "", forKey: "userName")
         rest.httpBodyParameters.add(value: deviceToken, forKey: "deviceToken")
         rest.httpBodyParameters.add(value: "1", forKey: "deviceType")
-        
-        SVProgressHUD.show()
+        DispatchQueue.main.async {
+
+        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
         rest.makeRequest(toURL: url, withHttpMethod: .post) { (results) in
-            SVProgressHUD.dismiss()
+            DispatchQueue.main.async {
+
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            }
 
             guard let response = results.response else { return }
             if response.httpStatusCode == 200 {

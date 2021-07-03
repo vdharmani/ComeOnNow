@@ -41,6 +41,9 @@ class LogInVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
         emailTextField.delegate = self
         passwordTextField.delegate = self
 
@@ -103,12 +106,16 @@ class LogInVC: UIViewController, UITextFieldDelegate {
         rest.requestHttpHeaders.add(value: "application/json", forKey: "Content-Type")
         rest.httpBodyParameters.add(value:emailTextField.text ?? "", forKey:"email")
 
-       
-        SVProgressHUD.show()
-        
-        rest.makeRequest(toURL: url, withHttpMethod: .post) { (results) in
+        DispatchQueue.main.async {
 
-            SVProgressHUD.dismiss()
+        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
+
+        rest.makeRequest(toURL: url, withHttpMethod: .post) { (results) in
+            DispatchQueue.main.async {
+
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            }
             guard let response = results.response else { return }
             if response.httpStatusCode == 200 {
                 guard let data = results.data else { return }
@@ -167,10 +174,15 @@ class LogInVC: UIViewController, UITextFieldDelegate {
         rest.httpBodyParameters.add(value: passwordTextField.text ?? "", forKey: "password")
         rest.httpBodyParameters.add(value: deviceToken, forKey: "deviceToken")
         rest.httpBodyParameters.add(value: "1", forKey: "deviceType")
-        
-        SVProgressHUD.show()
+        DispatchQueue.main.async {
+
+        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
         rest.makeRequest(toURL: url, withHttpMethod: .post) { (results) in
-            SVProgressHUD.dismiss()
+            DispatchQueue.main.async {
+
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            }
 
             guard let response = results.response else { return }
             if response.httpStatusCode == 200 {

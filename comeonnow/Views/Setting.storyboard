@@ -1062,7 +1062,10 @@
                     </view>
                     <connections>
                         <outlet property="dOBTF" destination="CHn-5S-7vJ" id="erV-bM-uY3"/>
+                        <outlet property="dOBTFView" destination="poO-ED-GOl" id="2x4-iC-G1X"/>
                         <outlet property="genderTF" destination="Ih8-TT-RSS" id="sPa-2b-mrX"/>
+                        <outlet property="genderTFView" destination="Rj3-pz-RHo" id="oWc-oP-Map"/>
+                        <outlet property="nameTFView" destination="GkE-Cj-TkN" id="E6V-Th-QWH"/>
                         <outlet property="userChildProfileImgView" destination="kUS-NJ-iIP" id="zBM-8X-qbJ"/>
                         <outlet property="userNameTF" destination="1TY-p2-wEh" id="d6Z-zL-Lpd"/>
                     </connections>

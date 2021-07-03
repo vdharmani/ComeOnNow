@@ -87,10 +87,17 @@ class ProfileVC: UIViewController {
         let strURL = kBASEURL + WSMethods.logOut
         
         let urlwithPercentEscapes = strURL.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        SVProgressHUD.show()
+        DispatchQueue.main.async {
+
+        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
+
         AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":authToken])
             .responseJSON { (response) in
-                SVProgressHUD.dismiss()
+                DispatchQueue.main.async {
+
+                AFWrapperClass.svprogressHudDismiss(view: self)
+                }
                 switch response.result {
                 case .success(let value):
                     if let JSON = value as? [String: Any] {
@@ -149,16 +156,18 @@ class ProfileVC: UIViewController {
         let strURL = kBASEURL + WSMethods.getUserDetail
         
         let urlwithPercentEscapes = strURL.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        SVProgressHUD.show()
         DispatchQueue.main.async {
-            UIApplication.shared.beginIgnoringInteractionEvents()
+
+        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
+
         AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":authToken])
             .responseJSON { (response) in
-                SVProgressHUD.dismiss()
                 DispatchQueue.main.async {
-                    UIApplication.shared.endIgnoringInteractionEvents()
+
+                AFWrapperClass.svprogressHudDismiss(view: self)
                 }
+
                 switch response.result {
                 case .success(let value):
                     if let JSON = value as? [String: Any] {
