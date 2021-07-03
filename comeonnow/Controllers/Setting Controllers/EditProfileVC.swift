@@ -32,38 +32,29 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
         case usernameTextField:
             userNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            bioView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
         case emailTextField :
             emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
             userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            bioView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
         default:break
             
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        switch textField {
     
-        case emailTextField:
+        
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            userNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-            bioView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-
-        case usernameTextField:
             userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-            bioView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-      
-        default:break
-        }
+
+       
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.delegate = self
          usernameTextField.delegate = self
+        bioTV.delegate = self
         self.userImgView.setRounded()
         emailTextField.text = getProfileResp?.email
         bioTV.text = getProfileResp?.description
@@ -286,13 +277,11 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
 }
 extension EditProfileVC:UITextViewDelegate{
     func textViewDidBeginEditing(_ textView: UITextView) {
-        userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+      
         bioView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         bioView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        userNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-        emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+      
     }
 }

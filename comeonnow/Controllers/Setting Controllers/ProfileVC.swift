@@ -60,7 +60,7 @@ class ProfileVC: UIViewController {
         var sPhotoStr = dict?.photo ?? ""
         sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
 //        if sPhotoStr != ""{
-            profileImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:nil)
+            profileImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:UIImage(named: "img"))
        // }
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -150,9 +150,15 @@ class ProfileVC: UIViewController {
         
         let urlwithPercentEscapes = strURL.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)
         SVProgressHUD.show()
+        DispatchQueue.main.async {
+            UIApplication.shared.beginIgnoringInteractionEvents()
+        }
         AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":authToken])
             .responseJSON { (response) in
                 SVProgressHUD.dismiss()
+                DispatchQueue.main.async {
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                }
                 switch response.result {
                 case .success(let value):
                     if let JSON = value as? [String: Any] {

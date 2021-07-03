@@ -8,7 +8,7 @@
 import UIKit
 import SVProgressHUD
 
-class ChangePasswordVC: UIViewController {
+class ChangePasswordVC: UIViewController,UITextFieldDelegate{
     
     @IBOutlet weak var currentPasswordView: UIView!
     @IBOutlet weak var currentPasswordTextField: UITextField!
@@ -17,10 +17,42 @@ class ChangePasswordVC: UIViewController {
     @IBOutlet weak var confirmNewView: UIView!
     @IBOutlet weak var confirmNewTextField: UITextField!
     let restCP = RestManager()
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+      
+        
+        
+        switch textField {
+        case currentPasswordTextField:
+            currentPasswordView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            newPasswordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            confirmNewView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
+        case newPasswordTextField :
+            currentPasswordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            newPasswordView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            confirmNewView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        case confirmNewTextField :
+            currentPasswordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            newPasswordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            confirmNewView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+        default:break
+            
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    
+        currentPasswordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        newPasswordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        confirmNewView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
        
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        currentPasswordTextField.delegate = self
+        newPasswordTextField.delegate = self
+        confirmNewTextField.delegate = self
+
     }
     open func changePasswordApi(){
         guard let url = URL(string: kBASEURL + WSMethods.changePassword) else { return }

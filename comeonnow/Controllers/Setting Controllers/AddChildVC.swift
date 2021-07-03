@@ -16,7 +16,6 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
 
     @IBOutlet weak var userChildProfileImgView: UIImageView!
     
-    @IBOutlet weak var genderPickerViewObj: UIPickerView!
     
     @IBOutlet weak var userNameTF: UITextField!
     
@@ -25,17 +24,35 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     @IBOutlet weak var genderTF: UITextField!
     var genderArr = [AnyHashable]()
      var datePicker = UIDatePicker()
+    lazy var genderPickerView = UIPickerView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         userChildProfileImgView.setRounded()
-        genderPickerViewObj.isHidden = true
         genderArr = ["Boy","Girl","Other"]
+        genderPickerView.delegate = self
+        genderPickerView.dataSource = self
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(closePicker))
+        let barButtonItem1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
+        
+        let buttons = [barButtonItem1, barButtonItem]
+        toolBar.setItems(buttons, animated: false)
+        genderTF.inputView = genderPickerView
+        genderTF.inputAccessoryView = toolBar
         setDatePicker()
         // Do any additional setup after loading the view.
     }
+    @objc func closePicker() {
+        genderTF.resignFirstResponder()
+    }
     open func setDatePicker() {
         datePicker.datePickerMode = .date
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        } else {
+            // Fallback on earlier versions
+        }
         datePicker.maximumDate = Date()
         dOBTF.inputView = datePicker
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
@@ -58,11 +75,7 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
         }
         
     }
-    @IBAction func openGenderPickerBtnAction(_ sender: Any) {
-        genderPickerViewObj.isHidden = false
-        genderPickerViewObj.delegate = self
-        genderPickerViewObj.dataSource = self
-    }
+ 
     
     
     @IBAction func addChildBtnAction(_ sender: Any) {
@@ -280,7 +293,6 @@ extension AddChildVC:UIPickerViewDelegate,UIPickerViewDataSource{
         genderTF.text = genderArr[row] as? String ?? ""
         
                 
-        genderPickerViewObj.isHidden = true
         
     }
     

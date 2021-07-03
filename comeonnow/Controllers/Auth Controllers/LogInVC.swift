@@ -31,19 +31,11 @@ class LogInVC: UIViewController, UITextFieldDelegate {
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        switch textField {
     
-        case emailTextField:
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            passwordView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-
-        case passwordTextField :
             passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
 
-      
-        default:break
-        }
+       
     }
     
     
@@ -54,7 +46,9 @@ class LogInVC: UIViewController, UITextFieldDelegate {
 
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+       
         textField.resignFirstResponder()
+       
         return true
     }
     
@@ -208,6 +202,15 @@ class LogInVC: UIViewController, UITextFieldDelegate {
                 }
                 
               else if loginResp?.status == 2{
+                DispatchQueue.main.async {
+
+//                    Alert.present(title: <#T##String?#>, message: <#T##String#>, actions: .retry(handler: {
+//
+//                    }),.ok(handler: {
+//
+//                    }), from: self)
+                    
+                    
                 let alert = UIAlertController(title: AppAlertTitle.appName.rawValue, message: loginResp?.alertMessage, preferredStyle: UIAlertController.Style.alert)
 
                 alert.addAction(UIAlertAction(title: "Skip", style: UIAlertAction.Style.default, handler: { _ in
@@ -220,6 +223,7 @@ class LogInVC: UIViewController, UITextFieldDelegate {
                                                         self.resendEmailVerificationApi()
                        }))
                        self.present(alert, animated: true, completion: nil)
+                }
               }
                 else{
                     DispatchQueue.main.async {
