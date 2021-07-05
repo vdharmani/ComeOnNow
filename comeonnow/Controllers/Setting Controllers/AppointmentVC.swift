@@ -333,7 +333,8 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
             
             print("\(Int(hours)) hr and \(Int(minutes)) min")
             let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-            cell.timeLabel.text = "\(appointmentArray[indexPath.row].appointment_time_to ) - \(appointmentArray[indexPath.row].appointment_time_from )(\(String(describing: hourMin)))"
+            cell.timeLabel.text = "\(appointmentArray[indexPath.row].appointment_time_to ) - \(appointmentArray[indexPath.row].appointment_time_from )"
+            //(\(String(describing: hourMin)))
             
         }
         }else if appointmentType == "1"{
@@ -369,7 +370,7 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
                 
                 print("\(Int(hours)) hr and \(Int(minutes)) min")
                 let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-                cell.timeLabel.text = "\(confirmedAppointmentArray[indexPath.row].appointment_time_to ) - \(confirmedAppointmentArray[indexPath.row].appointment_time_from )(\(String(describing: hourMin)))"
+                cell.timeLabel.text = "\(confirmedAppointmentArray[indexPath.row].appointment_time_to ) - \(confirmedAppointmentArray[indexPath.row].appointment_time_from )"
                 
             }
         }else{
@@ -405,7 +406,7 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
                 
                 print("\(Int(hours)) hr and \(Int(minutes)) min")
                 let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-                cell.timeLabel.text = "\(pendingAppointmentArray[indexPath.row].appointment_time_to ) - \(pendingAppointmentArray[indexPath.row].appointment_time_from )(\(String(describing: hourMin)))"
+                cell.timeLabel.text = "\(pendingAppointmentArray[indexPath.row].appointment_time_to ) - \(pendingAppointmentArray[indexPath.row].appointment_time_from )"
                 
             }
             }

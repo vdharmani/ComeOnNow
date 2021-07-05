@@ -54,7 +54,8 @@ class ChildDetailVC: UIViewController {
 
            print("\(Int(hours)) hr and \(Int(minutes)) min")
            let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-        timeLabel.text = "\(appointmentDetailsDict?.appointment_time_to ?? "") - \(appointmentDetailsDict?.appointment_time_from ?? "")(\(String(describing: hourMin)))"
+        timeLabel.text = "\(appointmentDetailsDict?.appointment_time_to ?? "") - \(appointmentDetailsDict?.appointment_time_from ?? "")"
+            //(\(String(describing: hourMin)))
         }
     }
     

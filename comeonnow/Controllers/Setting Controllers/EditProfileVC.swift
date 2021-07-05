@@ -54,6 +54,7 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
         super.viewDidLoad()
         emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        emailTextField.isUserInteractionEnabled = false
         emailTextField.delegate = self
          usernameTextField.delegate = self
         bioTV.delegate = self

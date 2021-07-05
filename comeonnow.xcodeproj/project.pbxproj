@@ -10,6 +10,7 @@
 		059B43EECB4692115AFA39B8 /* Pods_comeonnowTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67F12C86FA70DCCC51581465 /* Pods_comeonnowTests.framework */; };
 		18342FCF268AF8DD00BC9E4C /* AppointmentListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */; };
 		18342FF2268B3C8000BC9E4C /* ApproveRejectEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18342FF1268B3C8000BC9E4C /* ApproveRejectEntity.swift */; };
+		186949ED269313DC008F0A89 /* AppValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186949EC269313DC008F0A89 /* AppValidations.swift */; };
 		18F31C372689EAA100867B25 /* NotificationListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F31C362689EAA100867B25 /* NotificationListEntity.swift */; };
 		90C2B7CA48E74D93FBFD3D13 /* Pods_comeonnow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F503B245F78C2F8B082C2F7 /* Pods_comeonnow.framework */; };
 		B324B0FD2680B0110082590E /* AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B324B0FC2680B0110082590E /* AppExtensions.swift */; };
@@ -92,6 +93,7 @@
 /* Begin PBXFileReference section */
 		18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentListEntity.swift; sourceTree = "<group>"; };
 		18342FF1268B3C8000BC9E4C /* ApproveRejectEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveRejectEntity.swift; sourceTree = "<group>"; };
+		186949EC269313DC008F0A89 /* AppValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppValidations.swift; sourceTree = "<group>"; };
 		18F31C362689EAA100867B25 /* NotificationListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListEntity.swift; sourceTree = "<group>"; };
 		4F503B245F78C2F8B082C2F7 /* Pods_comeonnow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_comeonnow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B11D47DA383A7EAAA3EBF7 /* Pods-comeonnowTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-comeonnowTests.release.xcconfig"; path = "Target Support Files/Pods-comeonnowTests/Pods-comeonnowTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 				B324B11A2680CBE00082590E /* Storyboard Class.swift */,
 				B324B0FC2680B0110082590E /* AppExtensions.swift */,
 				FC41D8E12682417C0095B24A /* AppDefaults.swift */,
+				186949EC269313DC008F0A89 /* AppValidations.swift */,
 				FC41D8E6268241F70095B24A /* AppAlert.swift */,
 				FC41D8EB268242140095B24A /* AppNavigations.swift */,
 			);
@@ -721,6 +724,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				186949ED269313DC008F0A89 /* AppValidations.swift in Sources */,
 				FCC6AD9026833F0100F99B9C /* AppointmentTVC.swift in Sources */,
 				FCC6AD7C268316DF00F99B9C /* ForgotPasswordEntity.swift in Sources */,
 				FC41D8EC268242140095B24A /* AppNavigations.swift in Sources */,
@@ -934,7 +938,7 @@
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.7;
+				CURRENT_PROJECT_VERSION = 1.8;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -959,7 +963,7 @@
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.7;
+				CURRENT_PROJECT_VERSION = 1.8;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;

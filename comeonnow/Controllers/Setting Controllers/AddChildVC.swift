@@ -10,7 +10,7 @@ import SVProgressHUD
 import SDWebImage
 import Alamofire
 
-class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerControllerDelegate{
+class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextFieldDelegate{
     var userDetailDict = [String:AnyHashable]()
     var imgArray = [Data]()
 
@@ -70,8 +70,11 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
         nameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         dOBTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         genderTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        userChildProfileImgView.setRounded()
         genderArr = ["Boy","Girl","Other"]
+        userNameTF.delegate = self
+        genderTF.delegate = self
+        dOBTF.delegate = self
+
         genderPickerView.delegate = self
         genderPickerView.dataSource = self
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(closePicker))
@@ -304,7 +307,8 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
         
     }
     func addChildApi() {
-        let compressedData = (userChildProfileImgView.image?.jpegData(compressionQuality: 0.3))!
+//        let compressedData = (userChildProfileImgView.image?.pngData(compressionQuality: 0.3))!
+        let compressedData = (userChildProfileImgView.image?.pngData())!
         imgArray.removeAll()
        
                 imgArray.append(compressedData)

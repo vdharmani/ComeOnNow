@@ -28,9 +28,9 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Click Photos</string>
+	<string>comeonnow app requires access to the camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Choose Images</string>
+	<string>comeonnow app requires access to the photo library.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

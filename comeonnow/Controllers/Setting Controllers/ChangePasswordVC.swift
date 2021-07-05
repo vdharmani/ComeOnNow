@@ -163,15 +163,16 @@ class ChangePasswordVC: UIViewController,UITextFieldDelegate{
                 from: self
             )
         }
-        else if currentPasswordTextField.text?.trimmingCharacters(in: .whitespaces) == newPasswordTextField.text?.trimmingCharacters(in: .whitespaces){
+        else if comparePasswordValidation(strPassword: newPasswordTextField.text ?? "", strConfirmPassword: confirmNewTextField.text ?? "") == false{
             Alert.present(
                 title: AppAlertTitle.appName.rawValue,
-                message:"New & old password should be different",
+                message: AppSignInForgotSignUpAlertNessage.passwordNotMatched,
                 actions: .ok(handler: {
                 }),
                 from: self
             )
         }
+       
         else{
             changePasswordApi()
         }

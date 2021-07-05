@@ -62,7 +62,17 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
     
 
     @IBAction func signUpButton(_ sender: Any) {
-        if emailTextField.text?.trimmingCharacters(in: .whitespaces) == ""{
+  
+        if userTextField.text?.trimmingCharacters(in: .whitespaces) == ""{
+            Alert.present(
+                title: AppAlertTitle.appName.rawValue,
+                message: AppSignInForgotSignUpAlertNessage.enterUserName,
+                actions: .ok(handler: {
+                }),
+                from: self
+            )
+        }
+        else if emailTextField.text?.trimmingCharacters(in: .whitespaces) == ""{
             Alert.present(
                 title: AppAlertTitle.appName.rawValue,
                 message: AppSignInForgotSignUpAlertNessage.enterEmail,
@@ -87,6 +97,16 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
                 }),
                 from: self
             )
+        }
+        else if passwordTextField.text!.count < 6 {
+            Alert.present(
+                title: AppAlertTitle.appName.rawValue,
+                message:AppSignInForgotSignUpAlertNessage.passwordLimit,
+                actions: .ok(handler: {
+                }),
+                from: self
+            )
+          
         }
         else{
             signUpApi()
