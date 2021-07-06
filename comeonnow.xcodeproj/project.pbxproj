@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		059B43EECB4692115AFA39B8 /* Pods_comeonnowTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67F12C86FA70DCCC51581465 /* Pods_comeonnowTests.framework */; };
+		18111A7926945A3C0052DECA /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18111A7826945A3C0052DECA /* WebVC.swift */; };
 		18342FCF268AF8DD00BC9E4C /* AppointmentListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */; };
 		18342FF2268B3C8000BC9E4C /* ApproveRejectEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18342FF1268B3C8000BC9E4C /* ApproveRejectEntity.swift */; };
 		186949ED269313DC008F0A89 /* AppValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186949EC269313DC008F0A89 /* AppValidations.swift */; };
@@ -91,6 +92,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18111A7826945A3C0052DECA /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentListEntity.swift; sourceTree = "<group>"; };
 		18342FF1268B3C8000BC9E4C /* ApproveRejectEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveRejectEntity.swift; sourceTree = "<group>"; };
 		186949EC269313DC008F0A89 /* AppValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppValidations.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				FCCED1092684687E0071E12B /* EditProfileVC.swift */,
 				B32D1C8926849D78003103E5 /* NotificationsVC.swift */,
 				B3BEB82B2685A7F500C9DE3E /* ChildDetailVC.swift */,
+				18111A7826945A3C0052DECA /* WebVC.swift */,
 			);
 			path = "Setting Controllers";
 			sourceTree = "<group>";
@@ -733,6 +736,7 @@
 				B3FF55382680A20E006B6901 /* ViewController.swift in Sources */,
 				FCCED11E26846B920071E12B /* AppointmentVC.swift in Sources */,
 				FC41D8E7268241F70095B24A /* AppAlert.swift in Sources */,
+				18111A7926945A3C0052DECA /* WebVC.swift in Sources */,
 				FCC6AD812683191600F99B9C /* AddChildVC.swift in Sources */,
 				FCC6AD6A268304E700F99B9C /* LoginSignUpEntity.swift in Sources */,
 				FCCED0FA268460050071E12B /* HomeChildListEntity.swift in Sources */,

@@ -33,7 +33,7 @@ struct AppSignInForgotSignUpAlertNessage {
     static let enterName = "Please enter name"
     static let enterUserName = "Please enter user name"
 
-    static let selectInterestedGender = "Please select interested gender"
+    static let allowTermsConditionMessage = "You must read and accept new terms and conditions"
     static let selectGender = "Please select gender"
     static let enterBio = "Please enter your bio"
     static let enterText = "Please enter text"

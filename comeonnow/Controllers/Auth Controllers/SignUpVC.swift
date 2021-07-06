@@ -16,6 +16,9 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBOutlet weak var checkUncheckBtn: UIButton!
+    
     let rest = RestManager()
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -49,6 +52,9 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         emailTextField.delegate = self
                 userTextField.delegate = self
         passwordTextField.delegate = self
@@ -60,7 +66,18 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
         return true
     }
     
-
+    @IBAction func checkUncheckBtnAction(_ sender: UIButton) {
+        if sender.tag == 0{
+            sender.setImage(#imageLiteral(resourceName: "check"), for: .normal)
+            sender.tag = 1
+        }else{
+            sender.setImage(#imageLiteral(resourceName: "unCheck"), for: .normal)
+            sender.tag = 0
+        }
+    }
+    
+    
+    
     @IBAction func signUpButton(_ sender: Any) {
   
         if userTextField.text?.trimmingCharacters(in: .whitespaces) == ""{
@@ -102,6 +119,18 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
             Alert.present(
                 title: AppAlertTitle.appName.rawValue,
                 message:AppSignInForgotSignUpAlertNessage.passwordLimit,
+                actions: .ok(handler: {
+                }),
+                from: self
+            )
+          
+        }
+//        let defaultImage = UIImage(named: "addBtnImage.png")
+//        if firstBtnImage?.pngData() != defaultImage?.pngData(){
+        else if checkUncheckBtn.currentImage?.pngData() == UIImage(named:"unCheck")?.pngData() {
+            Alert.present(
+                title: AppAlertTitle.appName.rawValue,
+                message:AppSignInForgotSignUpAlertNessage.allowTermsConditionMessage,
                 actions: .ok(handler: {
                 }),
                 from: self

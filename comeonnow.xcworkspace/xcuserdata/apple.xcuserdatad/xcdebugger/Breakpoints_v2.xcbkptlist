@@ -395,14 +395,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "F8F183C2-4AEF-486F-8808-DCBD41C89355 - 72f8072b5fa33d81"
+                  uuid = "F8F183C2-4AEF-486F-8808-DCBD41C89355 - 87f93f4fdeab9549"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #2 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in comeonnow.AppointmentVC.getAppointmentListApi(type: Swift.String) -&gt; ()"
                   moduleName = "comeonnow"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/ComeOnNow-main%20/comeonnow/Controllers/Setting%20Controllers/AppointmentVC.swift"
+                  urlString = "file:///Users/apple/Downloads/ComeOnNow-main%20%203/comeonnow/Controllers/Setting%20Controllers/AppointmentVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "78"
@@ -410,14 +410,14 @@
                   offsetFromSymbolStart = "1066">
                </Location>
                <Location
-                  uuid = "F8F183C2-4AEF-486F-8808-DCBD41C89355 - 72f8072b5fa33d81"
+                  uuid = "F8F183C2-4AEF-486F-8808-DCBD41C89355 - 87f93f4fdeab9549"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #2 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in comeonnow.AppointmentVC.getAppointmentListApi(type: Swift.String) -&gt; ()"
                   moduleName = "comeonnow"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/ComeOnNow-main%20/comeonnow/Controllers/Setting%20Controllers/AppointmentVC.swift"
+                  urlString = "file:///Users/apple/Downloads/ComeOnNow-main%20%203/comeonnow/Controllers/Setting%20Controllers/AppointmentVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "78"
@@ -456,6 +456,54 @@
             startingLineNumber = "261"
             endingLineNumber = "261"
             landmarkName = "requestWith(endUrl:parameters:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "37F7AA12-4930-491B-B20D-0626C29CDD57"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "comeonnow/Controllers/Auth Controllers/SignUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "signUpButton(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8968A583-3EFB-4CE8-B054-873F46A034E8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "comeonnow/Controllers/Auth Controllers/SignUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "signUpButton(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7299DCCE-0D8C-45BC-A63E-192974CC680F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "comeonnow/Controllers/Auth Controllers/SignUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "signUpButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

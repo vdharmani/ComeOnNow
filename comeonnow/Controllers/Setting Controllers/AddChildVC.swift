@@ -94,7 +94,7 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     open func setDatePicker() {
         datePicker.datePickerMode = .date
         if #available(iOS 13.4, *) {
-            datePicker.preferredDatePickerStyle = .wheels
+           // datePicker.preferredDatePickerStyle = .wheels
         } else {
             // Fallback on earlier versions
         }
