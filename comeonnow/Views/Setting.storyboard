@@ -1164,6 +1164,7 @@
                         <outlet property="genderTFView" destination="Rj3-pz-RHo" id="oWc-oP-Map"/>
                         <outlet property="nameTFView" destination="GkE-Cj-TkN" id="E6V-Th-QWH"/>
                         <outlet property="navBarLbl" destination="NPw-IN-evs" id="kbw-Iw-gwM"/>
+                        <outlet property="saveBtn" destination="j5H-HE-mUE" id="Kgt-y3-TXo"/>
                         <outlet property="userChildProfileImgView" destination="kUS-NJ-iIP" id="zBM-8X-qbJ"/>
                         <outlet property="userNameTF" destination="1TY-p2-wEh" id="d6Z-zL-Lpd"/>
                     </connections>
@@ -2071,7 +2072,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editChild" translatesAutoresizingMaskIntoConstraints="NO" id="cxe-u0-t94">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pen" translatesAutoresizingMaskIntoConstraints="NO" id="cxe-u0-t94">
                                                 <rect key="frame" x="296" y="14" width="12" height="12"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="cxe-u0-t94" secondAttribute="height" multiplier="1:1" id="xkk-hd-gan"/>
@@ -2334,6 +2335,8 @@
                         <outlet property="descStaticLbl" destination="Kn9-hz-XAp" id="mUF-hI-WTB"/>
                         <outlet property="descriptionLbl" destination="1Rk-ut-BjH" id="2Fn-vf-QUw"/>
                         <outlet property="descriptionView" destination="I5j-zB-jP9" id="Ue2-HP-8mf"/>
+                        <outlet property="editBtn" destination="dG5-hJ-Cqi" id="XMA-Ic-Ivz"/>
+                        <outlet property="editBtnImgView" destination="cxe-u0-t94" id="uSZ-HX-Ybz"/>
                         <outlet property="genderLabel" destination="LGj-ui-Wuv" id="Z10-WD-WH9"/>
                         <outlet property="mainImg" destination="VPn-8r-YtN" id="uEx-qc-jVH"/>
                         <outlet property="nameLabel" destination="ooD-rq-iHf" id="tTR-PL-UpI"/>
@@ -2356,7 +2359,6 @@
         <image name="calender" width="59" height="59"/>
         <image name="cm" width="63" height="63"/>
         <image name="drp" width="27" height="17"/>
-        <image name="editChild" width="31" height="31"/>
         <image name="hm" width="17.5" height="18"/>
         <image name="hm1" width="17" height="18"/>
         <image name="img" width="107" height="107"/>

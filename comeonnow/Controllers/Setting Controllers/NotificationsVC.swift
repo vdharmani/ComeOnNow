@@ -311,6 +311,15 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
             return UIScreen.main.bounds.size.height * 0.1249
         }
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if notificationArray[indexPath.row].notification_type != "2"{
+        let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
+        vc.isFromNotification = true
+        vc.childId = notificationArray[indexPath.row].detailDicts.child_id
+//        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: false)
+        }
+    }
     
     
     

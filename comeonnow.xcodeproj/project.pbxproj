@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		059B43EECB4692115AFA39B8 /* Pods_comeonnowTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67F12C86FA70DCCC51581465 /* Pods_comeonnowTests.framework */; };
+		18030C032696CBFB0047EDA0 /* EditChildEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18030C022696CBFB0047EDA0 /* EditChildEntity.swift */; };
+		18030C0B2696DDBD0047EDA0 /* ChildDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18030C0A2696DDBD0047EDA0 /* ChildDetailEntity.swift */; };
 		18111A7926945A3C0052DECA /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18111A7826945A3C0052DECA /* WebVC.swift */; };
 		18342FCF268AF8DD00BC9E4C /* AppointmentListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */; };
 		18342FF2268B3C8000BC9E4C /* ApproveRejectEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18342FF1268B3C8000BC9E4C /* ApproveRejectEntity.swift */; };
@@ -92,6 +94,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18030C022696CBFB0047EDA0 /* EditChildEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChildEntity.swift; sourceTree = "<group>"; };
+		18030C0A2696DDBD0047EDA0 /* ChildDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDetailEntity.swift; sourceTree = "<group>"; };
 		18111A7826945A3C0052DECA /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentListEntity.swift; sourceTree = "<group>"; };
 		18342FF1268B3C8000BC9E4C /* ApproveRejectEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveRejectEntity.swift; sourceTree = "<group>"; };
@@ -351,6 +355,8 @@
 				18F31C362689EAA100867B25 /* NotificationListEntity.swift */,
 				18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */,
 				18342FF1268B3C8000BC9E4C /* ApproveRejectEntity.swift */,
+				18030C022696CBFB0047EDA0 /* EditChildEntity.swift */,
+				18030C0A2696DDBD0047EDA0 /* ChildDetailEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -731,6 +737,7 @@
 				FCC6AD9026833F0100F99B9C /* AppointmentTVC.swift in Sources */,
 				FCC6AD7C268316DF00F99B9C /* ForgotPasswordEntity.swift in Sources */,
 				FC41D8EC268242140095B24A /* AppNavigations.swift in Sources */,
+				18030C032696CBFB0047EDA0 /* EditChildEntity.swift in Sources */,
 				B324B11B2680CBE00082590E /* Storyboard Class.swift in Sources */,
 				FCCED1052684682F0071E12B /* ChangePasswordVC.swift in Sources */,
 				B3FF55382680A20E006B6901 /* ViewController.swift in Sources */,
@@ -750,6 +757,7 @@
 				FC41D8CB26821BFF0095B24A /* AppConstant.swift in Sources */,
 				B33480FB2681D1A90067BE71 /* HomeTVC.swift in Sources */,
 				B3FF55342680A20E006B6901 /* AppDelegate.swift in Sources */,
+				18030C0B2696DDBD0047EDA0 /* ChildDetailEntity.swift in Sources */,
 				18342FCF268AF8DD00BC9E4C /* AppointmentListEntity.swift in Sources */,
 				B324B1202680CCF70082590E /* Validation Managers.swift in Sources */,
 				B3FF55362680A20E006B6901 /* SceneDelegate.swift in Sources */,
@@ -940,7 +948,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.10;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
@@ -952,7 +960,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.comeonnow.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = come_on_now_1_july_2021_dist;
+				PROVISIONING_PROFILE_SPECIFIER = come_on_now_1_july_2021_dev;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -965,7 +973,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.10;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
@@ -977,7 +985,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.comeonnow.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = come_on_now_1_july_2021_dist;
+				PROVISIONING_PROFILE_SPECIFIER = come_on_now_1_july_2021_dev;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -9,10 +9,13 @@ import UIKit
 import SVProgressHUD
 import SDWebImage
 import Alamofire
-
+protocol SendingDataToBackPageDelegateProtocol {
+    func sendDataToBO(childId:String,isFromEdit:Bool)
+}
 class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextFieldDelegate{
     var userDetailDict = [String:AnyHashable]()
     var imgArray = [Data]()
+    var delegate: SendingDataToBackPageDelegateProtocol? = nil
 
     var isFromEditChild = Bool()
     
@@ -32,6 +35,9 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     
     @IBOutlet weak var genderTFView: UIView!
     
+    @IBOutlet weak var saveBtn: UIButton!
+    
+    
     var genderArr = [AnyHashable]()
      var datePicker = UIDatePicker()
     lazy var genderPickerView = UIPickerView()
@@ -45,7 +51,7 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     var appointment_time_from:String?
     var appointment_time_to:String?
     var appointment_date:String?
-
+    var childId:String?
     var desc:String?
     
     
@@ -83,8 +89,19 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
         super.viewDidLoad()
         if isFromEditChild == true{
             navBarLbl.text = "Edit Child"
+            var sPhotoStr = photo
+            sPhotoStr = sPhotoStr?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+    //        if sPhotoStr != ""{
+            userChildProfileImgView.sd_setImage(with: URL(string: sPhotoStr ?? ""), placeholderImage:#imageLiteral(resourceName: "notifyplaceholderImg"))
+            userNameTF.text = name
+            dOBTF.text = dob
+            genderTF.text = gender
+            saveBtn.setTitle("Update", for: .normal)
+            
         }else{
             navBarLbl.text = "Add Child"
+            saveBtn.setTitle("Save", for: .normal)
+
         }
         
         
@@ -310,13 +327,27 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
             print("Succesfully uploaded\(response)")
             let respDict =  response.value as? [String : AnyObject] ?? [:]
             if respDict.count != 0{
-                let signUpStepData =  ForgotPasswordData(dict: respDict)
-                if signUpStepData?.status == 1{
-                    
-                    self.navigationController?.popViewController(animated: true)
+                if self.isFromEditChild == true{
+                    let signUpStepData =  EditChildData(dict: respDict)
+                    if signUpStepData?.status == 1{
+                        if self.delegate != nil{
+                            self.delegate?.sendDataToBO(childId:signUpStepData?.editedCdataDict.child_id ?? "", isFromEdit: true)
+                        }
+                        self.navigationController?.popViewController(animated: true)
+                    }else{
+                        
+                    }
                 }else{
-                    
+                    let signUpStepData =  ForgotPasswordData(dict: respDict)
+                    if signUpStepData?.status == 1{
+                       
+                        self.navigationController?.popViewController(animated: true)
+                    }else{
+                        
+                    }
                 }
+                
+              
             }else{
                 
             }
@@ -333,13 +364,23 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
         imgArray.removeAll()
        
                 imgArray.append(compressedData)
+        
         let userId = getSAppDefault(key: "UserId") as? String ?? ""
+        if isFromEditChild == true{
 
-        let paramds = ["dob":dOBTF.text ?? "" ,"gender":genderTF.text ?? "","name":userNameTF.text ?? "","user_id":userId] as [String : Any]
+            let paramds = ["dob":dOBTF.text ?? "" ,"gender":genderTF.text ?? "","name":userNameTF.text ?? "","user_id":userId,"child_id":childId ?? ""] as [String : Any]
     
-        let strURL = kBASEURL + WSMethods.addchildren
+        let strURL = kBASEURL + WSMethods.editChild
 
-        self.requestWith(endUrl: strURL , parameters: paramds)
+            self.requestWith(endUrl: strURL , parameters: paramds)
+            
+        }else{
+            let paramds = ["dob":dOBTF.text ?? "" ,"gender":genderTF.text ?? "","name":userNameTF.text ?? "","user_id":userId] as [String : Any]
+        
+            let strURL = kBASEURL + WSMethods.addchildren
+
+                self.requestWith(endUrl: strURL , parameters: paramds)
+        }
         
 
     }
@@ -371,3 +412,4 @@ extension AddChildVC:UIPickerViewDelegate,UIPickerViewDataSource{
     
     
 }
+

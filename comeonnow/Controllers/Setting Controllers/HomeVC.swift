@@ -19,7 +19,8 @@ class HomeVC: UIViewController{
     @IBOutlet weak var homeTableView: UITableView!
     var homeArray = [ChildListData<AnyHashable>]()
     var homeNUArray = [ChildListData<AnyHashable>]()
-    
+    var loaderBool = Bool()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.noDataFoundView.isHidden = true
@@ -139,8 +140,17 @@ class HomeVC: UIViewController{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        lastChildId = ""
-        homeChildListApi()
+        
+        if loaderBool == false{
+            homeArray.removeAll()
+            homeNUArray.removeAll()
+            lastChildId = ""
+            homeChildListApi()
+        }else{
+            homeTableView.reloadData()
+            loaderBool = false
+        }
+      
     }
     @IBAction func addChildBtnAction(_ sender: Any) {
         let vc = AddChildVC.instantiate(fromAppStoryboard: .Setting)
@@ -156,7 +166,7 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTVC", for: indexPath) as! HomeTVC
-        var sPhotoStr = homeArray[indexPath.row].image
+        let sPhotoStr = homeArray[indexPath.row].image
         //        sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
         //        if sPhotoStr != ""{
         
@@ -186,11 +196,14 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
         let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
         vc.name = homeArray[indexPath.row].name
         vc.dob = homeArray[indexPath.row].dob
+        vc.actualDob = homeArray[indexPath.row].actual_dob
         vc.gender = homeArray[indexPath.row].gender
         vc.image = homeArray[indexPath.row].image
         vc.appointmentDetailsDict = homeArray[indexPath.row].appointmentDetailsDict
+        vc.childId = homeArray[indexPath.row].child_id
         vc.isFromAppointment = false
-
+        vc.desc = homeArray[indexPath.row].appointmentDetailsDict.description
+        vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: false)
     }
     
@@ -251,6 +264,16 @@ extension HomeVC:KRPullLoadViewDelegate{
             }
         }
     }
+    
+    
+}
+extension HomeVC:SendingAddBOToBOMainPageDelegateProtocol{
+    
+    func sendDataToBO(myData: Bool) {
+        loaderBool = myData
+
+    }
+    
     
     
 }

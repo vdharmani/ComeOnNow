@@ -107,7 +107,8 @@ class ProfileVC: UIViewController {
                         //                let status = jsonResult?["status"] as? Int ?? 0
                         if getProfileResp?.status == 1{
                             removeAppDefaults(key:"AuthToken")
-                    
+                            removeAppDefaults(key:"UserName")
+
                             self.appDel.logOut()
                           
                            

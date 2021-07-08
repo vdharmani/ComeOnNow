@@ -1,29 +1,38 @@
 //
-//  HomeChildListEntity.swift
+//  ChildDetailEntity.swift
 //  comeonnow
 //
-//  Created by Arshdeep Singh on 24/06/21.
+//  Created by Apple on 08/07/21.
 //
 
 import Foundation
-
 //{
-//    "status": 1,
-//    "message": "child details",
-//    "data": [
-//        {
-//            "child_id": "19",
-//            "user_id": "16",
-//            "name": "kumud",
-//            "dob": "1 days old!",
-//            "gender": "male",
-//            "c": "",
-//            "created_at": "1624513104"
-//        }
-//
-//    ]
+//    data =     {
+//        appointmentDetails =         {
+//            "appointment_date" = "07-09-2021";
+//            "appointment_time_from" = "07:00 AM";
+//            "appointment_time_to" = "06:00 AM";
+//            "child_id" = 6;
+//            "create_date" = 1625638682;
+//            description = "Test injection";
+//            id = 7;
+//            status = 2;
+//            title = "Tesst appointment";
+//            "user_id" = 79;
+//        };
+//        "child_id" = 6;
+//        "created_at" = 1625571957;
+//        dob = "2021 years, 7 months";
+//        gender = Girl;
+//        image = "https://www.dharmani.com/ComeOnNow/webservice/childrenImg/60e6a5a6f13ae.png";
+//        name = "Lovepreet ";
+//        "update_at" = 1625728422;
+//        "user_id" = 79;
+//    };
+//    message = "child details";
+//    status = 1;
 //}
-struct HomeChildListData<T>{
+struct ChildDetailData<T>{
   
   
     //{
@@ -32,37 +41,23 @@ struct HomeChildListData<T>{
     //}
     var status: Int
     var message: String
-    var homeArray:[ChildListData<T>]
+    var childDetailDict:ChildDetail<T>
    
 
     init?(dict:[String:T]) {
         let status  = dict["status"] as? Int ?? 0
         let alertMessage = dict["message"] as? String ?? ""
-        let  dataArr = dict["data"] as? [[String:T]] ?? [[:]]
+        let  dataDict = dict["data"] as? [String:T] ?? [:]
      
         self.status = status
         self.message = alertMessage
-        var hArray = [ChildListData<T>]()
-        for obj in dataArr{
-            let childListObj = ChildListData(dataDict:obj)!
-            hArray.append(childListObj)
-        }
-        self.homeArray = hArray
+        self.childDetailDict = ChildDetail(dataDict:dataDict)!
+
     }
 }
 
-//"appointmentDetails": {
-//               "id": "2",
-//               "user_id": "16",
-//               "child_id": "23",
-//               "title": "Vaccine against Hepatitis B",
-//               "appointment_date": "2021-06-29",
-//               "appointment_time_to": "10:00 AM",
-//               "appointment_time_from": "11:00 AM",
-//               "status": "0",
-//               "create_date": "1624877778"
-//           }
-struct ChildListData<T>{
+
+struct ChildDetail<T>{
     var child_id:String
     var user_id:String
     var name:String
@@ -72,8 +67,7 @@ struct ChildListData<T>{
     var created_at:String
     var update_at:String
     var actual_dob:String
-    
-    var appointmentDetailsDict:AppointmentDetailsDict<T>
+    var appointmentDetailsDict:AppointmentCDetailsDict<T>
     init?(dataDict:[String:T]) {
    
         let child_id = dataDict["child_id"] as? String ?? ""
@@ -99,12 +93,11 @@ struct ChildListData<T>{
         self.created_at = created_at
         self.update_at = update_at
         self.actual_dob = actual_dob
-
-        self.appointmentDetailsDict = AppointmentDetailsDict(dataDict:appointmentDetailsDict)!
+        self.appointmentDetailsDict = AppointmentCDetailsDict(dataDict:appointmentDetailsDict)!
     }
 
 }
-struct AppointmentDetailsDict<T>{
+struct AppointmentCDetailsDict<T>{
 
     var id:String
     var user_id:String
@@ -113,10 +106,9 @@ struct AppointmentDetailsDict<T>{
     var appointment_date:String
     var appointment_time_to:String
     var appointment_time_from:String
+    var description:String
     var status:String
     var create_date:String
-    var description:String
-
     init?(dataDict:[String:T]) {
         let id = dataDict["id"] as? String ?? ""
         let user_id = dataDict["user_id"] as? String ?? ""

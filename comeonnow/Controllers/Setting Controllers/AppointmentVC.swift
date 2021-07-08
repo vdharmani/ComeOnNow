@@ -452,6 +452,8 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
             vc.desc = appointmentArray[indexPath.row].description
             vc.appointment_time_to = appointmentArray[indexPath.row].appointment_time_to
             vc.appointment_time_from = appointmentArray[indexPath.row].appointment_time_from
+            vc.appointment_date = appointmentArray[indexPath.row].appointment_date
+
             vc.delegate = self
 //            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
             
@@ -467,6 +469,8 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
             vc.desc = confirmedAppointmentArray[indexPath.row].description
             vc.appointment_time_to = confirmedAppointmentArray[indexPath.row].appointment_time_to
             vc.appointment_time_from = confirmedAppointmentArray[indexPath.row].appointment_time_from
+            vc.appointment_date = appointmentArray[indexPath.row].appointment_date
+
 //            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
             
             self.navigationController?.pushViewController(vc, animated: false)
@@ -482,6 +486,8 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
             vc.appointment_time_from = pendingAppointmentArray[indexPath.row].appointment_time_from
 
             vc.desc = pendingAppointmentArray[indexPath.row].description
+            vc.appointment_date = appointmentArray[indexPath.row].appointment_date
+
 //            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
             
             self.navigationController?.pushViewController(vc, animated: false)
