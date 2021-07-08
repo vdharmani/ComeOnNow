@@ -186,6 +186,7 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
             if respDict.count != 0{
                 let signUpStepData =  ForgotPasswordData(dict: respDict)
                 if signUpStepData?.status == 1{
+
                     self.navigationController?.popViewController(animated: true)
                 }else{
                     
@@ -214,7 +215,6 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
         let strURL = kBASEURL + WSMethods.editProfile
         
         self.requestWith(endUrl: strURL , parameters: paramds)
-
      
         
     }

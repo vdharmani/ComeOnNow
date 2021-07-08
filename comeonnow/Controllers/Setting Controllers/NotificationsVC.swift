@@ -9,8 +9,11 @@ import UIKit
 import SVProgressHUD
 import Alamofire
 import KRPullLoader
+
 class NotificationsVC: UIViewController {
-    
+    var delegate: SendingAddBOToBOMainPageDelegateProtocol? = nil
+    var loaderBool = Bool()
+
     @IBOutlet weak var notificationsTableView: UITableView!
     @IBOutlet weak var noDataFoundView: UIView!
     
@@ -35,10 +38,16 @@ class NotificationsVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        notificationArray.removeAll()
-        notificationNUArray.removeAll()
-        lastChildId = ""
-        getNotificationListApi()
+        if loaderBool == false{
+            notificationArray.removeAll()
+            notificationNUArray.removeAll()
+            lastChildId = ""
+            getNotificationListApi()
+        }else{
+            notificationsTableView.reloadData()
+            loaderBool = false
+        }
+        
     }
     
     
@@ -101,7 +110,27 @@ class NotificationsVC: UIViewController {
                             
                             
                             
-                        }else{
+                        }
+                        else if getProfileResp?.status == 3{
+                            DispatchQueue.main.async {
+                                
+                                Alert.present(
+                                    title: AppAlertTitle.appName.rawValue,
+                                    message: getProfileResp?.message ?? "",
+                                    actions: .ok(handler: {
+                                        removeAppDefaults(key:"AuthToken")
+                                        removeAppDefaults(key:"UserName")
+                                      
+
+                                        appDel.logOut()
+                                     
+                                    }),
+                                    from: self
+                                )
+                            }
+                        }
+                        
+                        else{
                             if self.notificationArray.count>0{
                                 DispatchQueue.main.async {
 
@@ -316,7 +345,7 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
         let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
         vc.isFromNotification = true
         vc.childId = notificationArray[indexPath.row].detailDicts.child_id
-//        vc.delegate = self
+        vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: false)
         }
     }
@@ -403,6 +432,13 @@ extension NotificationsVC:KRPullLoadViewDelegate{
                 
             }
         }
+    }
+    
+    
+}
+extension NotificationsVC:SendingAddBOToBOMainPageDelegateProtocol{
+    func sendDataToBO(myData: Bool) {
+    loaderBool = myData
     }
     
     

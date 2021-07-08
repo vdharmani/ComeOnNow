@@ -100,7 +100,28 @@ class HomeVC: UIViewController{
                     DispatchQueue.main.async {
                         self.homeTableView.reloadData()
                     }
-                }else{
+                }
+                else if loginResp?.status == 3{
+                    DispatchQueue.main.async {
+                        
+                        Alert.present(
+                            title: AppAlertTitle.appName.rawValue,
+                            message: loginResp?.message ?? "",
+                            actions: .ok(handler: {
+                                removeAppDefaults(key:"AuthToken")
+                                removeAppDefaults(key:"UserName")
+                           
+
+                                
+                                appDel.logOut()
+                             
+                            }),
+                            from: self
+                        )
+                    }
+                }
+                
+                else{
                     if self.homeArray.count>0{
                         DispatchQueue.main.async {
 

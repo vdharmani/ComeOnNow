@@ -231,9 +231,9 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
                 //
                 let loginResp =   LoginSignUpData.init(dict: jsonResult ?? [:])
                 if loginResp?.status == 1{
-                setAppDefaults(loginResp?.user_id, key: "UserId")
-                setAppDefaults(loginResp?.authtoken, key: "AuthToken")
-
+                    setAppDefaults(loginResp?.user_id, key: "UserId")
+                    setAppDefaults(loginResp?.authtoken, key: "AuthToken")
+                    setAppDefaults(loginResp?.username, key: "UserName")
                 DispatchQueue.main.async {
                     Alert.present(
                         title: AppAlertTitle.appName.rawValue,

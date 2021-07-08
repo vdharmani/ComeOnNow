@@ -255,7 +255,14 @@ class ChildDetailVC: UIViewController {
                 self.delegate?.sendDataToBO(myData: false)
             }
             isFromEdit = false
-        }else{
+        }
+        else if self.isFromNotification == true{
+            if self.delegate != nil{
+                self.delegate?.sendDataToBO(myData: true)
+            }
+        }
+        
+        else{
             if self.delegate != nil{
                 self.delegate?.sendDataToBO(myData: true)
             }
@@ -366,6 +373,24 @@ extension ChildDetailVC:SendingDataToBackPageDelegateProtocol{
                         self.setUIValuesUpdate(dict:self.childDetailsData)
 
 
+                    }
+                    else if  self.childDetailsData?.status == 3{
+                        DispatchQueue.main.async {
+                            
+                            Alert.present(
+                                title: AppAlertTitle.appName.rawValue,
+                                message:  self.childDetailsData?.message ?? "",
+                                actions: .ok(handler: {
+                                    removeAppDefaults(key:"AuthToken")
+                                    removeAppDefaults(key:"UserName")
+                                  
+
+                                    appDel.logOut()
+                                 
+                                }),
+                                from: self
+                            )
+                        }
                     }
                 else{
                         DispatchQueue.main.async {

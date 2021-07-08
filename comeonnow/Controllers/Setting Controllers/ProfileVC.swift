@@ -55,6 +55,8 @@ class ProfileVC: UIViewController {
   
     open func setUIValuesUpdate(dict:GetUserProfileData<Any>?){
         nameLabel.text = dict?.username ?? ""
+        setAppDefaults(dict?.username ?? "", key: "UserName")
+
         emailLabel.text = dict?.email ?? ""
        
         var sPhotoStr = dict?.photo ?? ""

@@ -194,7 +194,27 @@ class AppointmentVC: UIViewController {
                             
                             
                             
-                        }else{
+                        }
+                        else if getProfileResp?.status == 3{
+                            DispatchQueue.main.async {
+                                
+                                Alert.present(
+                                    title: AppAlertTitle.appName.rawValue,
+                                    message: getProfileResp?.message ?? "",
+                                    actions: .ok(handler: {
+                                        removeAppDefaults(key:"AuthToken")
+                                        removeAppDefaults(key:"UserName")
+                                      
+                                        appDel.logOut()
+                                     
+                                    }),
+                                    from: self
+                                )
+                            }
+                        }
+                        
+                        
+                        else{
                             
                             if type == "2"{
 

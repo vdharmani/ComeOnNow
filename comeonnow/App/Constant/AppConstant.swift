@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 let DeviceSize = UIScreen.main.bounds.size
-@available(iOS 13.0, *)
+//@available(iOS 13.0, *)
 let appDel = (UIApplication.shared.delegate as! AppDelegate)
 @available(iOS 13.0, *)
 let appScene = (UIApplication.shared.delegate as! SceneDelegate)
