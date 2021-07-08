@@ -16,7 +16,12 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var emailTextField: UITextField!
+    
+    @IBOutlet weak var phoneNumberTF: UITextField!
+    
     @IBOutlet weak var bioView: UIView!
+    
+    @IBOutlet weak var phoneView: UIView!
     
     @IBOutlet weak var bioTV: UITextView!
     
@@ -32,10 +37,17 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
         case usernameTextField:
             userNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
         case emailTextField :
             emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
             userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            
+        case phoneNumberTF :
+            phoneView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+            userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
         default:break
             
@@ -46,6 +58,7 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
         
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
        
     }
@@ -54,14 +67,19 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
         super.viewDidLoad()
         emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
         emailTextField.isUserInteractionEnabled = false
         emailTextField.delegate = self
          usernameTextField.delegate = self
+        phoneNumberTF.delegate = self
+
         bioTV.delegate = self
         self.userImgView.setRounded()
         emailTextField.text = getProfileResp?.email
         bioTV.text = getProfileResp?.description
         usernameTextField.text = getProfileResp?.username
+        phoneNumberTF.text = getProfileResp?.mobile_number
         var sPhotoStr = getProfileResp?.photo
         sPhotoStr = sPhotoStr?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
 //        if sPhotoStr != ""{
@@ -191,7 +209,7 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
         let userId = getSAppDefault(key: "UserId") as? String ?? ""
 
     
-        let paramds = ["userName":usernameTextField.text ?? "" ,"email":emailTextField.text ?? "","description":bioTV.text ?? "","user_id":userId] as [String : Any]
+        let paramds = ["userName":usernameTextField.text ?? "" ,"email":emailTextField.text ?? "","description":bioTV.text ?? "","user_id":userId,"MobileNumber":phoneNumberTF.text ?? ""] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.editProfile
         
@@ -272,6 +290,25 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
                 from: self
             )
         }
+      else if phoneNumberTF.text?.trimmingCharacters(in: .whitespaces) == ""{
+          Alert.present(
+              title: AppAlertTitle.appName.rawValue,
+              message:AppSignInForgotSignUpAlertNessage.enterPhoneNumber,
+              actions: .ok(handler: {
+              }),
+              from: self
+          )
+      }
+      else if phoneNumberTF.text!.count < 10 || phoneNumberTF.text!.count > 14{
+          Alert.present(
+              title: AppAlertTitle.appName.rawValue,
+              message:AppSignInForgotSignUpAlertNessage.phoneNumberLimit,
+              actions: .ok(handler: {
+              }),
+              from: self
+          )
+        
+      }
         else if bioTV.text?.trimmingCharacters(in: .whitespaces) == ""{
             Alert.present(
                 title: AppAlertTitle.appName.rawValue,

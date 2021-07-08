@@ -246,15 +246,35 @@ extension ProfileVC : UITableViewDelegate,UITableViewDataSource{
                           self.navigationController?.pushViewController(vc, animated: false)
             case 1:
                 if let url = URL(string:kBASEURL + SettingWebLinks.aboutUs) {
-                    UIApplication.shared.open(url)
+                            let CMDVC = self.storyboard?.instantiateViewController(withIdentifier:"WebVC") as? WebVC
+                            CMDVC?.linkurl = kBASEURL + SettingWebLinks.aboutUs
+                    CMDVC?.linkLblText = "About"
+                            if let CMDVC = CMDVC {
+                                navigationController?.pushViewController(CMDVC, animated: true)
+                            }
+//                    UIApplication.shared.open(url)
                 }
             case 2:
                 if let url = URL(string:kBASEURL + SettingWebLinks.privacyPolicy) {
-                    UIApplication.shared.open(url)
+                    let CMDVC = self.storyboard?.instantiateViewController(withIdentifier:"WebVC") as? WebVC
+                    CMDVC?.linkurl = kBASEURL + SettingWebLinks.privacyPolicy
+                    CMDVC?.linkLblText = "Privacy policy"
+
+                    if let CMDVC = CMDVC {
+                        navigationController?.pushViewController(CMDVC, animated: true)
+                    }
+//                    UIApplication.shared.open(url)
                 }
             case 3:
                 if let url = URL(string:kBASEURL + SettingWebLinks.termsAndConditions) {
-                    UIApplication.shared.open(url)
+                    let CMDVC = self.storyboard?.instantiateViewController(withIdentifier:"WebVC") as? WebVC
+                    CMDVC?.linkurl = kBASEURL + SettingWebLinks.termsAndConditions
+                    CMDVC?.linkLblText = "Terms of service"
+
+                    if let CMDVC = CMDVC {
+                        navigationController?.pushViewController(CMDVC, animated: true)
+                    }
+//                    UIApplication.shared.open(url)
                 }
             case 4:
                 let alert = UIAlertController(title: AppAlertTitle.appName.rawValue, message: "Are you sure you want to logout?", preferredStyle: UIAlertController.Style.alert)

@@ -46,6 +46,7 @@ struct GetUserProfileData<T>{
     var device_type: String
     var device_token: String
     var authtoken: String
+    var mobile_number:String
 
 
     init?(dict:[String:T]) {
@@ -66,7 +67,8 @@ struct GetUserProfileData<T>{
         let device_type = dataDict["device_type"] as? String ?? ""
         let device_token = dataDict["device_token"] as? String ?? ""
         let authtoken = dataDict["authtoken"] as? String ?? ""
-      
+        let mobile_number = dataDict["mobile_number"] as? String ?? ""
+
         self.status = status
         self.message = alertMessage
         self.user_id = user_id
@@ -83,6 +85,7 @@ struct GetUserProfileData<T>{
         self.device_type = device_type
         self.device_token = device_token
         self.authtoken = authtoken
+        self.mobile_number = mobile_number
 
     }
 }

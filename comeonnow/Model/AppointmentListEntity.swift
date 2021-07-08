@@ -44,6 +44,8 @@ struct AppointmentsListData<T>{
     var appointment_time_from:String
     var status:String
     var create_date:String
+    var description:String
+
     var childDetailsDict: ChildDetailDict<T>
     init?(dataDict:[String:T]) {
    
@@ -56,6 +58,8 @@ struct AppointmentsListData<T>{
         let appointment_time_from = dataDict["appointment_time_from"] as? String ?? ""
         let status = dataDict["status"] as? String ?? ""
         let create_date = dataDict["create_date"] as? String ?? ""
+        let description = dataDict["description"] as? String ?? ""
+
         let detailsDict = dataDict["childDetails"] as? [String:T] ?? [:]
 
        
@@ -69,6 +73,7 @@ struct AppointmentsListData<T>{
         self.appointment_time_from = appointment_time_from
         self.status = status
         self.create_date = create_date
+        self.description = description
         self.childDetailsDict =  ChildDetailDict(dataDict:detailsDict)!
     }
 

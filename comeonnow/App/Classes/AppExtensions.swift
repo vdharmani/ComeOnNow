@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 //------------------------------------------------------
 
 //MARK:  UIApplication
@@ -294,5 +294,13 @@ extension UIImage {
     func toBase64() -> String? {
         guard let imageData = self.pngData() else { return nil }
         return imageData.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
+    }
+}
+extension UIImageView{
+    func downloadImage(url:String){
+      //remove space if a url contains.
+        let stringWithoutWhitespace = url.replacingOccurrences(of: " ", with: "%20", options: .regularExpression)
+        self.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        self.sd_setImage(with: URL(string: stringWithoutWhitespace), placeholderImage: UIImage())
     }
 }

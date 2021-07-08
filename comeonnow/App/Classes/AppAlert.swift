@@ -19,9 +19,6 @@ struct AppHomeTabAlertMessage {
     static let userLocationError = "Error getting the users location"
     static let appleLoginSupport = "Apple login support in iOS 13 and above"
 }
-
-
-
 struct AppSignInForgotSignUpAlertNessage {
     static let enterEmail = "Please enter email"
     static let validEmail = "Please enter valid email"
@@ -32,16 +29,20 @@ struct AppSignInForgotSignUpAlertNessage {
     static let enterDOB = "Please enter D.O.B"
     static let enterName = "Please enter name"
     static let enterUserName = "Please enter user name"
+    static let selectGender = "Please select gender"
 
     static let allowTermsConditionMessage = "You must read and accept new terms and conditions"
-    static let selectGender = "Please select gender"
+    static let enterPhoneNumber = "Please enter phone number"
     static let enterBio = "Please enter your bio"
     static let enterText = "Please enter text"
     
-    static let maxLimitInterest = "You can add maximum 5 interest"
+    static let phoneNumberLimit = "Phone number should be greater than 10 and less than 14"
     static let addInterest = "Please add an interest"
     static let enterOccupation = "Please enter occupation"
 }
+
+
+
 
 struct AppCameraPicAlertMessage{
     static let camera = "Camera"

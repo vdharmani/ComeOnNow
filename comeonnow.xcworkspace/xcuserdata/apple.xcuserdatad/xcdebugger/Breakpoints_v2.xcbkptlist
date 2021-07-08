@@ -30,22 +30,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F05F0B73-33ED-46AE-8AD7-3E9D489C3CD5"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "comeonnow/Controllers/Setting Controllers/NotificationsVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "3F18DC59-2E7D-436D-B876-7CC90529A945"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -133,8 +117,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/EditProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -149,8 +133,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/EditProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -165,8 +149,8 @@
             filePath = "comeonnow/Controllers/Auth Controllers/LogInVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
             landmarkName = "loginApi()"
             landmarkType = "7">
          </BreakpointContent>
@@ -245,8 +229,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/EditProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
             landmarkName = "textViewDidBeginEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -261,8 +245,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/EditProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
             landmarkName = "textViewDidBeginEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -277,10 +261,42 @@
             filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "getAppointmentListApi(type:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FBA088FE-FB03-4458-BED4-3E2CB8497582 - d93e08f31b346fd6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "comeonnow.AppointmentVC.getAppointmentListApi(type: Swift.String) -&gt; ()"
+                  moduleName = "comeonnow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/ComeOnNow-main/comeonnow/Controllers/Setting%20Controllers/AppointmentVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "3196">
+               </Location>
+               <Location
+                  uuid = "FBA088FE-FB03-4458-BED4-3E2CB8497582 - 34fd41f7ba771892"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in comeonnow.AppointmentVC.getAppointmentListApi(type: Swift.String) -&gt; ()"
+                  moduleName = "comeonnow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/ComeOnNow-main/comeonnow/Controllers/Setting%20Controllers/AppointmentVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "604">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -293,8 +309,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "getAppointmentListApi(type:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -309,8 +325,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "getAppointmentListApi(type:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -325,10 +341,42 @@
             filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "getAppointmentListApi(type:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1192EFC9-2AAF-48B6-B0AB-C12D1DF7D139 - 34fd41f7ba771dd5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in comeonnow.AppointmentVC.getAppointmentListApi(type: Swift.String) -&gt; ()"
+                  moduleName = "comeonnow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/ComeOnNow-main/comeonnow/Controllers/Setting%20Controllers/AppointmentVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "7359">
+               </Location>
+               <Location
+                  uuid = "1192EFC9-2AAF-48B6-B0AB-C12D1DF7D139 - 5795acf3a6628781"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 () -&gt; () in closure #2 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in comeonnow.AppointmentVC.getAppointmentListApi(type: Swift.String) -&gt; ()"
+                  moduleName = "comeonnow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/ComeOnNow-main/comeonnow/Controllers/Setting%20Controllers/AppointmentVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "130"
+                  endingLineNumber = "130"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -341,8 +389,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
             landmarkName = "pendingButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -357,8 +405,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "getAppointmentListApi(type:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -373,8 +421,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "getAppointmentListApi(type:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -389,42 +437,10 @@
             filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "getAppointmentListApi(type:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F8F183C2-4AEF-486F-8808-DCBD41C89355 - 87f93f4fdeab9549"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in comeonnow.AppointmentVC.getAppointmentListApi(type: Swift.String) -&gt; ()"
-                  moduleName = "comeonnow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Downloads/ComeOnNow-main%20%203/comeonnow/Controllers/Setting%20Controllers/AppointmentVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "1066">
-               </Location>
-               <Location
-                  uuid = "F8F183C2-4AEF-486F-8808-DCBD41C89355 - 87f93f4fdeab9549"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in comeonnow.AppointmentVC.getAppointmentListApi(type: Swift.String) -&gt; ()"
-                  moduleName = "comeonnow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Downloads/ComeOnNow-main%20%203/comeonnow/Controllers/Setting%20Controllers/AppointmentVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "1104">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -437,8 +453,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "getAppointmentListApi(type:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -453,8 +469,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/AddChildVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
             landmarkName = "requestWith(endUrl:parameters:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -469,8 +485,8 @@
             filePath = "comeonnow/Controllers/Auth Controllers/SignUpVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "signUpButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -485,8 +501,8 @@
             filePath = "comeonnow/Controllers/Auth Controllers/SignUpVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "signUpButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -501,9 +517,41 @@
             filePath = "comeonnow/Controllers/Auth Controllers/SignUpVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "signUpButton(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "44802DB1-2535-49FD-8517-5CF84BEA3844"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4DFFFDD6-BB91-4BDC-BC30-030AF63E3470"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
+            landmarkName = "allButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

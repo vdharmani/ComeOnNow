@@ -17,7 +17,13 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBOutlet weak var phoneNumTF: UITextField!
+    
+    @IBOutlet weak var phoneView: UIView!
+    
     @IBOutlet weak var checkUncheckBtn: UIButton!
+    
+    
     
     let rest = RestManager()
 
@@ -27,16 +33,27 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
             userView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
         case emailTextField:
             emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
             passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             userView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
+        case phoneNumTF :
+            passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            userView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            phoneView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
 
         case passwordTextField :
             passwordView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             userView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
+       
         default:break
             
         }
@@ -46,6 +63,7 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
             userView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+           phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
         
     }
@@ -55,6 +73,8 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
         userView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
         emailTextField.delegate = self
                 userTextField.delegate = self
         passwordTextField.delegate = self
@@ -64,6 +84,19 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    
+    @IBAction func termOfServiceBtnAction(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Setting", bundle: nil)
+
+        let CMDVC = storyBoard.instantiateViewController(withIdentifier:"WebVC") as? WebVC
+        CMDVC?.linkurl = kBASEURL + SettingWebLinks.termsAndConditions
+        CMDVC?.linkLblText = "Terms and conditions"
+
+        if let CMDVC = CMDVC {
+            navigationController?.pushViewController(CMDVC, animated: true)
+        }
     }
     
     @IBAction func checkUncheckBtnAction(_ sender: UIButton) {
@@ -106,7 +139,27 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
                 }),
                 from: self
             )
-        }else if passwordTextField.text?.trimmingCharacters(in: .whitespaces) == ""{
+        }
+        else if phoneNumTF.text?.trimmingCharacters(in: .whitespaces) == ""{
+            Alert.present(
+                title: AppAlertTitle.appName.rawValue,
+                message:AppSignInForgotSignUpAlertNessage.enterPhoneNumber,
+                actions: .ok(handler: {
+                }),
+                from: self
+            )
+        }
+        else if phoneNumTF.text!.count < 10 || phoneNumTF.text!.count > 14{
+            Alert.present(
+                title: AppAlertTitle.appName.rawValue,
+                message:AppSignInForgotSignUpAlertNessage.phoneNumberLimit,
+                actions: .ok(handler: {
+                }),
+                from: self
+            )
+          
+        }
+        else if passwordTextField.text?.trimmingCharacters(in: .whitespaces) == ""{
             Alert.present(
                 title: AppAlertTitle.appName.rawValue,
                 message:AppSignInForgotSignUpAlertNessage.enterPassword,
@@ -152,6 +205,8 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
         rest.httpBodyParameters.add(value: emailTextField.text ?? "", forKey: "email")
         rest.httpBodyParameters.add(value: passwordTextField.text ?? "", forKey: "password")
         rest.httpBodyParameters.add(value: userTextField.text ?? "", forKey: "userName")
+        rest.httpBodyParameters.add(value: phoneNumTF.text ?? "", forKey: "MobileNumber")
+
         rest.httpBodyParameters.add(value: deviceToken, forKey: "deviceToken")
         rest.httpBodyParameters.add(value: "1", forKey: "deviceType")
         DispatchQueue.main.async {

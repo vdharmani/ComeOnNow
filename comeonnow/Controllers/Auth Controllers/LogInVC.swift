@@ -198,6 +198,7 @@ class LogInVC: UIViewController, UITextFieldDelegate {
                 if loginResp?.status == 1{
                 setAppDefaults(loginResp?.user_id, key: "UserId")
                 setAppDefaults(loginResp?.authtoken, key: "AuthToken")
+                setAppDefaults(loginResp?.username, key: "UserName")
 
                 DispatchQueue.main.async {
                  

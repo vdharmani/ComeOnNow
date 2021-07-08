@@ -12,6 +12,8 @@ import KRPullLoader
 
 class AppointmentVC: UIViewController {
     var lastChildId = "0"
+    var loaderBool = Bool()
+
     var appointmentType = String()
     @IBOutlet weak var appointmentTableView: UITableView!
     @IBOutlet weak var allLabel: UILabel!
@@ -32,6 +34,7 @@ class AppointmentVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        appointmentType = "2"
         self.noDataFoundView.isHidden = true
         
         appointmentTableView.dataSource = self
@@ -46,8 +49,26 @@ class AppointmentVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 //        self.appointmentArray.removeAll()
-        lastChildId = ""
-        getAppointmentListApi(type: "2")
+        if loaderBool == false{
+            if appointmentType == "2"{
+                self.appointmentNUArray.removeAll()
+            lastChildId = ""
+            getAppointmentListApi(type: "2")
+            }
+            else if appointmentType == "1"{
+                self.confirmedAppointmentNUArray.removeAll()
+                lastChildId = ""
+                getAppointmentListApi(type: "1")
+            }else{
+                self.pendingAppointmentNUArray.removeAll()
+                lastChildId = ""
+                getAppointmentListApi(type: "0")
+            }
+        }else{
+            appointmentTableView.reloadData()
+            loaderBool = false
+        }
+       
     }
     
     open func getAppointmentListApi(type:String){
@@ -176,6 +197,7 @@ class AppointmentVC: UIViewController {
                         }else{
                             
                             if type == "2"{
+
                                 if self.appointmentArray.count>0{
                                     DispatchQueue.main.async {
 
@@ -257,6 +279,8 @@ class AppointmentVC: UIViewController {
         self.confirmedDownLabel.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.pendingLabel.textColor = #colorLiteral(red: 0.2587913573, green: 0.2588421106, blue: 0.2587881684, alpha: 1)
         self.pendingDownLabel.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        self.appointmentNUArray.removeAll()
+        self.appointmentArray.removeAll()
         lastChildId = ""
         getAppointmentListApi(type: "2")
         
@@ -269,6 +293,8 @@ class AppointmentVC: UIViewController {
         self.confirmedDownLabel.backgroundColor = #colorLiteral(red: 0.5030716658, green: 0.1234851256, blue: 0.4518293738, alpha: 1)
         self.pendingLabel.textColor = #colorLiteral(red: 0.2587913573, green: 0.2588421106, blue: 0.2587881684, alpha: 1)
         self.pendingDownLabel.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        self.confirmedAppointmentNUArray.removeAll()
+        self.confirmedAppointmentArray.removeAll()
         lastChildId = ""
         getAppointmentListApi(type: "1")
         
@@ -281,6 +307,8 @@ class AppointmentVC: UIViewController {
         self.confirmedDownLabel.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.pendingLabel.textColor = #colorLiteral(red: 0.5030716658, green: 0.1234851256, blue: 0.4518293738, alpha: 1)
         self.pendingDownLabel.backgroundColor = #colorLiteral(red: 0.5030716658, green: 0.1234851256, blue: 0.4518293738, alpha: 1)
+        self.pendingAppointmentNUArray.removeAll()
+        self.pendingAppointmentArray.removeAll()
         lastChildId = ""
         getAppointmentListApi(type: "0")
         
@@ -413,6 +441,53 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
         return cell
         
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if appointmentType == "2"{
+            let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
+            vc.name = appointmentArray[indexPath.row].childDetailsDict.name
+            vc.dob = appointmentArray[indexPath.row].childDetailsDict.dob
+            vc.gender = appointmentArray[indexPath.row].childDetailsDict.gender
+            vc.image = appointmentArray[indexPath.row].childDetailsDict.image
+            vc.isFromAppointment = true
+            vc.desc = appointmentArray[indexPath.row].description
+            vc.appointment_time_to = appointmentArray[indexPath.row].appointment_time_to
+            vc.appointment_time_from = appointmentArray[indexPath.row].appointment_time_from
+            vc.delegate = self
+//            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
+            
+            self.navigationController?.pushViewController(vc, animated: false)
+        }else if appointmentType == "1"{
+            let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
+            vc.delegate = self
+            vc.name = confirmedAppointmentArray[indexPath.row].childDetailsDict.name
+            vc.dob = confirmedAppointmentArray[indexPath.row].childDetailsDict.dob
+            vc.gender = confirmedAppointmentArray[indexPath.row].childDetailsDict.gender
+            vc.image = confirmedAppointmentArray[indexPath.row].childDetailsDict.image
+            vc.isFromAppointment = true
+            vc.desc = confirmedAppointmentArray[indexPath.row].description
+            vc.appointment_time_to = confirmedAppointmentArray[indexPath.row].appointment_time_to
+            vc.appointment_time_from = confirmedAppointmentArray[indexPath.row].appointment_time_from
+//            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
+            
+            self.navigationController?.pushViewController(vc, animated: false)
+        }else{
+            let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
+            vc.delegate = self
+            vc.name = pendingAppointmentArray[indexPath.row].childDetailsDict.name
+            vc.dob = pendingAppointmentArray[indexPath.row].childDetailsDict.dob
+            vc.gender = pendingAppointmentArray[indexPath.row].childDetailsDict.gender
+            vc.image = pendingAppointmentArray[indexPath.row].childDetailsDict.image
+            vc.isFromAppointment = true
+            vc.appointment_time_to = pendingAppointmentArray[indexPath.row].appointment_time_to
+            vc.appointment_time_from = pendingAppointmentArray[indexPath.row].appointment_time_from
+
+            vc.desc = pendingAppointmentArray[indexPath.row].description
+//            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
+            
+            self.navigationController?.pushViewController(vc, animated: false)
+        }
+        
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.size.height * 0.2
         
@@ -456,6 +531,16 @@ extension AppointmentVC:KRPullLoadViewDelegate{
             }
         }
     }
+    
+    
+}
+extension AppointmentVC:SendingAddBOToBOMainPageDelegateProtocol{
+    
+    func sendDataToBO(myData: Bool) {
+        loaderBool = myData
+
+    }
+    
     
     
 }

@@ -25,7 +25,9 @@ struct LoginSignUpData<T>:Codable{
     var device_type:String
     var device_token:String
     var authtoken:String
+    var mobile_number:String
 
+    
     
     init?(dict:[String:T]) {
         let status  = dict["status"] as? Int ?? 0
@@ -48,7 +50,7 @@ struct LoginSignUpData<T>:Codable{
         let device_type = dataDict["device_type"] as? String ?? ""
         let device_token = dataDict["device_token"] as? String ?? ""
         let authtoken = dataDict["authtoken"] as? String ?? ""
-        
+        let mobile_number = dataDict["mobile_number"] as? String ?? ""
 
         self.status = status
         self.alertMessage = alertMessage
@@ -66,7 +68,8 @@ struct LoginSignUpData<T>:Codable{
         self.device_type = device_type
         self.device_token = device_token
         self.authtoken = authtoken
-        
+        self.mobile_number = mobile_number
+
 
     }
 }
@@ -90,5 +93,7 @@ extension LoginSignUpData {
         case device_type
         case device_token
         case authtoken
+        case mobile_number
+
         }
 }

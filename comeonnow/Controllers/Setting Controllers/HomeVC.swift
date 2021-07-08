@@ -144,6 +144,7 @@ class HomeVC: UIViewController{
     }
     @IBAction func addChildBtnAction(_ sender: Any) {
         let vc = AddChildVC.instantiate(fromAppStoryboard: .Setting)
+        vc.isFromEditChild = false
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -162,8 +163,12 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
         
         //            cell.mainImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:UIImage(named:"img"))
         
+//        cell.mainImage.downloadImage(url:homeArray[indexPath.row].image)
+
+        cell.mainImage.downloadImage(url:  sPhotoStr)
+
         
-        cell.mainImage.sd_setImage(with: URL(string: homeArray[indexPath.row].image), placeholderImage: UIImage(named: "notifyplaceholderImg"), options: SDWebImageOptions.continueInBackground, completed: nil)
+//        cell.mainImage.sd_setImage(with: URL(string: homeArray[indexPath.row].image), placeholderImage: UIImage(named: "notifyplaceholderImg"), options: SDWebImageOptions.continueInBackground, completed: nil)
         
         // }
         cell.nameLabel.text = homeArray[indexPath.row].name
@@ -184,7 +189,8 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
         vc.gender = homeArray[indexPath.row].gender
         vc.image = homeArray[indexPath.row].image
         vc.appointmentDetailsDict = homeArray[indexPath.row].appointmentDetailsDict
-        
+        vc.isFromAppointment = false
+
         self.navigationController?.pushViewController(vc, animated: false)
     }
     

@@ -14,8 +14,11 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     var userDetailDict = [String:AnyHashable]()
     var imgArray = [Data]()
 
+    var isFromEditChild = Bool()
+    
     @IBOutlet weak var userChildProfileImgView: UIImageView!
     
+    @IBOutlet weak var navBarLbl: UILabel!
     
     @IBOutlet weak var userNameTF: UITextField!
     
@@ -32,7 +35,18 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     var genderArr = [AnyHashable]()
      var datePicker = UIDatePicker()
     lazy var genderPickerView = UIPickerView()
+    var appointmentDetailsDict: AppointmentDetailsDict<AnyHashable>?
+    var name:String?
+    var dob:String?
+    var gender:String?
+    var photo:String?
+    var image:String?
+    var appointmentTimeStr:String?
+    var appointment_time_from:String?
+    var appointment_time_to:String?
+    var appointment_date:String?
 
+    var desc:String?
     
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -67,6 +81,13 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        if isFromEditChild == true{
+            navBarLbl.text = "Edit Child"
+        }else{
+            navBarLbl.text = "Add Child"
+        }
+        
+        
         nameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         dOBTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         genderTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -94,7 +115,7 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     open func setDatePicker() {
         datePicker.datePickerMode = .date
         if #available(iOS 13.4, *) {
-           // datePicker.preferredDatePickerStyle = .wheels
+            datePicker.preferredDatePickerStyle = .wheels
         } else {
             // Fallback on earlier versions
         }
