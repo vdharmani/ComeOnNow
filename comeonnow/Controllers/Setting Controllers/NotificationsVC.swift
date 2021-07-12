@@ -30,6 +30,8 @@ class NotificationsVC: UIViewController {
         
         notificationsTableView.register(UINib(nibName: "NotificationsTVC", bundle: nil), forCellReuseIdentifier: "NotificationsTVC")
         
+//        notificationsTableView.register(UINib(nibName: "NotificationTVST", bundle: nil), forCellReuseIdentifier: "NotificationTVST")
+
         let loadMoreView = KRPullLoadView()
         loadMoreView.delegate = self
         notificationsTableView.addPullLoadableView(loadMoreView, type: .loadMore)
@@ -302,12 +304,11 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
             var sPhotoStr = notificationArray[indexPath.row].image
             sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
             //        if sPhotoStr != ""{
-            cell.mainImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:UIImage(named:"notifyplaceholderImg"))
+            
             //}
             cell.acceptButton.addTarget(self, action: #selector(acceptBtnAction(_:)), for: .touchUpInside)
             cell.declineButton.addTarget(self, action: #selector(rejectBtnAction(_:)), for: .touchUpInside)
             
-            cell.appointmentLabel.text = notificationArray[indexPath.row].description
             
             let createdDate : String = notificationArray[indexPath.row].created //time stamp
             var createdDataDisplayString: String {
@@ -317,31 +318,36 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
             
             cell.daysLabel.text = createdDataDisplayString
             
-            cell.daysHIdeLabel.text = createdDataDisplayString
+            cell.datehideLbl.text = notificationArray[indexPath.row].description
             if notificationArray[indexPath.row].notification_type == "2"{
-                
+                cell.appointmentLabel.text = notificationArray[indexPath.row].description
                 cell.stackView.isHidden = false
-                cell.daysHIdeLabel.isHidden = true
-                
+                cell.datehideLbl.isHidden = true
+                cell.mainImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:UIImage(named:"notifyplaceholderImg"))
+
             }else{
-                
+                cell.appointmentLabel.text = notificationArray[indexPath.row].title
+                cell.mainImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:UIImage(named:"AppIcN"))
+
                 cell.stackView.isHidden = true
-                cell.daysHIdeLabel.isHidden = false
-                cell.daysLabel.isHidden = true
+                cell.datehideLbl.isHidden = false
+                cell.daysLabel.isHidden = false
             }
         }
         
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if notificationArray[indexPath.row].notification_type == "2"{
+        
+        
+//        if notificationArray[indexPath.row].notification_type == "2"{
         return UITableView.automaticDimension
-        }else{
-            return UIScreen.main.bounds.size.height * 0.1249
-        }
+//        }else{
+//            return UIScreen.main.bounds.size.height * 0.1
+//        }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if notificationArray[indexPath.row].notification_type != "2"{
+        if notificationArray[indexPath.row].notification_type != "2" && notificationArray[indexPath.row].notification_type != "1" {
         let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
         vc.isFromNotification = true
         vc.childId = notificationArray[indexPath.row].detailDicts.child_id

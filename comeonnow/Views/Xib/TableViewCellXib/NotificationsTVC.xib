@@ -47,13 +47,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have appointment." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOT-FU-3TY">
-                        <rect key="frame" x="69" y="6" width="199" height="19"/>
+                        <rect key="frame" x="69" y="6" width="202.5" height="19"/>
                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 days ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDN-MR-JZT" userLabel="2 days ago">
-                        <rect key="frame" x="69" y="32" width="56" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 days ago" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDN-MR-JZT" userLabel="2 days ago">
+                        <rect key="frame" x="69" y="34" width="262.5" height="12.5"/>
                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                         <color key="textColor" red="0.4470990896" green="0.44307750460000001" blue="0.4471167922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -134,10 +134,10 @@
                 </subviews>
                 <color key="backgroundColor" red="1" green="0.97606593370000005" blue="0.99648207430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstItem="nOT-FU-3TY" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.55" id="0B2-wq-cvB"/>
                     <constraint firstAttribute="trailing" secondItem="LMB-nh-WmK" secondAttribute="trailing" constant="15" id="1HH-P7-fgA"/>
                     <constraint firstItem="7fr-NX-97E" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.13" id="8v7-Fs-Enx"/>
                     <constraint firstItem="nOT-FU-3TY" firstAttribute="leading" secondItem="7fr-NX-97E" secondAttribute="trailing" constant="12" id="DFc-cZ-5LZ"/>
+                    <constraint firstItem="mkt-Wr-f7K" firstAttribute="top" secondItem="PDN-MR-JZT" secondAttribute="bottom" constant="23.5" id="DKc-h1-If1"/>
                     <constraint firstItem="mkt-Wr-f7K" firstAttribute="top" secondItem="NT7-c1-Psp" secondAttribute="bottom" constant="11" id="FGw-7s-MJc"/>
                     <constraint firstAttribute="bottom" secondItem="mkt-Wr-f7K" secondAttribute="bottom" id="ITI-TC-m5y"/>
                     <constraint firstItem="mkt-Wr-f7K" firstAttribute="leading" secondItem="7fr-NX-97E" secondAttribute="leading" id="JjW-xE-KWq"/>
@@ -145,9 +145,11 @@
                     <constraint firstItem="nOT-FU-3TY" firstAttribute="top" secondItem="7fr-NX-97E" secondAttribute="top" constant="-3" id="NzC-4c-sJe"/>
                     <constraint firstItem="dCR-7s-ae8" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.195" id="OBa-Je-2De"/>
                     <constraint firstItem="LMB-nh-WmK" firstAttribute="top" secondItem="nOT-FU-3TY" secondAttribute="top" id="Qzk-bp-9Q8"/>
-                    <constraint firstItem="PDN-MR-JZT" firstAttribute="top" secondItem="nOT-FU-3TY" secondAttribute="bottom" constant="7" id="RNa-Sy-3tl"/>
+                    <constraint firstItem="PDN-MR-JZT" firstAttribute="top" secondItem="nOT-FU-3TY" secondAttribute="bottom" constant="9" id="RNa-Sy-3tl"/>
                     <constraint firstItem="NT7-c1-Psp" firstAttribute="top" secondItem="nOT-FU-3TY" secondAttribute="bottom" constant="9" id="bUT-it-cZX"/>
                     <constraint firstItem="PDN-MR-JZT" firstAttribute="leading" secondItem="NT7-c1-Psp" secondAttribute="leading" id="eHw-Db-lHz"/>
+                    <constraint firstAttribute="trailing" secondItem="PDN-MR-JZT" secondAttribute="trailing" constant="30" id="gTY-bL-oI0"/>
+                    <constraint firstItem="LMB-nh-WmK" firstAttribute="leading" secondItem="nOT-FU-3TY" secondAttribute="trailing" constant="10" id="gWb-yq-zsd"/>
                     <constraint firstItem="NT7-c1-Psp" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.409218" id="mpw-zE-8nM"/>
                     <constraint firstItem="7fr-NX-97E" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="qPz-nF-3t2"/>
                     <constraint firstItem="LMB-nh-WmK" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.18" id="y9y-1c-sMt"/>
@@ -161,7 +163,7 @@
                 <outlet property="acceptLabel" destination="wfZ-Rs-WNc" id="iYH-Zt-W7l"/>
                 <outlet property="acceptView" destination="dCR-7s-ae8" id="izC-e4-cTD"/>
                 <outlet property="appointmentLabel" destination="nOT-FU-3TY" id="mTs-JL-dLG"/>
-                <outlet property="daysHIdeLabel" destination="PDN-MR-JZT" id="LV8-WX-HLW"/>
+                <outlet property="datehideLbl" destination="PDN-MR-JZT" id="9q8-Ro-Ly7"/>
                 <outlet property="daysLabel" destination="LMB-nh-WmK" id="UjF-l3-LiZ"/>
                 <outlet property="declineButton" destination="LyI-hy-LC8" id="JAH-ds-XCB"/>
                 <outlet property="declineLabel" destination="TZf-bP-ocb" id="D9a-FB-T6M"/>

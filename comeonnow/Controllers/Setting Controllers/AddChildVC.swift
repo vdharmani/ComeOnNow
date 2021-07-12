@@ -37,7 +37,9 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     
     @IBOutlet weak var saveBtn: UIButton!
     
+    @IBOutlet weak var deleteChildImgView: UIImageView!
     
+    @IBOutlet weak var deleteChildBtn: UIButton!
     var genderArr = [AnyHashable]()
      var datePicker = UIDatePicker()
     lazy var genderPickerView = UIPickerView()
@@ -94,14 +96,16 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     //        if sPhotoStr != ""{
             userChildProfileImgView.sd_setImage(with: URL(string: sPhotoStr ?? ""), placeholderImage:#imageLiteral(resourceName: "notifyplaceholderImg"))
             userNameTF.text = name
-            dOBTF.text = dob
+            dOBTF.text = convertDateFormat(inputDate:dob ?? "")
             genderTF.text = gender
             saveBtn.setTitle("Update", for: .normal)
-            
+            deleteChildImgView.isHidden = false
+            deleteChildBtn.isHidden = false
         }else{
             navBarLbl.text = "Add Child"
             saveBtn.setTitle("Save", for: .normal)
-
+            deleteChildImgView.isHidden = true
+            deleteChildBtn.isHidden = true
         }
         
         
@@ -125,6 +129,22 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
         genderTF.inputAccessoryView = toolBar
         setDatePicker()
         // Do any additional setup after loading the view.
+    }
+    func convertDateFormat(inputDate: String) -> String {
+      
+         let olDateFormatter = DateFormatter()
+         olDateFormatter.dateFormat = "yyyy-MM-dd"
+
+         let oldDate = olDateFormatter.date(from: inputDate)
+
+         let convertDateFormatter = DateFormatter()
+         convertDateFormatter.dateFormat = "MM-dd-yyyy"
+        if oldDate == nil{
+            return ""
+        }else{
+            return convertDateFormatter.string(from: oldDate!)
+
+        }
     }
     @objc func closePicker() {
         genderTF.resignFirstResponder()
@@ -153,13 +173,104 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
             
             //   [formatter setDateFormat:@"dd MMMM yyyy"];
             formatter.dateFormat = "YYYY-MM-dd"
+            dob = "\(formatter.string(from: datePicker.date))"
+            formatter.dateFormat = "MM-dd-yyyy"
             dOBTF.text = "\(formatter.string(from: datePicker.date))"
             dOBTF.resignFirstResponder()
         }
         
     }
  
-    
+    @IBAction func deleteChildBtnAction(_ sender: Any) {
+        let alert = UIAlertController(title:AppAlertTitle.appName.rawValue, message: "Are you sure want to delete child?", preferredStyle: .alert)
+            let Ok = UIAlertAction(title: "Confirm", style: .default, handler: { [self] action in
+                alert.dismiss(animated: true)
+                deleteChildApi(childId: childId ?? "")
+
+
+            })
+                let cancel = UIAlertAction(
+                    title: "Cancel",
+                    style: .default,
+                    handler: { action in
+                        alert.dismiss(animated: true)
+                    })
+                alert.addAction(Ok)
+                alert.addAction(cancel)
+        self.present(alert, animated: true)
+
+    }
+    open func deleteChildApi(childId:String){
+       
+     
+        let strURL = kBASEURL + WSMethods.childDelete
+        let urlwithPercentEscapes = strURL.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        let userId  = getSAppDefault(key: "UserId") as? String ?? ""
+        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
+
+        let paramds = ["user_id":userId,"child_id":childId] as [String : Any]
+
+        DispatchQueue.main.async {
+
+        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
+        
+        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":authToken])
+            .responseJSON { (response) in
+                DispatchQueue.main.async {
+
+                AFWrapperClass.svprogressHudDismiss(view:self)
+                }
+
+                switch response.result {
+                case .success(let value):
+                    if let JSON = value as? [String: Any] {
+                        print(JSON as NSDictionary)
+                        let status = JSON["status"] as? Int ?? 0
+                        let message = JSON["message"] as? String ?? ""
+
+                        if status == 1{
+                            for controller in self.navigationController!.viewControllers as Array {
+                                        if controller.isKind(of: TabBarVC.self) {
+                                            self.navigationController!.popToViewController(controller, animated: true)
+                                            break
+                                        }
+                                    }
+                        }else{
+                            DispatchQueue.main.async {
+                                
+                                Alert.present(
+                                    title: AppAlertTitle.appName.rawValue,
+                                    message: message,
+                                    actions: .ok(handler: {
+                                    }),
+                                    from: self
+                                )
+                            }
+                        }
+                        
+                        
+                        
+                        
+                    }
+                case .failure(let error):
+                    let error : NSError = error as NSError
+                    print(error)
+                    DispatchQueue.main.async {
+                        
+                        Alert.present(
+                            title: AppAlertTitle.appName.rawValue,
+                            message: AppAlertTitle.connectionError.rawValue,
+                            actions: .ok(handler: {
+                            }),
+                            from: self
+                        )
+                    }
+                }
+            }
+
+        
+    }
     
     @IBAction func addChildBtnAction(_ sender: Any) {
         if userNameTF.text?.trimmingCharacters(in: .whitespaces) == ""{
@@ -368,14 +479,14 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
         let userId = getSAppDefault(key: "UserId") as? String ?? ""
         if isFromEditChild == true{
 
-            let paramds = ["dob":dOBTF.text ?? "" ,"gender":genderTF.text ?? "","name":userNameTF.text ?? "","user_id":userId,"child_id":childId ?? ""] as [String : Any]
+            let paramds = ["dob":dob ?? "" ,"gender":genderTF.text ?? "","name":userNameTF.text ?? "","user_id":userId,"child_id":childId ?? ""] as [String : Any]
     
         let strURL = kBASEURL + WSMethods.editChild
 
             self.requestWith(endUrl: strURL , parameters: paramds)
             
         }else{
-            let paramds = ["dob":dOBTF.text ?? "" ,"gender":genderTF.text ?? "","name":userNameTF.text ?? "","user_id":userId] as [String : Any]
+            let paramds = ["dob":dob ?? "" ,"gender":genderTF.text ?? "","name":userNameTF.text ?? "","user_id":userId] as [String : Any]
         
             let strURL = kBASEURL + WSMethods.addchildren
 
@@ -397,8 +508,6 @@ extension AddChildVC:UIPickerViewDelegate,UIPickerViewDataSource{
         
             return genderArr[row] as? String ?? ""
 
-        
-        
         
     }
     

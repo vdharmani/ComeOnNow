@@ -92,7 +92,7 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
 
         let CMDVC = storyBoard.instantiateViewController(withIdentifier:"WebVC") as? WebVC
         CMDVC?.linkurl = kBASEURL + SettingWebLinks.termsAndConditions
-        CMDVC?.linkLblText = "Terms and conditions"
+        CMDVC?.linkLblText = "Terms of service"
 
         if let CMDVC = CMDVC {
             navigationController?.pushViewController(CMDVC, animated: true)

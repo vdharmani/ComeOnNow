@@ -19,7 +19,8 @@ class NotificationsTVC: UITableViewCell {
     @IBOutlet weak var declineLabel: UILabel!
     @IBOutlet weak var declineButton: UIButton!
     @IBOutlet weak var daysLabel: UILabel!
-    @IBOutlet weak var daysHIdeLabel: UILabel!
+   
+    @IBOutlet weak var datehideLbl: UILabel!
     
     
     

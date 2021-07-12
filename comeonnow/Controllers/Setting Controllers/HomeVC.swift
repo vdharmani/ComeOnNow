@@ -9,6 +9,7 @@ import UIKit
 import SVProgressHUD
 import SDWebImage
 import KRPullLoader
+import Alamofire
 
 class HomeVC: UIViewController{
     
@@ -173,6 +174,75 @@ class HomeVC: UIViewController{
         }
       
     }
+    open func deleteChildApi(childId:String){
+       
+     
+        let strURL = kBASEURL + WSMethods.childDelete
+        let urlwithPercentEscapes = strURL.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        let userId  = getSAppDefault(key: "UserId") as? String ?? ""
+        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
+
+        let paramds = ["user_id":userId,"child_id":childId] as [String : Any]
+
+//        DispatchQueue.main.async {
+//
+//        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+//        }
+        
+        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":authToken])
+            .responseJSON { (response) in
+//                DispatchQueue.main.async {
+//
+//                AFWrapperClass.svprogressHudDismiss(view:self)
+//                }
+
+                switch response.result {
+                case .success(let value):
+                    if let JSON = value as? [String: Any] {
+                        print(JSON as NSDictionary)
+                        let status = JSON["status"] as? Int ?? 0
+                        let message = JSON["message"] as? String ?? ""
+
+                        if status == 1{
+                            self.homeArray.removeAll()
+                            self.homeNUArray.removeAll()
+                            self.lastChildId = ""
+                            self.homeChildListApi()
+                        }else{
+                            DispatchQueue.main.async {
+                                
+                                Alert.present(
+                                    title: AppAlertTitle.appName.rawValue,
+                                    message: message,
+                                    actions: .ok(handler: {
+                                    }),
+                                    from: self
+                                )
+                            }
+                        }
+                        
+                        
+                        
+                        
+                    }
+                case .failure(let error):
+                    let error : NSError = error as NSError
+                    print(error)
+                    DispatchQueue.main.async {
+                        
+                        Alert.present(
+                            title: AppAlertTitle.appName.rawValue,
+                            message: AppAlertTitle.connectionError.rawValue,
+                            actions: .ok(handler: {
+                            }),
+                            from: self
+                        )
+                    }
+                }
+            }
+
+        
+    }
     @IBAction func addChildBtnAction(_ sender: Any) {
         let vc = AddChildVC.instantiate(fromAppStoryboard: .Setting)
         vc.isFromEditChild = false
@@ -227,8 +297,45 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
         vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: false)
     }
-    
-    
+//    func tableView(_ tableView: UITableView,
+//                       trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//
+//
+//        // Trash action
+//        let trash = UIContextualAction(style: .destructive,
+//                                       title: "Delete") { [weak self] (action, view, completionHandler) in
+//            let alert = UIAlertController(title:AppAlertTitle.appName.rawValue, message: "Are you sure want to delete child?", preferredStyle: .alert)
+//            let Ok = UIAlertAction(title: "Confirm", style: .default, handler: { [self] action in
+//                alert.dismiss(animated: true)
+//                let childId = self?.homeArray[indexPath.row].child_id ?? ""
+//                self?.deleteChildApi(childId:childId)
+////                self?.deleteDraftInvoiceApi(indexPath: indexPath)
+//
+//            })
+//                let cancel = UIAlertAction(
+//                    title: "Cancel",
+//                    style: .default,
+//                    handler: { action in
+//                        alert.dismiss(animated: true)
+//                    })
+//                alert.addAction(Ok)
+//                alert.addAction(cancel)
+//            self?.present(alert, animated: true)
+//
+//                                    completionHandler(true)
+//
+//        }
+//        trash.backgroundColor = UIColor(red: 255.0/255.0, green: 248.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+////        trash.image = UIImage(named: "deleteFT")
+//
+//        UIButton.appearance().setTitleColor(UIColor.purple, for: .normal)
+//        let configuration = UISwipeActionsConfiguration(actions: [trash])
+//
+//        return configuration
+//
+//        // ...
+//    }
+  
 }
 
 

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="LATO-REGULAR.TTF">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="71" id="YbM-1x-FCK" customClass="NotificationTVST" customModule="comeonnow" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="358" height="71"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YbM-1x-FCK" id="Dob-bS-P0a">
+                <rect key="frame" x="0.0" y="0.0" width="358" height="71"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HEb-ud-jf6">
+                        <rect key="frame" x="10" y="12.5" width="46" height="46"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="HEb-ud-jf6" secondAttribute="height" multiplier="1:1" id="egc-9m-LEf"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ucd-lx-rjY">
+                        <rect key="frame" x="10" y="70" width="348" height="1"/>
+                        <color key="backgroundColor" red="0.94928187129999997" green="0.93303298950000002" blue="0.94936221840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="EZ6-Re-dmp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="You have appointment." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpE-pn-dLL">
+                        <rect key="frame" x="67" y="12.5" width="140" height="16"/>
+                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="You have appointment." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXS-J1-I8s">
+                        <rect key="frame" x="67" y="33.5" width="201" height="16"/>
+                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" ambiguous="YES" text="3 days ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpj-1S-ucM">
+                        <rect key="frame" x="286" y="13.5" width="61" height="14"/>
+                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
+                        <color key="textColor" red="0.4470990896" green="0.44307750460000001" blue="0.4471167922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="1" green="0.97606593370000005" blue="0.99648207430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="hXS-J1-I8s" firstAttribute="leading" secondItem="dpE-pn-dLL" secondAttribute="leading" id="17g-0N-api"/>
+                    <constraint firstItem="Ucd-lx-rjY" firstAttribute="leading" secondItem="HEb-ud-jf6" secondAttribute="leading" id="6au-Ec-A7q"/>
+                    <constraint firstItem="hXS-J1-I8s" firstAttribute="top" secondItem="dpE-pn-dLL" secondAttribute="bottom" constant="5" id="Oaw-gr-o3s"/>
+                    <constraint firstItem="Ucd-lx-rjY" firstAttribute="top" secondItem="hXS-J1-I8s" secondAttribute="bottom" constant="20.5" id="OdT-f9-0Mu"/>
+                    <constraint firstAttribute="bottom" secondItem="Ucd-lx-rjY" secondAttribute="bottom" id="RRQ-Xl-DlJ"/>
+                    <constraint firstItem="HEb-ud-jf6" firstAttribute="leading" secondItem="Dob-bS-P0a" secondAttribute="leading" constant="10" id="Rxr-lz-9Oa"/>
+                    <constraint firstAttribute="trailing" secondItem="cpj-1S-ucM" secondAttribute="trailing" constant="11" id="Wt6-53-ckn"/>
+                    <constraint firstItem="dpE-pn-dLL" firstAttribute="top" secondItem="HEb-ud-jf6" secondAttribute="top" id="YYg-bH-qQg"/>
+                    <constraint firstItem="dpE-pn-dLL" firstAttribute="leading" secondItem="HEb-ud-jf6" secondAttribute="trailing" constant="11" id="bbV-qF-2G9"/>
+                    <constraint firstItem="HEb-ud-jf6" firstAttribute="centerY" secondItem="Dob-bS-P0a" secondAttribute="centerY" id="f53-hT-6C3"/>
+                    <constraint firstAttribute="trailing" secondItem="Ucd-lx-rjY" secondAttribute="trailing" id="mZ2-VT-NFc"/>
+                    <constraint firstAttribute="trailing" secondItem="hXS-J1-I8s" secondAttribute="trailing" constant="90" id="oKD-DK-bOd"/>
+                    <constraint firstItem="cpj-1S-ucM" firstAttribute="centerY" secondItem="dpE-pn-dLL" secondAttribute="centerY" id="tcM-1G-xK4"/>
+                    <constraint firstItem="cpj-1S-ucM" firstAttribute="leading" secondItem="dpE-pn-dLL" secondAttribute="trailing" constant="79" id="wBf-xv-ZlJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="2oP-gE-Qpq"/>
+            <constraints>
+                <constraint firstItem="cpj-1S-ucM" firstAttribute="width" secondItem="YbM-1x-FCK" secondAttribute="width" multiplier="0.17" id="R5V-oW-h0t"/>
+                <constraint firstItem="HEb-ud-jf6" firstAttribute="height" secondItem="YbM-1x-FCK" secondAttribute="height" multiplier="0.65" id="i50-C3-b3y"/>
+            </constraints>
+            <connections>
+                <outlet property="appointmentLabel" destination="dpE-pn-dLL" id="mxR-lR-uUo"/>
+                <outlet property="daysLabel" destination="cpj-1S-ucM" id="tda-Ne-eAa"/>
+                <outlet property="descriptionLbl" destination="hXS-J1-I8s" id="PGy-i9-nkK"/>
+                <outlet property="mainImage" destination="HEb-ud-jf6" id="PYy-15-dpj"/>
+            </connections>
+            <point key="canvasLocation" x="56.521739130434788" y="246.76339285714283"/>
+        </tableViewCell>
+    </objects>
+</document>
