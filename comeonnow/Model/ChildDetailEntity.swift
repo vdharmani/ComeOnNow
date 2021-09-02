@@ -41,18 +41,50 @@ struct ChildDetailData<T>{
     //}
     var status: Int
     var message: String
-    var childDetailDict:ChildDetail<T>
-   
+    var child_id:String
+    var user_id:String
+    var name:String
+    var dob:String
+    var gender:String
+    var image:String
+    var created_at:String
+    var update_at:String
+    var actual_dob:String
+//    var childDetailDict:ChildDetail<T>
+    var appointmentDetailArr:[AppointmentCDetailsDict<T>]
 
     init?(dict:[String:T]) {
         let status  = dict["status"] as? Int ?? 0
         let alertMessage = dict["message"] as? String ?? ""
-        let  dataDict = dict["data"] as? [String:T] ?? [:]
-     
+        let dataDict = dict["data"] as? [String:T] ?? [:]
+        let child_id = dataDict["child_id"] as? String ?? ""
+        let user_id = dataDict["user_id"] as? String ?? ""
+        let name = dataDict["name"] as? String ?? ""
+        let dob = dataDict["dob"] as? String ?? ""
+        let gender = dataDict["gender"] as? String ?? ""
+        let image = dataDict["image"] as? String ?? ""
+        let created_at = dataDict["created_at"] as? String ?? ""
+        let update_at = dataDict["update_at"] as? String ?? ""
+        let actual_dob = dataDict["actual_dob"] as? String ?? ""
+        let appointmentDetailArr = dataDict["appointmentDetails"] as? [[String:T]] ?? [[:]]
         self.status = status
         self.message = alertMessage
-        self.childDetailDict = ChildDetail(dataDict:dataDict)!
-
+        self.child_id = child_id
+        self.user_id = user_id
+        self.name = name
+        self.dob = dob
+        self.gender = gender
+        self.image = image
+        self.created_at = created_at
+        self.update_at = update_at
+        self.actual_dob = actual_dob
+//        self.childDetailDict = ChildDetail(dataDict:dataDict)!
+        var hArray = [AppointmentCDetailsDict<T>]()
+        for obj in appointmentDetailArr{
+            let childListObj = AppointmentCDetailsDict(dataDict:obj)!
+            hArray.append(childListObj)
+        }
+        self.appointmentDetailArr = hArray
     }
 }
 
@@ -106,6 +138,8 @@ struct AppointmentCDetailsDict<T>{
     var appointment_date:String
     var appointment_time_to:String
     var appointment_time_from:String
+    var appointments_type:String
+    var is_delete:String
     var description:String
     var status:String
     var create_date:String
@@ -120,12 +154,17 @@ struct AppointmentCDetailsDict<T>{
         let status = dataDict["status"] as? String ?? ""
         let create_date = dataDict["create_date"] as? String ?? ""
         let description = dataDict["description"] as? String ?? ""
+        let is_delete = dataDict["is_delete"] as? String ?? ""
+        let appointments_type = dataDict["appointments_type"] as? String ?? ""
 
         
         self.id = id
         self.user_id = user_id
         self.child_id = child_id
         self.title = title
+        self.is_delete = is_delete
+        self.appointments_type = appointments_type
+
         self.appointment_date = appointment_date
         self.appointment_time_to = appointment_time_to
         self.appointment_time_from = appointment_time_from

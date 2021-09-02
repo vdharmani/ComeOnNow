@@ -386,41 +386,43 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
             
         }
         }else if appointmentType == "1"{
-            
-            cell.nameLabel.text = confirmedAppointmentArray[indexPath.row].childDetailsDict.name
-            cell.ageLabel.text = confirmedAppointmentArray[indexPath.row].childDetailsDict.dob
-            cell.genderLabel.text = confirmedAppointmentArray[indexPath.row].childDetailsDict.gender
-            
-            var sPhotoStr = confirmedAppointmentArray[indexPath.row].childDetailsDict.image
-            sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-            //        if sPhotoStr != ""{
-            cell.mainImage.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"notifyplaceholderImg"))
-            //}
-            cell.dateLabel.text = confirmedAppointmentArray[indexPath.row].appointment_date
-            let time1 = confirmedAppointmentArray[indexPath.row].appointment_time_to
-            let time2 = confirmedAppointmentArray[indexPath.row].appointment_time_from
-            if time1 != "" && time2 != ""{
-                let formatter = DateFormatter()
-                formatter.dateFormat = "h:mma"
+            if confirmedAppointmentArray.count > 0{
+                cell.nameLabel.text = confirmedAppointmentArray[indexPath.row].childDetailsDict.name
+                cell.ageLabel.text = confirmedAppointmentArray[indexPath.row].childDetailsDict.dob
+                cell.genderLabel.text = confirmedAppointmentArray[indexPath.row].childDetailsDict.gender
                 
-                let date1 = formatter.date(from: time1)!
-                let date2 = formatter.date(from: time2)!
-                
-                let elapsedTime = date2.timeIntervalSince(date1)
-                
-                // convert from seconds to hours, rounding down to the nearest hour
-                let hours = floor(elapsedTime / 60 / 60)
-                
-                // we have to subtract the number of seconds in hours from minutes to get
-                // the remaining minutes, rounding down to the nearest minute (in case you
-                // want to get seconds down the road)
-                let minutes = floor((elapsedTime - (hours * 60 * 60)) / 60)
-                
-                print("\(Int(hours)) hr and \(Int(minutes)) min")
-                let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-                cell.timeLabel.text = "\(confirmedAppointmentArray[indexPath.row].appointment_time_to ) - \(confirmedAppointmentArray[indexPath.row].appointment_time_from )"
-                
+                var sPhotoStr = confirmedAppointmentArray[indexPath.row].childDetailsDict.image
+                sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+                //        if sPhotoStr != ""{
+                cell.mainImage.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"notifyplaceholderImg"))
+                //}
+                cell.dateLabel.text = confirmedAppointmentArray[indexPath.row].appointment_date
+                let time1 = confirmedAppointmentArray[indexPath.row].appointment_time_to
+                let time2 = confirmedAppointmentArray[indexPath.row].appointment_time_from
+                if time1 != "" && time2 != ""{
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "h:mma"
+                    
+                    let date1 = formatter.date(from: time1)!
+                    let date2 = formatter.date(from: time2)!
+                    
+                    let elapsedTime = date2.timeIntervalSince(date1)
+                    
+                    // convert from seconds to hours, rounding down to the nearest hour
+                    let hours = floor(elapsedTime / 60 / 60)
+                    
+                    // we have to subtract the number of seconds in hours from minutes to get
+                    // the remaining minutes, rounding down to the nearest minute (in case you
+                    // want to get seconds down the road)
+                    let minutes = floor((elapsedTime - (hours * 60 * 60)) / 60)
+                    
+                    print("\(Int(hours)) hr and \(Int(minutes)) min")
+                    let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
+                    cell.timeLabel.text = "\(confirmedAppointmentArray[indexPath.row].appointment_time_to ) - \(confirmedAppointmentArray[indexPath.row].appointment_time_from )"
+                    
+                }
             }
+       
         }else{
             
             cell.nameLabel.text = pendingAppointmentArray[indexPath.row].childDetailsDict.name

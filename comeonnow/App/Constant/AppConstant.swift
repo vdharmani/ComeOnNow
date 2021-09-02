@@ -44,8 +44,9 @@ struct WSMethods {
     static let getUserDetail = "getProfileDetails.php"
     static let editProfile = "editProfile.php"
     static let forgotPassword = "forgetPassword.php"
-   static let  getChildrenDetailsBychildId = "getChildrenDetailsBychildId.php"
-    
+    //getChildrenDetailsBychildId.php
+   static let  getChildrenDetailsBychildId = "getChildrenDetailsBychildIdv2.php"
+//    getChildrenDetailsBychildIdv2.php
 }
 
 let WS_Live = ""
@@ -87,7 +88,7 @@ struct ViewControllerIdentifier {
     static let AddBiweeklyInventoryVC = "AddBiweeklyInventoryVC"
     static let AddDailyInventoryVC = "AddDailyInventoryVC"
     static let LinksWebVC = "LinksWebVC"
-    static let ProductIngredientHomeVC = "ProductIngredientHomeVC"
+    static let ChildDetailVC = "ChildDetailVC"
     static let ProductListVC = "ProductListVC"
     static let AddProductVC = "AddProductVC"
     static let IngredientListVC = "IngredientListVC"

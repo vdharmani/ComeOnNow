@@ -14,7 +14,7 @@ class ChildDetailVC: UIViewController {
     var delegate: SendingAddBOToBOMainPageDelegateProtocol? = nil
     
     
-    @IBOutlet weak var appointmentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var appointmentTBViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var descriptionLbl: UILabel!
     
@@ -26,6 +26,9 @@ class ChildDetailVC: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var parentGuardianLbl: UILabel!
+    
+    
+    @IBOutlet weak var appointmentChildTBView: UITableView!
     
     @IBOutlet weak var appointmentChildDetailView: UIView!
     
@@ -39,6 +42,7 @@ class ChildDetailVC: UIViewController {
     
     @IBOutlet weak var editBtn: UIButton!
     
+    @IBOutlet weak var seeMoreViewObj: UIView!
     
     var name:String?
     var dob:String?
@@ -55,7 +59,8 @@ class ChildDetailVC: UIViewController {
     var desc:String?
     var appointmentDetailsDict: AppointmentDetailsDict<AnyHashable>?
     var childDetailsData = ChildDetailData<Any>(dict: [:])
-    
+    var appointmentDetailArr = [AppointmentCDetailsDict<Any>]()
+
     var isFromAppointment = Bool()
     var isFromEdit = Bool()
     var isFromNotification = Bool()
@@ -66,6 +71,8 @@ class ChildDetailVC: UIViewController {
             editBtn.isHidden = true
             editBtnImgView.isHidden = true
             getChildDetailByIdApi(childId: childId ?? "")
+            seeMoreViewObj.isHidden = false
+
         }else{
             if isFromAppointment == true{
                 editBtn.isHidden = true
@@ -76,10 +83,14 @@ class ChildDetailVC: UIViewController {
                 descStaticLbl.text = ""
                 if appointment_date != ""{
                     appointmentChildDetailView.isHidden = false
-                    appointmentViewHeightConstraint.constant = 79.0
+                    appointmentTBViewHeightConstraint.constant = 79.0
+                    appointmentChildTBView.isHidden = true
+                    seeMoreViewObj.isHidden = true
                 }else{
                     appointmentChildDetailView.isHidden = true
-                    appointmentViewHeightConstraint.constant = 0
+                    appointmentChildTBView.isHidden = true
+                    seeMoreViewObj.isHidden = true
+                    appointmentTBViewHeightConstraint.constant = 0
                 }
                 
                 dateLabel.text = appointment_date
@@ -109,6 +120,8 @@ class ChildDetailVC: UIViewController {
                 }
                 
             }else{
+                seeMoreViewObj.isHidden = false
+
                 editBtn.isHidden = false
                 editBtnImgView.isHidden = false
                 if desc != ""{
@@ -119,11 +132,15 @@ class ChildDetailVC: UIViewController {
                 }
                 
                 if appointmentDetailsDict?.appointment_date != ""{
-                    appointmentChildDetailView.isHidden = false
-                    appointmentViewHeightConstraint.constant = 79.0
+//                    appointmentChildDetailView.isHidden = false
+//                    appointmentViewHeightConstraint.constant = 79.0
+                    getChildDetailByIdApi(childId: childId ?? "")
+
+//                    appointmentChildDetailView.isHidden = true
+//                    appointmentViewHeightConstraint.constant = 0
                 }else{
-                    appointmentChildDetailView.isHidden = true
-                    appointmentViewHeightConstraint.constant = 0
+//                    appointmentChildDetailView.isHidden = true
+//                    appointmentViewHeightConstraint.constant = 0
                 }
                 
                 dateLabel.text = appointmentDetailsDict?.appointment_date
@@ -236,11 +253,11 @@ class ChildDetailVC: UIViewController {
         //        }
         //        }
         if self.isFromEdit == true{
-            vc.name = childDetailsData?.childDetailDict.name
-            vc.dob = childDetailsData?.childDetailDict.actual_dob
-            vc.gender = childDetailsData?.childDetailDict.gender
-            vc.photo = childDetailsData?.childDetailDict.image
-            vc.childId = childDetailsData?.childDetailDict.child_id
+            vc.name = childDetailsData?.name
+            vc.dob = childDetailsData?.actual_dob
+            vc.gender = childDetailsData?.gender
+            vc.photo = childDetailsData?.image
+            vc.childId = childDetailsData?.child_id
         }else{
             vc.name = name
             vc.dob = actualDob
@@ -280,29 +297,27 @@ class ChildDetailVC: UIViewController {
     @IBAction func calendarButton(_ sender: Any) {
     }
     
-}
-extension ChildDetailVC:SendingDataToBackPageDelegateProtocol{
-    
-    
-    
-    func sendDataToBO(childId: String, isFromEdit: Bool) {
-        self.childId = childId
-        getChildDetailByIdApi(childId: childId)
-        self.isFromEdit = isFromEdit
+    @IBAction func seeMoreBtnAction(_ sender: Any) {
+        let vc = ChildAppointmentListVC.instantiate(fromAppStoryboard: .Setting)
+        vc.appointmentDetailArr = appointmentDetailArr
+        self.navigationController?.pushViewController(vc, animated: false)
     }
-    open func setUIValuesUpdate(dict:ChildDetailData<Any>?){
-        descriptionLbl.text = dict?.childDetailDict.appointmentDetailsDict.description
-        if appointment_date != ""{
-            appointmentChildDetailView.isHidden = false
-            appointmentViewHeightConstraint.constant = 79.0
+    
+}
+extension ChildDetailVC : UITableViewDataSource , UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if appointmentDetailArr.count > 0{
+        return 3
         }else{
-            appointmentChildDetailView.isHidden = true
-            appointmentViewHeightConstraint.constant = 0
+            return 0
         }
-        
-        dateLabel.text = dict?.childDetailDict.appointmentDetailsDict.appointment_date
-        let time1 = dict?.childDetailDict.appointmentDetailsDict.appointment_time_to ?? ""
-        let time2 = dict?.childDetailDict.appointmentDetailsDict.appointment_time_from ?? ""
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AppointmentChildDetailTBCell
+        cell.dateLbl.text = appointmentDetailArr[indexPath.row].appointment_date
+        let time1 = appointmentDetailArr[indexPath.row].appointment_time_to
+        let time2 = appointmentDetailArr[indexPath.row].appointment_time_from
         if time1 != "" && time2 != ""{
             let formatter = DateFormatter()
             formatter.dateFormat = "h:mma"
@@ -322,7 +337,62 @@ extension ChildDetailVC:SendingDataToBackPageDelegateProtocol{
             
             print("\(Int(hours)) hr and \(Int(minutes)) min")
             let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-            timeLabel.text = "\(dict?.childDetailDict.appointmentDetailsDict.appointment_time_to ?? "") - \(dict?.childDetailDict.appointmentDetailsDict.appointment_time_from ?? "")"
+            cell.timeLbl.text = "\(appointmentDetailArr[indexPath.row].appointment_time_to) - \(appointmentDetailArr[indexPath.row].appointment_time_from)"
+            self.appointmentTBViewHeightConstraint.constant = tableView.contentSize.height
+
+        }
+        
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UIScreen.main.bounds.size.height * 0.11
+//        return UITableView.automaticDimension
+        
+    }
+    
+}
+extension ChildDetailVC:SendingDataToBackPageDelegateProtocol{
+    
+    
+    
+    func sendDataToBO(childId: String, isFromEdit: Bool) {
+        self.childId = childId
+        getChildDetailByIdApi(childId: childId)
+        self.isFromEdit = isFromEdit
+    }
+    open func setUIValuesUpdate(dict:ChildDetailData<Any>?){
+        descriptionLbl.text = dict?.appointmentDetailArr[0].description
+        if appointment_date != ""{
+//            appointmentChildDetailView.isHidden = false
+//            appointmentViewHeightConstraint.constant = 79.0
+        }else{
+//            appointmentChildDetailView.isHidden = true
+//            appointmentViewHeightConstraint.constant = 0
+        }
+        
+        dateLabel.text = dict?.appointmentDetailArr[0].appointment_date
+        let time1 = dict?.appointmentDetailArr[0].appointment_time_to ?? ""
+        let time2 = dict?.appointmentDetailArr[0].appointment_time_from ?? ""
+        if time1 != "" && time2 != ""{
+            let formatter = DateFormatter()
+            formatter.dateFormat = "h:mma"
+            
+            let date1 = formatter.date(from: time1)!
+            let date2 = formatter.date(from: time2)!
+            
+            let elapsedTime = date2.timeIntervalSince(date1)
+            
+            // convert from seconds to hours, rounding down to the nearest hour
+            let hours = floor(elapsedTime / 60 / 60)
+            
+            // we have to subtract the number of seconds in hours from minutes to get
+            // the remaining minutes, rounding down to the nearest minute (in case you
+            // want to get seconds down the road)
+            let minutes = floor((elapsedTime - (hours * 60 * 60)) / 60)
+            
+            print("\(Int(hours)) hr and \(Int(minutes)) min")
+            let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
+            timeLabel.text = "\(dict?.appointmentDetailArr[0].appointment_time_to ?? "") - \(dict?.appointmentDetailArr[0].appointment_time_from ?? "")"
             //            descriptionView.isHidden = false
             if isFromNotification == true{
                 navBarLbl.text = "Notification Detail"
@@ -331,13 +401,13 @@ extension ChildDetailVC:SendingDataToBackPageDelegateProtocol{
             }
         }
         
-        nameLabel.text = dict?.childDetailDict.name
-        ageLabel.text = dict?.childDetailDict.dob
-        genderLabel.text = dict?.childDetailDict.gender
+        nameLabel.text = dict?.name
+        ageLabel.text = dict?.dob
+        genderLabel.text = dict?.gender
         let userName = getSAppDefault(key:"UserName") as? String ?? ""
         parentGuardianLbl.text = userName
         
-        var sPhotoStr = dict?.childDetailDict.image
+        var sPhotoStr = dict?.image
         sPhotoStr = sPhotoStr?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
         //        if sPhotoStr != ""{
         mainImg.downloadImage(url:  sPhotoStr ?? "")
@@ -374,8 +444,9 @@ extension ChildDetailVC:SendingDataToBackPageDelegateProtocol{
                         if self.childDetailsData?.status == 1{
                             //                            let userDetailDict = getProfileResp?.user_detail as? [String:AnyHashable] ?? [:]
                             //                            self.userDetailDict = getProfileResp?.user_detail as? [String:AnyHashable] ?? [:]
-                            
                             self.setUIValuesUpdate(dict:self.childDetailsData)
+                            self.appointmentDetailArr = self.childDetailsData!.appointmentDetailArr
+                            self.appointmentChildTBView.reloadData()
                             
                             
                         }

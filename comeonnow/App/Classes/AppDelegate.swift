@@ -61,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if let apnsData = userInfo?["aps"] as? [String:Any]{
                     if let dataObj = apnsData["data"] as? [String:Any]{
                         let notificationType = dataObj["notification_type"] as? String
+                        let childId = dataObj["child_id"] as? String
                         let state = UIApplication.shared.applicationState
                         if state != .active{
 
@@ -87,7 +88,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     self.window?.makeKeyAndVisible()
                                 }
                             }
+                           else if notificationType == "5"{
+                                let storyBoard = UIStoryboard.init(name:StoryboardName.Setting, bundle: nil)
+                                let rootVc = storyBoard.instantiateViewController(withIdentifier:ViewControllerIdentifier.ChildDetailVC) as! ChildDetailVC
+                              
+                                rootVc.childId = childId
+                                rootVc.isFromAppointment = false
 
+                                let nav =  UINavigationController(rootViewController: rootVc)
+                                nav.isNavigationBarHidden = true
+                                if #available(iOS 13.0, *){
+                                    if let scene = UIApplication.shared.connectedScenes.first{
+                                         let windowScene = (scene as? UIWindowScene)
+                                        print(">>> windowScene: \(windowScene)")
+                                        let window: UIWindow = UIWindow(frame: (windowScene?.coordinateSpace.bounds)!)
+                                        window.windowScene = windowScene //Make sure to do this
+                                        window.rootViewController = nav
+                                        window.makeKeyAndVisible()
+                                        self.window = window
+                                    }
+                                } else {
+                                    self.window?.rootViewController = nav
+                                    self.window?.makeKeyAndVisible()
+                                }
+                            }
                           else {
                                 let storyBoard = UIStoryboard.init(name:StoryboardName.Setting, bundle: nil)
                                 let rootVc = storyBoard.instantiateViewController(withIdentifier:"TabBarVC") as! TabBarVC
@@ -206,6 +230,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
             if let apnsData = userInfo["aps"] as? [String:Any]{
                 if let dataObj = apnsData["data"] as? [String:Any]{
                     let notificationType = dataObj["notification_type"] as? String
+                    let childId = dataObj["child_id"] as? String
+
                     let state = UIApplication.shared.applicationState
                     if state != .active{
 
@@ -232,7 +258,30 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 self.window?.makeKeyAndVisible()
                             }
                         }
+                        else if notificationType == "5"{
+                             let storyBoard = UIStoryboard.init(name:StoryboardName.Setting, bundle: nil)
+                             let rootVc = storyBoard.instantiateViewController(withIdentifier:ViewControllerIdentifier.ChildDetailVC) as! ChildDetailVC
+                           
+                             rootVc.childId = childId
+                             rootVc.isFromAppointment = false
 
+                             let nav =  UINavigationController(rootViewController: rootVc)
+                             nav.isNavigationBarHidden = true
+                             if #available(iOS 13.0, *){
+                                 if let scene = UIApplication.shared.connectedScenes.first{
+                                      let windowScene = (scene as? UIWindowScene)
+                                     print(">>> windowScene: \(windowScene)")
+                                     let window: UIWindow = UIWindow(frame: (windowScene?.coordinateSpace.bounds)!)
+                                     window.windowScene = windowScene //Make sure to do this
+                                     window.rootViewController = nav
+                                     window.makeKeyAndVisible()
+                                     self.window = window
+                                 }
+                             } else {
+                                 self.window?.rootViewController = nav
+                                 self.window?.makeKeyAndVisible()
+                             }
+                         }
                         else {
                             let storyBoard = UIStoryboard.init(name:StoryboardName.Setting, bundle: nil)
                             let rootVc = storyBoard.instantiateViewController(withIdentifier:"TabBarVC") as! TabBarVC

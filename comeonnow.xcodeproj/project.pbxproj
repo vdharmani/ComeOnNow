@@ -13,6 +13,8 @@
 		18111A7926945A3C0052DECA /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18111A7826945A3C0052DECA /* WebVC.swift */; };
 		18342FCF268AF8DD00BC9E4C /* AppointmentListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */; };
 		18342FF2268B3C8000BC9E4C /* ApproveRejectEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18342FF1268B3C8000BC9E4C /* ApproveRejectEntity.swift */; };
+		184D302A26E0980A00ED14CC /* AppointmentChildDetailTBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184D302926E0980A00ED14CC /* AppointmentChildDetailTBCell.swift */; };
+		184D302F26E0BB4B00ED14CC /* ChildAppointmentListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184D302E26E0BB4B00ED14CC /* ChildAppointmentListVC.swift */; };
 		184DCEEC26982D7B009BC1D2 /* NotificationTVST.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184DCEEB26982D7B009BC1D2 /* NotificationTVST.xib */; };
 		184DCEF12698307B009BC1D2 /* NotificationTVST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DCEF02698307B009BC1D2 /* NotificationTVST.swift */; };
 		186949ED269313DC008F0A89 /* AppValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186949EC269313DC008F0A89 /* AppValidations.swift */; };
@@ -101,6 +103,8 @@
 		18111A7826945A3C0052DECA /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentListEntity.swift; sourceTree = "<group>"; };
 		18342FF1268B3C8000BC9E4C /* ApproveRejectEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveRejectEntity.swift; sourceTree = "<group>"; };
+		184D302926E0980A00ED14CC /* AppointmentChildDetailTBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentChildDetailTBCell.swift; sourceTree = "<group>"; };
+		184D302E26E0BB4B00ED14CC /* ChildAppointmentListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildAppointmentListVC.swift; sourceTree = "<group>"; };
 		184DCEEB26982D7B009BC1D2 /* NotificationTVST.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTVST.xib; sourceTree = "<group>"; };
 		184DCEF02698307B009BC1D2 /* NotificationTVST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTVST.swift; sourceTree = "<group>"; };
 		186949EC269313DC008F0A89 /* AppValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppValidations.swift; sourceTree = "<group>"; };
@@ -262,6 +266,7 @@
 				B32D1C8926849D78003103E5 /* NotificationsVC.swift */,
 				B3BEB82B2685A7F500C9DE3E /* ChildDetailVC.swift */,
 				18111A7826945A3C0052DECA /* WebVC.swift */,
+				184D302E26E0BB4B00ED14CC /* ChildAppointmentListVC.swift */,
 			);
 			path = "Setting Controllers";
 			sourceTree = "<group>";
@@ -274,6 +279,7 @@
 				FCC6AD9926833F1300F99B9C /* ProfileTVC.swift */,
 				FCCED11326846AE30071E12B /* NotificationsTVC.swift */,
 				184DCEF02698307B009BC1D2 /* NotificationTVST.swift */,
+				184D302926E0980A00ED14CC /* AppointmentChildDetailTBCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -745,6 +751,7 @@
 				FCC6AD7C268316DF00F99B9C /* ForgotPasswordEntity.swift in Sources */,
 				FC41D8EC268242140095B24A /* AppNavigations.swift in Sources */,
 				18030C032696CBFB0047EDA0 /* EditChildEntity.swift in Sources */,
+				184D302A26E0980A00ED14CC /* AppointmentChildDetailTBCell.swift in Sources */,
 				B324B11B2680CBE00082590E /* Storyboard Class.swift in Sources */,
 				FCCED1052684682F0071E12B /* ChangePasswordVC.swift in Sources */,
 				B3FF55382680A20E006B6901 /* ViewController.swift in Sources */,
@@ -765,6 +772,7 @@
 				B33480FB2681D1A90067BE71 /* HomeTVC.swift in Sources */,
 				B3FF55342680A20E006B6901 /* AppDelegate.swift in Sources */,
 				18030C0B2696DDBD0047EDA0 /* ChildDetailEntity.swift in Sources */,
+				184D302F26E0BB4B00ED14CC /* ChildAppointmentListVC.swift in Sources */,
 				18342FCF268AF8DD00BC9E4C /* AppointmentListEntity.swift in Sources */,
 				B324B1202680CCF70082590E /* Validation Managers.swift in Sources */,
 				B3FF55362680A20E006B6901 /* SceneDelegate.swift in Sources */,
@@ -958,7 +966,7 @@
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.17;
+				CURRENT_PROJECT_VERSION = 1.22;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -983,7 +991,7 @@
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.17;
+				CURRENT_PROJECT_VERSION = 1.22;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;

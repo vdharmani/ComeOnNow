@@ -37,8 +37,8 @@
             filePath = "comeonnow/App/Classes/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "userNotificationCenter(_:didReceive:withCompletionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -53,8 +53,8 @@
             filePath = "comeonnow/App/Classes/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "userNotificationCenter(_:didReceive:withCompletionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -69,73 +69,9 @@
             filePath = "comeonnow/App/Classes/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
             landmarkName = "userNotificationCenter(_:didReceive:withCompletionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FBA088FE-FB03-4458-BED4-3E2CB8497582"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "getAppointmentListApi(type:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "803A0E5C-663D-46C6-89FF-C04210FF0910"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "getAppointmentListApi(type:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6419F472-5899-4E24-90C5-FA8FE0B82E4C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "getAppointmentListApi(type:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1192EFC9-2AAF-48B6-B0AB-C12D1DF7D139"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "getAppointmentListApi(type:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -152,102 +88,6 @@
             startingLineNumber = "333"
             endingLineNumber = "333"
             landmarkName = "pendingButton(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "57C800EC-AC11-44C0-9B77-78AEBC096FBB"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "getAppointmentListApi(type:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0A41E988-A4A8-4055-92B1-B26500C556F0"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "getAppointmentListApi(type:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F8F183C2-4AEF-486F-8808-DCBD41C89355"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "getAppointmentListApi(type:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F8F183C2-4AEF-486F-8808-DCBD41C89355 - 34fd41f7ba7719ab"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in comeonnow.AppointmentVC.getAppointmentListApi(type: Swift.String) -&gt; ()"
-                  moduleName = "comeonnow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/ComeOnNow-main/comeonnow/Controllers/Setting%20Controllers/AppointmentVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "99"
-                  endingLineNumber = "99"
-                  offsetFromSymbolStart = "1066">
-               </Location>
-               <Location
-                  uuid = "F8F183C2-4AEF-486F-8808-DCBD41C89355 - 34fd41f7ba7719ab"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in comeonnow.AppointmentVC.getAppointmentListApi(type: Swift.String) -&gt; ()"
-                  moduleName = "comeonnow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/ComeOnNow-main/comeonnow/Controllers/Setting%20Controllers/AppointmentVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "99"
-                  endingLineNumber = "99"
-                  offsetFromSymbolStart = "1104">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6971D9E6-0668-4603-9210-E8322DFC64D4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "comeonnow/Controllers/Setting Controllers/AppointmentVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "getAppointmentListApi(type:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -318,38 +158,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8FFF3191-3D72-4A4E-8B4B-5AA2F772DF70"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BE4B75E3-EA1C-4F32-84FA-004513E2E517"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "9774E006-1E5E-4E49-B9D5-67B5B0B9F611"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -357,8 +165,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -373,8 +181,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -398,38 +206,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9792343D-3A74-4A16-B826-E3C7B78E19EC"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
-            landmarkName = "backButton(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "89BA3AB1-BEC8-4592-9016-0097A2025D77"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
-            landmarkName = "backButton(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "1BC2FB27-8C1F-42C0-8545-4F43AEDF0287"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -440,22 +216,6 @@
             startingLineNumber = "201"
             endingLineNumber = "201"
             landmarkName = "loginApi()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8C2236DF-BD16-4559-979C-52B9ABB7170D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "comeonnow/Controllers/Setting Controllers/AddChildVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "convertDateFormat(inputDate:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -491,7 +251,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "795729AC-13E8-45A2-BEEC-7E5CD1911A6A - ddad6eb9c6c4f105"
+                  uuid = "795729AC-13E8-45A2-BEEC-7E5CD1911A6A - ddad6eb9c6c4f281"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -501,12 +261,12 @@
                   urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/ComeOnNow-main/comeonnow/Controllers/Setting%20Controllers/AddChildVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "470"
-                  endingLineNumber = "470"
+                  startingLineNumber = "474"
+                  endingLineNumber = "474"
                   offsetFromSymbolStart = "252">
                </Location>
                <Location
-                  uuid = "795729AC-13E8-45A2-BEEC-7E5CD1911A6A - ddad6eb9c6c4f105"
+                  uuid = "795729AC-13E8-45A2-BEEC-7E5CD1911A6A - ddad6eb9c6c4f281"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -516,8 +276,8 @@
                   urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/ComeOnNow-main/comeonnow/Controllers/Setting%20Controllers/AddChildVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "470"
-                  endingLineNumber = "470"
+                  startingLineNumber = "474"
+                  endingLineNumber = "474"
                   offsetFromSymbolStart = "6160">
                </Location>
             </Locations>
@@ -601,6 +361,134 @@
             endingLineNumber = "229"
             landmarkName = "deleteChildApi(childId:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F8D713EB-BFFD-4668-A7F2-ABC45D311106"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "442"
+            endingLineNumber = "442"
+            landmarkName = "getChildDetailByIdApi(childId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EBE114BC-AC32-4C30-9E98-A43880B7F7CD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "441"
+            endingLineNumber = "441"
+            landmarkName = "getChildDetailByIdApi(childId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "75BAADF5-AD0B-4042-93BB-94F2CF7E23BD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "440"
+            endingLineNumber = "440"
+            landmarkName = "getChildDetailByIdApi(childId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8A8A88E4-4259-4CBA-9AEF-87AE3AA61F6A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "13742E06-28C4-43E6-B3EB-2A9A576AE4A6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "230D3A90-B360-4831-90DE-AC1E178DD167"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "431"
+            endingLineNumber = "431"
+            landmarkName = "getChildDetailByIdApi(childId:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "230D3A90-B360-4831-90DE-AC1E178DD167 - ff6b87caecf023d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in comeonnow.ChildDetailVC.getChildDetailByIdApi(childId: Swift.String) -&gt; ()"
+                  moduleName = "comeonnow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/ComeOnNow-main/comeonnow/Controllers/Setting%20Controllers/ChildDetailVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "411"
+                  endingLineNumber = "411"
+                  offsetFromSymbolStart = "883">
+               </Location>
+               <Location
+                  uuid = "230D3A90-B360-4831-90DE-AC1E178DD167 - ff6b87caecf023d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in comeonnow.ChildDetailVC.getChildDetailByIdApi(childId: Swift.String) -&gt; ()"
+                  moduleName = "comeonnow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/ComeOnNow-main/comeonnow/Controllers/Setting%20Controllers/ChildDetailVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "411"
+                  endingLineNumber = "411"
+                  offsetFromSymbolStart = "921">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
