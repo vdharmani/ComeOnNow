@@ -966,11 +966,7 @@
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-<<<<<<< HEAD
-				CURRENT_PROJECT_VERSION = 1.22;
-=======
-				CURRENT_PROJECT_VERSION = 1.20;
->>>>>>> 8fec7b110e85070551506d2615ae5636637f4077
+				CURRENT_PROJECT_VERSION = 1.23;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -995,11 +991,7 @@
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-<<<<<<< HEAD
-				CURRENT_PROJECT_VERSION = 1.22;
-=======
-				CURRENT_PROJECT_VERSION = 1.20;
->>>>>>> 8fec7b110e85070551506d2615ae5636637f4077
+				CURRENT_PROJECT_VERSION = 1.23;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;

@@ -9,10 +9,13 @@ import UIKit
 
 class AppointmentChildDetailTBCell: UITableViewCell {
 
+    @IBOutlet weak var appointmentTitleLbl: UILabel!
+    
     @IBOutlet weak var dateLbl: UILabel!
     
     @IBOutlet weak var timeLbl: UILabel!
     
+    @IBOutlet weak var appointmentTypeLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

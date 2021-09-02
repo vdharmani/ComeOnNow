@@ -373,8 +373,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "442"
-            endingLineNumber = "442"
+            startingLineNumber = "465"
+            endingLineNumber = "465"
             landmarkName = "getChildDetailByIdApi(childId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -389,8 +389,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "441"
-            endingLineNumber = "441"
+            startingLineNumber = "464"
+            endingLineNumber = "464"
             landmarkName = "getChildDetailByIdApi(childId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -405,8 +405,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "440"
-            endingLineNumber = "440"
+            startingLineNumber = "463"
+            endingLineNumber = "463"
             landmarkName = "getChildDetailByIdApi(childId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -453,8 +453,8 @@
             filePath = "comeonnow/Controllers/Setting Controllers/ChildDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "431"
-            endingLineNumber = "431"
+            startingLineNumber = "454"
+            endingLineNumber = "454"
             landmarkName = "getChildDetailByIdApi(childId:)"
             landmarkType = "7">
             <Locations>

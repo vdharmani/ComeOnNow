@@ -300,6 +300,7 @@ class ChildDetailVC: UIViewController {
     @IBAction func seeMoreBtnAction(_ sender: Any) {
         let vc = ChildAppointmentListVC.instantiate(fromAppStoryboard: .Setting)
         vc.appointmentDetailArr = appointmentDetailArr
+        vc.childDetailsData = childDetailsData
         self.navigationController?.pushViewController(vc, animated: false)
     }
     
@@ -338,15 +339,37 @@ extension ChildDetailVC : UITableViewDataSource , UITableViewDelegate {
             print("\(Int(hours)) hr and \(Int(minutes)) min")
             let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
             cell.timeLbl.text = "\(appointmentDetailArr[indexPath.row].appointment_time_to) - \(appointmentDetailArr[indexPath.row].appointment_time_from)"
-            self.appointmentTBViewHeightConstraint.constant = tableView.contentSize.height
+            cell.appointmentTypeLbl.text = appointmentDetailArr[indexPath.row].appointments_type
+            cell.appointmentTitleLbl.text  = appointmentDetailArr[indexPath.row].title
+            DispatchQueue.main.async {
+                self.appointmentTBViewHeightConstraint.constant = self.appointmentChildTBView.contentSize.height
+
+            }
 
         }
         
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
+        vc.name = childDetailsData?.name
+        vc.dob = childDetailsData?.actual_dob
+        vc.gender = childDetailsData?.gender
+        vc.image = childDetailsData?.image
+        vc.isFromAppointment = true
+        vc.desc = appointmentDetailArr[indexPath.row].description
+        vc.appointment_time_to = appointmentDetailArr[indexPath.row].appointment_time_to
+        vc.appointment_time_from = appointmentDetailArr[indexPath.row].appointment_time_from
+        vc.appointment_date = appointmentDetailArr[indexPath.row].appointment_date
+
+//        vc.delegate = self
+//            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
+        
+        self.navigationController?.pushViewController(vc, animated: false)
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.size.height * 0.11
-//        return UITableView.automaticDimension
+//        return UIScreen.main.bounds.size.height * 0.13
+        return UITableView.automaticDimension
         
     }
     

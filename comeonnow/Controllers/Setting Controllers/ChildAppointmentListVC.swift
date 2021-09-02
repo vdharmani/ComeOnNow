@@ -9,6 +9,8 @@ import UIKit
 
 class ChildAppointmentListVC: UIViewController {
     var appointmentDetailArr = [AppointmentCDetailsDict<Any>]()
+    var childDetailsData = ChildDetailData<Any>(dict: [:])
+
     @IBOutlet weak var appointmentChildTBView: UITableView!
 
     override func viewDidLoad() {
@@ -31,7 +33,6 @@ extension ChildAppointmentListVC : UITableViewDataSource , UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AppointmentChildDetailTBCell
-        cell.dateLbl.text = appointmentDetailArr[indexPath.row].appointment_date
         let time1 = appointmentDetailArr[indexPath.row].appointment_time_to
         let time2 = appointmentDetailArr[indexPath.row].appointment_time_from
         if time1 != "" && time2 != ""{
@@ -54,15 +55,34 @@ extension ChildAppointmentListVC : UITableViewDataSource , UITableViewDelegate {
             print("\(Int(hours)) hr and \(Int(minutes)) min")
             let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
             cell.timeLbl.text = "\(appointmentDetailArr[indexPath.row].appointment_time_to) - \(appointmentDetailArr[indexPath.row].appointment_time_from)"
+            cell.appointmentTypeLbl.text = appointmentDetailArr[indexPath.row].appointments_type
+            cell.appointmentTitleLbl.text  = appointmentDetailArr[indexPath.row].title
 
         }
         
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.size.height * 0.11
-//        return UITableView.automaticDimension
+//        return UIScreen.main.bounds.size.height * 0.11
+        return UITableView.automaticDimension
         
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
+        vc.name = childDetailsData?.name
+        vc.dob = childDetailsData?.actual_dob
+        vc.gender = childDetailsData?.gender
+        vc.image = childDetailsData?.image
+        vc.isFromAppointment = true
+        vc.desc = appointmentDetailArr[indexPath.row].description
+        vc.appointment_time_to = appointmentDetailArr[indexPath.row].appointment_time_to
+        vc.appointment_time_from = appointmentDetailArr[indexPath.row].appointment_time_from
+        vc.appointment_date = appointmentDetailArr[indexPath.row].appointment_date
+
+//        vc.delegate = self
+//            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
+        
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
 }
