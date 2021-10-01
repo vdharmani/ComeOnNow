@@ -112,7 +112,9 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
             let selectedCountryName = self.flag(country:country.countryCode)
             let selectedCountryVal = "\(selectedCountryName)" + "\(selectedCountryCode ?? "")"
             self.countryCodeBtn.setTitle(selectedCountryVal, for: .normal)
-            setAppDefaults(country.countryName, key: "countryName")
+            setAppDefaults("United States", key: "countryName")
+
+//            setAppDefaults(country.countryName, key: "countryName")
         }
        
         
