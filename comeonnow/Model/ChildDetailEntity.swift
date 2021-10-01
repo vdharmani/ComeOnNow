@@ -33,8 +33,8 @@ import Foundation
 //    status = 1;
 //}
 struct ChildDetailData<T>{
-  
-  
+    
+    
     //{
     //    "status": 1,
     //    "message": "New password has been sent to the entered email, please check your email."
@@ -50,9 +50,9 @@ struct ChildDetailData<T>{
     var created_at:String
     var update_at:String
     var actual_dob:String
-//    var childDetailDict:ChildDetail<T>
+    //    var childDetailDict:ChildDetail<T>
     var appointmentDetailArr:[AppointmentCDetailsDict<T>]
-
+    
     init?(dict:[String:T]) {
         let status  = dict["status"] as? Int ?? 0
         let alertMessage = dict["message"] as? String ?? ""
@@ -78,13 +78,17 @@ struct ChildDetailData<T>{
         self.created_at = created_at
         self.update_at = update_at
         self.actual_dob = actual_dob
-//        self.childDetailDict = ChildDetail(dataDict:dataDict)!
+        //        self.childDetailDict = ChildDetail(dataDict:dataDict)!
         var hArray = [AppointmentCDetailsDict<T>]()
-        for obj in appointmentDetailArr{
-            let childListObj = AppointmentCDetailsDict(dataDict:obj)!
-            hArray.append(childListObj)
+        
+        if dataDict["appointmentDetails"] as? [[String:T]] != nil{
+            for obj in appointmentDetailArr{
+                let childListObj = AppointmentCDetailsDict(dataDict:obj)!
+                hArray.append(childListObj)
+            }
         }
         self.appointmentDetailArr = hArray
+        
     }
 }
 
@@ -101,7 +105,7 @@ struct ChildDetail<T>{
     var actual_dob:String
     var appointmentDetailsDict:AppointmentCDetailsDict<T>
     init?(dataDict:[String:T]) {
-   
+        
         let child_id = dataDict["child_id"] as? String ?? ""
         let user_id = dataDict["user_id"] as? String ?? ""
         let name = dataDict["name"] as? String ?? ""
@@ -111,11 +115,11 @@ struct ChildDetail<T>{
         let created_at = dataDict["created_at"] as? String ?? ""
         let update_at = dataDict["update_at"] as? String ?? ""
         let actual_dob = dataDict["actual_dob"] as? String ?? ""
-
+        
         let appointmentDetailsDict = dataDict["appointmentDetails"] as? [String :T] ?? [:]
-
-       
-      
+        
+        
+        
         self.child_id = child_id
         self.user_id = user_id
         self.name = name
@@ -127,10 +131,10 @@ struct ChildDetail<T>{
         self.actual_dob = actual_dob
         self.appointmentDetailsDict = AppointmentCDetailsDict(dataDict:appointmentDetailsDict)!
     }
-
+    
 }
 struct AppointmentCDetailsDict<T>{
-
+    
     var id:String
     var user_id:String
     var child_id:String
@@ -156,7 +160,7 @@ struct AppointmentCDetailsDict<T>{
         let description = dataDict["description"] as? String ?? ""
         let is_delete = dataDict["is_delete"] as? String ?? ""
         let appointments_type = dataDict["appointments_type"] as? String ?? ""
-
+        
         
         self.id = id
         self.user_id = user_id
@@ -164,14 +168,14 @@ struct AppointmentCDetailsDict<T>{
         self.title = title
         self.is_delete = is_delete
         self.appointments_type = appointments_type
-
+        
         self.appointment_date = appointment_date
         self.appointment_time_to = appointment_time_to
         self.appointment_time_from = appointment_time_from
         self.status = status
         self.create_date = create_date
         self.description = description
-
+        
     }
-
+    
 }

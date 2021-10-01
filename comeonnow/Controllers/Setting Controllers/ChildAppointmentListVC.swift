@@ -55,6 +55,7 @@ extension ChildAppointmentListVC : UITableViewDataSource , UITableViewDelegate {
             print("\(Int(hours)) hr and \(Int(minutes)) min")
             let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
             cell.timeLbl.text = "\(appointmentDetailArr[indexPath.row].appointment_time_to) - \(appointmentDetailArr[indexPath.row].appointment_time_from)"
+            cell.dateLbl.text = appointmentDetailArr[indexPath.row].appointment_date
             cell.appointmentTypeLbl.text = appointmentDetailArr[indexPath.row].appointments_type
             cell.appointmentTitleLbl.text  = appointmentDetailArr[indexPath.row].title
 
@@ -78,6 +79,7 @@ extension ChildAppointmentListVC : UITableViewDataSource , UITableViewDelegate {
         vc.appointment_time_to = appointmentDetailArr[indexPath.row].appointment_time_to
         vc.appointment_time_from = appointmentDetailArr[indexPath.row].appointment_time_from
         vc.appointment_date = appointmentDetailArr[indexPath.row].appointment_date
+        vc.appointmentType = appointmentDetailArr[indexPath.row].appointments_type
 
 //        vc.delegate = self
 //            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict

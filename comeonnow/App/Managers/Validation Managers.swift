@@ -11,7 +11,7 @@ import UIKit
 extension UIViewController {
     
     func ValidData(strMessage: String){
-        let alert = UIAlertController(title: "comeonnow", message: strMessage, preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "comeonnow!", message: strMessage, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

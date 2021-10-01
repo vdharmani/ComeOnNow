@@ -101,7 +101,7 @@ class LogInVC: UIViewController, UITextFieldDelegate {
     open func resendEmailVerificationApi(){
         
         
-        guard let url = URL(string: WS_Staging + WSMethods.resentVerficationEmail) else { return }
+        guard let url = URL(string: kBASEURL + WSMethods.resentVerficationEmail) else { return }
     
         rest.requestHttpHeaders.add(value: "application/json", forKey: "Content-Type")
         rest.httpBodyParameters.add(value:emailTextField.text ?? "", forKey:"email")
@@ -194,6 +194,8 @@ class LogInVC: UIViewController, UITextFieldDelegate {
                 //                    let decoder = JSONDecoder()
                 //                    let jobUser = try? decoder.decode(LoginData, from: jsondata!)
                 //
+                print(jsonResult!)
+
                 let loginResp =   LoginSignUpData.init(dict: jsonResult ?? [:])
                 if loginResp?.status == 1{
                 setAppDefaults(loginResp?.user_id, key: "UserId")

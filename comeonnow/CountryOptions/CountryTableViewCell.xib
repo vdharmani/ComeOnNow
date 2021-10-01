@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-Regular.ttf">
+            <string>Raleway-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CountryTableViewCell" id="KGk-i7-Jjw" customClass="CountryTableViewCell" customModule="lettrs" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gcA-yh-bQH">
+                        <rect key="frame" x="20" y="43.5" width="300" height="0.5"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="H0d-Yu-cHv"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhL-kv-v0O">
+                        <rect key="frame" x="50" y="0.0" width="155" height="44"/>
+                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OF3-P4-iL6">
+                        <rect key="frame" x="10" y="7" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="2kv-ZN-Yce"/>
+                            <constraint firstAttribute="height" constant="30" id="UDb-fO-s5M"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IND(+91)" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Q8-7V-HW0">
+                        <rect key="frame" x="210" y="0.0" width="100" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="iUs-iE-UOj"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="8Q8-7V-HW0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0LA-QG-8vi"/>
+                    <constraint firstAttribute="bottom" secondItem="gcA-yh-bQH" secondAttribute="bottom" id="5TR-gO-fm7"/>
+                    <constraint firstItem="mhL-kv-v0O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7j4-Rn-FHF"/>
+                    <constraint firstItem="mhL-kv-v0O" firstAttribute="leading" secondItem="OF3-P4-iL6" secondAttribute="trailing" constant="10" id="Jsn-2w-hFd"/>
+                    <constraint firstItem="8Q8-7V-HW0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Pog-H5-GdD"/>
+                    <constraint firstAttribute="bottom" secondItem="8Q8-7V-HW0" secondAttribute="bottom" id="Pvc-xf-6I3"/>
+                    <constraint firstItem="OF3-P4-iL6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="UIE-QL-2aC"/>
+                    <constraint firstAttribute="bottom" secondItem="mhL-kv-v0O" secondAttribute="bottom" id="dRL-U8-MvG"/>
+                    <constraint firstItem="8Q8-7V-HW0" firstAttribute="leading" secondItem="mhL-kv-v0O" secondAttribute="trailing" constant="5" id="iCT-Ub-heY"/>
+                    <constraint firstItem="gcA-yh-bQH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="irX-Xh-slE"/>
+                    <constraint firstAttribute="trailing" secondItem="gcA-yh-bQH" secondAttribute="trailing" id="pI8-mv-vHT"/>
+                    <constraint firstAttribute="trailing" secondItem="8Q8-7V-HW0" secondAttribute="trailing" constant="10" id="vRB-pn-GRq"/>
+                    <constraint firstItem="OF3-P4-iL6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yUK-9L-BbY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="codeLbl" destination="8Q8-7V-HW0" id="UFr-gz-PFr"/>
+                <outlet property="flagImage" destination="OF3-P4-iL6" id="hng-Jk-CDf"/>
+                <outlet property="titleLbl" destination="mhL-kv-v0O" id="vIG-8E-XbU"/>
+                <outlet property="widthImageConst" destination="2kv-ZN-Yce" id="Zda-oh-42T"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="86.383928571428569"/>
+        </tableViewCell>
+    </objects>
+</document>

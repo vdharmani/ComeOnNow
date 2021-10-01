@@ -8,10 +8,13 @@
 import UIKit
 import SVProgressHUD
 import Alamofire
+import SKCountryPicker
+
 
 class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextFieldDelegate{
 
-
+    @IBOutlet weak var countryCodeBtn: UIButton!
+    
     @IBOutlet weak var userNameView: UIView!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailView: UIView!
@@ -85,8 +88,60 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
 //        if sPhotoStr != ""{
             userImgView.sd_setImage(with: URL(string: sPhotoStr ?? ""), placeholderImage:UIImage(named:"img"))
         //}
+        self.countryCodeBtn.contentHorizontalAlignment = .center
+        self.countryCodeBtn.clipsToBounds = true
+
+        if getProfileResp?.country_code != ""{
+            for obj in CountryManager.shared.countries{
+                if obj.countryName == getProfileResp?.country_code{
+                    let selectedCountryCode = obj.dialingCode
+                    let selectedCountryName = self.flag(country:obj.countryCode)
+                    let selectedCountryVal = "\(selectedCountryName)" + "\(selectedCountryCode ?? "")"
+                    self.countryCodeBtn.setTitle(selectedCountryVal, for: .normal)
+                    setAppDefaults(obj.countryName, key: "countryName")
+
+                    break
+                }
+                
+            }
+        }else{
+            guard let country = CountryManager.shared.currentCountry else {
+                return
+            }
+            let selectedCountryCode = country.dialingCode
+            let selectedCountryName = self.flag(country:country.countryCode)
+            let selectedCountryVal = "\(selectedCountryName)" + "\(selectedCountryCode ?? "")"
+            self.countryCodeBtn.setTitle(selectedCountryVal, for: .normal)
+            setAppDefaults(country.countryName, key: "countryName")
+        }
+       
         
     }
+    func flag(country:String) -> String {
+        let base = 127397
+        var usv = String.UnicodeScalarView()
+        for i in country.utf16 {
+            usv.append(UnicodeScalar(base + Int(i))!)
+        }
+        return String(usv)
+    }
+    @IBAction func countryCodePickerBtnAction(_ sender: Any) {
+        let countryController = CountryPickerWithSectionViewController.presentController(on: self) { [weak self] (country: Country) in
+            
+            guard let self = self else { return }
+            
+            let selectedCountryCode = country.dialingCode
+            let selectedCountryName = self.flag(country:country.countryCode)
+            let selectedCountryVal = "\(selectedCountryName)" + "\(selectedCountryCode ?? "")"
+            self.countryCodeBtn.setTitle(selectedCountryVal, for: .normal)
+            setAppDefaults(country.countryName, key: "countryName")
+
+        }
+        
+        countryController.detailColor = UIColor.red
+        
+    }
+    
     open func takePhoto() {
         if !UIImagePickerController.isSourceTypeAvailable(.camera) {
             let alert = UIAlertController(
@@ -209,8 +264,7 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
                 imgArray.append(compressedData)
         let userId = getSAppDefault(key: "UserId") as? String ?? ""
 
-    
-        let paramds = ["userName":usernameTextField.text ?? "" ,"email":emailTextField.text ?? "","description":bioTV.text ?? "","user_id":userId,"MobileNumber":phoneNumberTF.text ?? ""] as [String : Any]
+        let paramds = ["userName":usernameTextField.text ?? "" ,"email":emailTextField.text ?? "","description":bioTV.text ?? "","user_id":userId,"MobileNumber":phoneNumberTF.text ?? "","country_code": getSAppDefault(key: "countryName") as? String ?? ""] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.editProfile
         

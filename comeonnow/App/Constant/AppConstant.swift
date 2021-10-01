@@ -49,10 +49,10 @@ struct WSMethods {
 //    getChildrenDetailsBychildIdv2.php
 }
 
-let WS_Live = ""
+let WS_Live = "https://comeonnow.io/webservice/"
 let WS_Staging = "https://www.dharmani.com/ComeOnNow/webservice/"
 
-let kBASEURL = WS_Staging
+let kBASEURL = WS_Live
 
 struct SettingWebLinks {
     static let privacyPolicy = "PrivacyAndPolicy.html"
@@ -60,7 +60,7 @@ struct SettingWebLinks {
     static let termsAndConditions = "terms&services.html"
 }
 struct NavBarTitle {
-    static let privacyPolicy = "Privacy policy"
+    static let privacyPolicy = "Privacy Policy"
     static let aboutUs = "About"
     static let termsAndConditions = "Terms and condition"
 }

@@ -475,7 +475,8 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
             vc.appointment_time_to = appointmentArray[indexPath.row].appointment_time_to
             vc.appointment_time_from = appointmentArray[indexPath.row].appointment_time_from
             vc.appointment_date = appointmentArray[indexPath.row].appointment_date
-
+            vc.appointmentType = appointmentArray[indexPath.row].appointments_type
+            vc.appointmentTitle = appointmentArray[indexPath.row].title
             vc.delegate = self
 //            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
             
@@ -492,6 +493,8 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
             vc.appointment_time_to = confirmedAppointmentArray[indexPath.row].appointment_time_to
             vc.appointment_time_from = confirmedAppointmentArray[indexPath.row].appointment_time_from
             vc.appointment_date = appointmentArray[indexPath.row].appointment_date
+            vc.appointmentTitle = appointmentArray[indexPath.row].title
+            vc.appointmentType = appointmentArray[indexPath.row].appointments_type
 
 //            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
             
@@ -509,6 +512,8 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
 
             vc.desc = pendingAppointmentArray[indexPath.row].description
             vc.appointment_date = appointmentArray[indexPath.row].appointment_date
+            vc.appointmentTitle = appointmentArray[indexPath.row].title
+            vc.appointmentType = appointmentArray[indexPath.row].appointments_type
 
 //            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
             

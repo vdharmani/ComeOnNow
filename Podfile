@@ -10,6 +10,7 @@ target 'comeonnow' do
    pod 'SDWebImage'
    pod 'SVProgressHUD'
    pod 'KRPullLoader'
+   pod 'SKCountryPicker'
 
   # Pods for comeonnow
 

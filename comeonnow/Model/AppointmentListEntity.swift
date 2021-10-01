@@ -42,6 +42,7 @@ struct AppointmentsListData<T>{
     var appointment_date:String
     var appointment_time_to:String
     var appointment_time_from:String
+    var appointments_type:String
     var status:String
     var create_date:String
     var description:String
@@ -56,6 +57,8 @@ struct AppointmentsListData<T>{
         let appointment_date = dataDict["appointment_date"] as? String ?? ""
         let appointment_time_to = dataDict["appointment_time_to"] as? String ?? ""
         let appointment_time_from = dataDict["appointment_time_from"] as? String ?? ""
+        let appointments_type = dataDict["appointments_type"] as? String ?? ""
+
         let status = dataDict["status"] as? String ?? ""
         let create_date = dataDict["create_date"] as? String ?? ""
         let description = dataDict["description"] as? String ?? ""
@@ -71,6 +74,7 @@ struct AppointmentsListData<T>{
         self.appointment_date = appointment_date
         self.appointment_time_to = appointment_time_to
         self.appointment_time_from = appointment_time_from
+        self.appointments_type =  appointments_type
         self.status = status
         self.create_date = create_date
         self.description = description

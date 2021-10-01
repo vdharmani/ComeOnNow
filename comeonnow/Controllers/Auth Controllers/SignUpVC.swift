@@ -7,6 +7,7 @@
 
 import UIKit
 import SVProgressHUD
+import SKCountryPicker
 
 class SignUpVC: UIViewController , UITextFieldDelegate {
 
@@ -24,6 +25,7 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
     @IBOutlet weak var checkUncheckBtn: UIButton!
     
     
+    @IBOutlet weak var countryCodeBtn: UIButton!
     
     let rest = RestManager()
 
@@ -78,14 +80,49 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
         emailTextField.delegate = self
                 userTextField.delegate = self
         passwordTextField.delegate = self
-
+        self.countryCodeBtn.contentHorizontalAlignment = .center
+        guard let country = CountryManager.shared.currentCountry else {
+            return
+        }
+        countryCodeBtn.setTitle(country.countryCode, for: .highlighted)
+        countryCodeBtn.clipsToBounds = true
+        setAppDefaults(country.countryName, key: "countryName")
 
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    func flag(country:String) -> String {
+        let base = 127397
+        var usv = String.UnicodeScalarView()
+        for i in country.utf16 {
+            usv.append(UnicodeScalar(base + Int(i))!)
+        }
+        return String(usv)
+    }
     
+    @IBAction func countryCodePickerBtnAction(_ sender: Any) {
+        
+        
+        
+        let countryController = CountryPickerWithSectionViewController.presentController(on: self) { [weak self] (country: Country) in
+            
+            guard let self = self else { return }
+            
+            let selectedCountryCode = country.dialingCode
+            let selectedCountryName = self.flag(country:country.countryCode)
+            let selectedCountryVal = "\(selectedCountryName)" + "\(selectedCountryCode ?? "")"
+            self.countryCodeBtn.setTitle(selectedCountryVal, for: .normal)
+            
+            setAppDefaults(country.countryName, key: "countryName")
+
+            
+        }
+        
+        countryController.detailColor = UIColor.red
+        
+    }
     
     @IBAction func termOfServiceBtnAction(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Setting", bundle: nil)
@@ -200,12 +237,12 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
         if deviceToken == ""{
             deviceToken = "123"
         }
-        
         rest.requestHttpHeaders.add(value: "application/json", forKey: "Content-Type")
         rest.httpBodyParameters.add(value: emailTextField.text ?? "", forKey: "email")
         rest.httpBodyParameters.add(value: passwordTextField.text ?? "", forKey: "password")
         rest.httpBodyParameters.add(value: userTextField.text ?? "", forKey: "userName")
         rest.httpBodyParameters.add(value: phoneNumTF.text ?? "", forKey: "MobileNumber")
+        rest.httpBodyParameters.add(value: getSAppDefault(key: "countryName") as? String ?? "", forKey: "country_code")
 
         rest.httpBodyParameters.add(value: deviceToken, forKey: "deviceToken")
         rest.httpBodyParameters.add(value: "1", forKey: "deviceType")

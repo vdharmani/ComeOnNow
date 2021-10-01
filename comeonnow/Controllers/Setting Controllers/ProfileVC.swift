@@ -110,6 +110,8 @@ class ProfileVC: UIViewController {
                         if getProfileResp?.status == 1{
                             removeAppDefaults(key:"AuthToken")
                             removeAppDefaults(key:"UserName")
+                            removeAppDefaults(key:"countryName")
+
 
                             self.appDel.logOut()
                           
@@ -261,7 +263,7 @@ extension ProfileVC : UITableViewDelegate,UITableViewDataSource{
                 if let url = URL(string:kBASEURL + SettingWebLinks.privacyPolicy) {
                     let CMDVC = self.storyboard?.instantiateViewController(withIdentifier:"WebVC") as? WebVC
                     CMDVC?.linkurl = kBASEURL + SettingWebLinks.privacyPolicy
-                    CMDVC?.linkLblText = "Privacy policy"
+                    CMDVC?.linkLblText = "Privacy Policy"
 
                     if let CMDVC = CMDVC {
                         navigationController?.pushViewController(CMDVC, animated: true)
