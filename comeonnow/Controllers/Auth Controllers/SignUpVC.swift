@@ -86,7 +86,8 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
         }
         countryCodeBtn.setTitle(country.countryCode, for: .highlighted)
         countryCodeBtn.clipsToBounds = true
-        setAppDefaults(country.countryName, key: "countryName")
+//        setAppDefaults(country.countryName, key: "countryName")
+        setAppDefaults("United States", key: "countryName")
 
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
