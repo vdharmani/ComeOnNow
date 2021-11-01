@@ -48,7 +48,9 @@ class ChildDetailVC: UIViewController {
     
     @IBOutlet weak var seeMoreViewObj: UIView!
     
-    var name:String?
+    var first_name:String?
+    var last_name:String?
+
     var dob:String?
     var actualDob:String?
     
@@ -179,10 +181,10 @@ class ChildDetailVC: UIViewController {
                     navBarLbl.text = "Child Detail"
                 }
             }
-            nameLabel.text = name
+            nameLabel.text = "\(last_name ?? "") \(first_name ?? "")"
             ageLabel.text = dob
             genderLabel.text = gender
-            let userName = getSAppDefault(key:"UserName") as? String ?? ""
+            let userName = retrieveDefaults().2
             parentGuardianLbl.text = userName
             
             photo = image
@@ -262,13 +264,15 @@ class ChildDetailVC: UIViewController {
         //        }
         //        }
         if self.isFromEdit == true{
-            vc.name = childDetailsData?.name
+            vc.first_name = first_name
+            vc.last_name = last_name
             vc.dob = childDetailsData?.actual_dob
             vc.gender = childDetailsData?.gender
             vc.photo = childDetailsData?.image
             vc.childId = childDetailsData?.child_id
         }else{
-            vc.name = name
+            vc.first_name = first_name
+            vc.last_name = last_name
             vc.dob = actualDob
             vc.gender = gender
             vc.photo = photo
@@ -363,7 +367,7 @@ extension ChildDetailVC : UITableViewDataSource , UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
-        vc.name = childDetailsData?.name
+        vc.first_name = childDetailsData?.name
         vc.dob = childDetailsData?.actual_dob
         vc.gender = childDetailsData?.gender
         vc.image = childDetailsData?.image
@@ -440,8 +444,8 @@ extension ChildDetailVC:SendingDataToBackPageDelegateProtocol{
             }
         }
         
-        
-        nameLabel.text = dict?.name
+        nameLabel.text = "\(dict?.last_name ?? "") \( dict!.first_name)"
+
         ageLabel.text = dict?.dob
         genderLabel.text = dict?.gender
         let userName = getSAppDefault(key:"UserName") as? String ?? ""
@@ -454,11 +458,9 @@ extension ChildDetailVC:SendingDataToBackPageDelegateProtocol{
     }
     open func getChildDetailByIdApi(childId:String){
         
-        let userId = getSAppDefault(key: "UserId") as? String ?? ""
+
         
-        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
-        
-        let paramds = ["user_id":userId,"child_id":childId] as [String : Any]
+        let paramds = ["user_id":retrieveDefaults().0,"child_id":childId] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.getChildrenDetailsBychildId
         
@@ -468,7 +470,7 @@ extension ChildDetailVC:SendingDataToBackPageDelegateProtocol{
             AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
         
-        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":authToken])
+        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":retrieveDefaults().1])
             .responseJSON { (response) in
                 DispatchQueue.main.async {
                     

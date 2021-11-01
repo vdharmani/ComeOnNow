@@ -13,6 +13,7 @@
 		18111A7926945A3C0052DECA /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18111A7826945A3C0052DECA /* WebVC.swift */; };
 		18342FCF268AF8DD00BC9E4C /* AppointmentListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */; };
 		18342FF2268B3C8000BC9E4C /* ApproveRejectEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18342FF1268B3C8000BC9E4C /* ApproveRejectEntity.swift */; };
+		1835A0082722DEC700CC71F6 /* NotificationDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A0072722DEC700CC71F6 /* NotificationDetailVC.swift */; };
 		184D302A26E0980A00ED14CC /* AppointmentChildDetailTBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184D302926E0980A00ED14CC /* AppointmentChildDetailTBCell.swift */; };
 		184D302F26E0BB4B00ED14CC /* ChildAppointmentListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184D302E26E0BB4B00ED14CC /* ChildAppointmentListVC.swift */; };
 		184DCEEC26982D7B009BC1D2 /* NotificationTVST.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184DCEEB26982D7B009BC1D2 /* NotificationTVST.xib */; };
@@ -574,6 +575,7 @@
 		18111A7826945A3C0052DECA /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		18342FCE268AF8DD00BC9E4C /* AppointmentListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentListEntity.swift; sourceTree = "<group>"; };
 		18342FF1268B3C8000BC9E4C /* ApproveRejectEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveRejectEntity.swift; sourceTree = "<group>"; };
+		1835A0072722DEC700CC71F6 /* NotificationDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDetailVC.swift; sourceTree = "<group>"; };
 		184D302926E0980A00ED14CC /* AppointmentChildDetailTBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentChildDetailTBCell.swift; sourceTree = "<group>"; };
 		184D302E26E0BB4B00ED14CC /* ChildAppointmentListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildAppointmentListVC.swift; sourceTree = "<group>"; };
 		184DCEEB26982D7B009BC1D2 /* NotificationTVST.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTVST.xib; sourceTree = "<group>"; };
@@ -1695,6 +1697,7 @@
 				B3BEB82B2685A7F500C9DE3E /* ChildDetailVC.swift */,
 				18111A7826945A3C0052DECA /* WebVC.swift */,
 				184D302E26E0BB4B00ED14CC /* ChildAppointmentListVC.swift */,
+				1835A0072722DEC700CC71F6 /* NotificationDetailVC.swift */,
 			);
 			path = "Setting Controllers";
 			sourceTree = "<group>";
@@ -2676,6 +2679,7 @@
 				18342FCF268AF8DD00BC9E4C /* AppointmentListEntity.swift in Sources */,
 				B324B1202680CCF70082590E /* Validation Managers.swift in Sources */,
 				B3FF55362680A20E006B6901 /* SceneDelegate.swift in Sources */,
+				1835A0082722DEC700CC71F6 /* NotificationDetailVC.swift in Sources */,
 				18F31C372689EAA100867B25 /* NotificationListEntity.swift in Sources */,
 				B324B1092680C8040082590E /* LogInVC.swift in Sources */,
 				FCCED10A2684687E0071E12B /* EditProfileVC.swift in Sources */,
@@ -2864,9 +2868,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dr. Shelley Cooper (CT2856M74L)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dr. Shelley Cooper (BMFBQPH9CZ)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -2874,10 +2878,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.comeonnow.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = come_on_now_1_july_2021_dev;
+				PROVISIONING_PROFILE_SPECIFIER = come_on_now_1_july_2021_dist;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2890,9 +2894,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dr. Shelley Cooper (CT2856M74L)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dr. Shelley Cooper (BMFBQPH9CZ)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -2900,10 +2904,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.comeonnow.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = come_on_now_1_july_2021_dev;
+				PROVISIONING_PROFILE_SPECIFIER = come_on_now_1_july_2021_dist;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -73,11 +73,9 @@ class AppointmentVC: UIViewController {
     
     open func getAppointmentListApi(type:String){
         appointmentType = type
-        let userId = getSAppDefault(key: "UserId") as? String ?? ""
+
         
-        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
-        
-        let paramds = ["user_id":userId,"last_id":lastChildId,"type":type] as [String : Any]
+        let paramds = ["user_id":retrieveDefaults().0,"last_id":lastChildId,"type":type] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.getAppointmentDetails
         
@@ -88,7 +86,7 @@ class AppointmentVC: UIViewController {
         }
 
         
-        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":authToken])
+        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":retrieveDefaults().1])
             .responseJSON { (response) in
                 DispatchQueue.main.async {
 
@@ -349,8 +347,10 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AppointmentTVC", for: indexPath) as! AppointmentTVC
         if appointmentType == "2"{
-
-        cell.nameLabel.text = appointmentArray[indexPath.row].childDetailsDict.name
+     
+        cell.appointmentStatusLbl.text = appointmentArray[indexPath.row].status == "0" ? "Pending" : "Confirmed"
+            cell.appointmentStatusLbl.textColor = appointmentArray[indexPath.row].status == "0" ? .red : .systemGreen
+        cell.nameLabel.text = "\(appointmentArray[indexPath.row].childDetailsDict.last_name) \(appointmentArray[indexPath.row].childDetailsDict.first_name)"
         cell.ageLabel.text = appointmentArray[indexPath.row].childDetailsDict.dob
         cell.genderLabel.text = appointmentArray[indexPath.row].childDetailsDict.gender
         
@@ -387,7 +387,10 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
         }
         }else if appointmentType == "1"{
             if confirmedAppointmentArray.count > 0{
-                cell.nameLabel.text = confirmedAppointmentArray[indexPath.row].childDetailsDict.name
+                cell.appointmentStatusLbl.text = confirmedAppointmentArray[indexPath.row].status == "0" ? "Pending" : "Confirmed"
+                cell.appointmentStatusLbl.textColor = confirmedAppointmentArray[indexPath.row].status == "0" ? .red : .systemGreen
+
+                cell.nameLabel.text = "\(confirmedAppointmentArray[indexPath.row].childDetailsDict.last_name) \(confirmedAppointmentArray[indexPath.row].childDetailsDict.first_name)"
                 cell.ageLabel.text = confirmedAppointmentArray[indexPath.row].childDetailsDict.dob
                 cell.genderLabel.text = confirmedAppointmentArray[indexPath.row].childDetailsDict.gender
                 
@@ -424,8 +427,9 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
             }
        
         }else{
-            
-            cell.nameLabel.text = pendingAppointmentArray[indexPath.row].childDetailsDict.name
+            cell.appointmentStatusLbl.text = pendingAppointmentArray[indexPath.row].status == "0" ? "Pending" : "Confirmed"
+            cell.appointmentStatusLbl.textColor = pendingAppointmentArray[indexPath.row].status == "0" ? .red : .systemGreen
+            cell.nameLabel.text = "\(pendingAppointmentArray[indexPath.row].childDetailsDict.last_name) \(pendingAppointmentArray[indexPath.row].childDetailsDict.first_name)"
             cell.ageLabel.text = pendingAppointmentArray[indexPath.row].childDetailsDict.dob
             cell.genderLabel.text = pendingAppointmentArray[indexPath.row].childDetailsDict.gender
             
@@ -466,7 +470,8 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if appointmentType == "2"{
             let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
-            vc.name = appointmentArray[indexPath.row].childDetailsDict.name
+            vc.first_name = appointmentArray[indexPath.row].childDetailsDict.first_name
+            vc.last_name = appointmentArray[indexPath.row].childDetailsDict.last_name
             vc.dob = appointmentArray[indexPath.row].childDetailsDict.dob
             vc.gender = appointmentArray[indexPath.row].childDetailsDict.gender
             vc.image = appointmentArray[indexPath.row].childDetailsDict.image
@@ -484,7 +489,8 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
         }else if appointmentType == "1"{
             let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
             vc.delegate = self
-            vc.name = confirmedAppointmentArray[indexPath.row].childDetailsDict.name
+            vc.first_name = confirmedAppointmentArray[indexPath.row].childDetailsDict.first_name
+            vc.last_name = confirmedAppointmentArray[indexPath.row].childDetailsDict.last_name
             vc.dob = confirmedAppointmentArray[indexPath.row].childDetailsDict.dob
             vc.gender = confirmedAppointmentArray[indexPath.row].childDetailsDict.gender
             vc.image = confirmedAppointmentArray[indexPath.row].childDetailsDict.image
@@ -492,9 +498,9 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
             vc.desc = confirmedAppointmentArray[indexPath.row].description
             vc.appointment_time_to = confirmedAppointmentArray[indexPath.row].appointment_time_to
             vc.appointment_time_from = confirmedAppointmentArray[indexPath.row].appointment_time_from
-            vc.appointment_date = appointmentArray[indexPath.row].appointment_date
-            vc.appointmentTitle = appointmentArray[indexPath.row].title
-            vc.appointmentType = appointmentArray[indexPath.row].appointments_type
+            vc.appointment_date = confirmedAppointmentArray[indexPath.row].appointment_date
+            vc.appointmentTitle = confirmedAppointmentArray[indexPath.row].title
+            vc.appointmentType = confirmedAppointmentArray[indexPath.row].appointments_type
 
 //            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
             
@@ -502,7 +508,8 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
         }else{
             let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
             vc.delegate = self
-            vc.name = pendingAppointmentArray[indexPath.row].childDetailsDict.name
+            vc.first_name = pendingAppointmentArray[indexPath.row].childDetailsDict.first_name
+            vc.last_name = pendingAppointmentArray[indexPath.row].childDetailsDict.last_name
             vc.dob = pendingAppointmentArray[indexPath.row].childDetailsDict.dob
             vc.gender = pendingAppointmentArray[indexPath.row].childDetailsDict.gender
             vc.image = pendingAppointmentArray[indexPath.row].childDetailsDict.image
@@ -511,9 +518,9 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
             vc.appointment_time_from = pendingAppointmentArray[indexPath.row].appointment_time_from
 
             vc.desc = pendingAppointmentArray[indexPath.row].description
-            vc.appointment_date = appointmentArray[indexPath.row].appointment_date
-            vc.appointmentTitle = appointmentArray[indexPath.row].title
-            vc.appointmentType = appointmentArray[indexPath.row].appointments_type
+            vc.appointment_date = pendingAppointmentArray[indexPath.row].appointment_date
+            vc.appointmentTitle = pendingAppointmentArray[indexPath.row].title
+            vc.appointmentType = pendingAppointmentArray[indexPath.row].appointments_type
 
 //            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
             

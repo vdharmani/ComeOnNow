@@ -54,9 +54,9 @@ class ProfileVC: UIViewController {
     
   
     open func setUIValuesUpdate(dict:GetUserProfileData<Any>?){
-        nameLabel.text = dict?.username ?? ""
-        setAppDefaults(dict?.username ?? "", key: "UserName")
-
+        nameLabel.text = "\(dict?.last_name ?? "") \( dict!.first_name)"
+        setAppDefaults("\(dict?.last_name ?? "") \( dict!.first_name)", key: "UserName")
+  
         emailLabel.text = dict?.email ?? ""
        
         var sPhotoStr = dict?.photo ?? ""
@@ -80,11 +80,9 @@ class ProfileVC: UIViewController {
 //    }
     open func logOutApi(){
         
-        let userId = getSAppDefault(key: "UserId") as? String ?? ""
 
-        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
 
-        let paramds = ["user_id":userId] as [String : Any]
+        let paramds = ["user_id":retrieveDefaults().0] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.logOut
         
@@ -94,7 +92,7 @@ class ProfileVC: UIViewController {
         AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
 
-        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":authToken])
+        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":retrieveDefaults().1])
             .responseJSON { (response) in
                 DispatchQueue.main.async {
 
@@ -108,9 +106,9 @@ class ProfileVC: UIViewController {
                         
                         //                let status = jsonResult?["status"] as? Int ?? 0
                         if getProfileResp?.status == 1{
-                            removeAppDefaults(key:"AuthToken")
-                            removeAppDefaults(key:"UserName")
+
                             removeAppDefaults(key:"countryName")
+                            self.removeDefaults()
 
 
                             self.appDel.logOut()
@@ -151,12 +149,10 @@ class ProfileVC: UIViewController {
         
     }
     open func getProfileDetail(){
-        
-        let userId = getSAppDefault(key: "UserId") as? String ?? ""
+//
 
-        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
 
-        let paramds = ["user_id":userId] as [String : Any]
+        let paramds = ["user_id":retrieveDefaults().0] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.getUserDetail
         
@@ -166,7 +162,7 @@ class ProfileVC: UIViewController {
         AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
 
-        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":authToken])
+        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":retrieveDefaults().1])
             .responseJSON { (response) in
                 DispatchQueue.main.async {
 

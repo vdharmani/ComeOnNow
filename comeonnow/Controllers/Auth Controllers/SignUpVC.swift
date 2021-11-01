@@ -11,12 +11,21 @@ import SKCountryPicker
 
 class SignUpVC: UIViewController , UITextFieldDelegate {
 
-    @IBOutlet weak var userView: UIView!
-    @IBOutlet weak var userTextField: UITextField!
+    @IBOutlet weak var firstNameView: UIView!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    
+    @IBOutlet weak var lastNameView: UIView!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+   
+    
+    @IBOutlet weak var seenUnseenPasswordImgView: UIImageView!
+    
     
     @IBOutlet weak var phoneNumTF: UITextField!
     
@@ -28,57 +37,46 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
     @IBOutlet weak var countryCodeBtn: UIButton!
     
     let rest = RestManager()
-
+    var agreeTerms = false
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
-        case userTextField:
-            userView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-
+        case firstNameTextField:
+            firstNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+        case lastNameTextField:
+            lastNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
         case emailTextField:
             emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-            passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            userView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-
         case phoneNumTF :
-            passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            userView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             phoneView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-
         case passwordTextField :
             passwordView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            userView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-
-       
         default:break
             
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-            userView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        firstNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
            phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-
+        lastNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        passwordTextField.isSecureTextEntry = true
+
+        firstNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-
+        lastNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        
         emailTextField.delegate = self
-                userTextField.delegate = self
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
         passwordTextField.delegate = self
         self.countryCodeBtn.contentHorizontalAlignment = .center
         guard let country = CountryManager.shared.currentCountry else {
@@ -138,23 +136,39 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
     }
     
     @IBAction func checkUncheckBtnAction(_ sender: UIButton) {
-        if sender.tag == 0{
-            sender.setImage(#imageLiteral(resourceName: "check"), for: .normal)
-            sender.tag = 1
-        }else{
-            sender.setImage(#imageLiteral(resourceName: "unCheck"), for: .normal)
-            sender.tag = 0
-        }
+        sender.isSelected = !sender.isSelected
+        self.agreeTerms = sender.isSelected
+        sender.setImage(agreeTerms == true ? #imageLiteral(resourceName: "check") : #imageLiteral(resourceName: "unCheck"), for: .normal)
+        
+
     }
     
+    @IBAction func passwordSeenUnseenBtnAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        self.agreeTerms = sender.isSelected
+        seenUnseenPasswordImgView.image = agreeTerms == true ? #imageLiteral(resourceName: "eyeshow") : #imageLiteral(resourceName: "eye")
+        passwordTextField.isSecureTextEntry = agreeTerms == true ? false : true
+
+      
+    }
     
+ 
     
     @IBAction func signUpButton(_ sender: Any) {
   
-        if userTextField.text?.trimmingCharacters(in: .whitespaces) == ""{
+        if firstNameTextField.text?.trimmingCharacters(in: .whitespaces) == ""{
             Alert.present(
                 title: AppAlertTitle.appName.rawValue,
-                message: AppSignInForgotSignUpAlertNessage.enterUserName,
+                message: AppSignInForgotSignUpAlertNessage.enterFirstName,
+                actions: .ok(handler: {
+                }),
+                from: self
+            )
+        }
+        else if lastNameTextField.text?.trimmingCharacters(in: .whitespaces) == ""{
+            Alert.present(
+                title: AppAlertTitle.appName.rawValue,
+                message: AppSignInForgotSignUpAlertNessage.enterLastName,
                 actions: .ok(handler: {
                 }),
                 from: self
@@ -216,9 +230,7 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
             )
           
         }
-//        let defaultImage = UIImage(named: "addBtnImage.png")
-//        if firstBtnImage?.pngData() != defaultImage?.pngData(){
-        else if checkUncheckBtn.currentImage?.pngData() == UIImage(named:"unCheck")?.pngData() {
+        else if agreeTerms == false{
             Alert.present(
                 title: AppAlertTitle.appName.rawValue,
                 message:AppSignInForgotSignUpAlertNessage.allowTermsConditionMessage,
@@ -226,8 +238,20 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
                 }),
                 from: self
             )
-          
         }
+     
+//        let defaultImage = UIImage(named: "addBtnImage.png")
+//        if firstBtnImage?.pngData() != defaultImage?.pngData(){
+//        else if checkUncheckBtn.currentImage?.pngData() == UIImage(named:"unCheck")?.pngData() {
+//            Alert.present(
+//                title: AppAlertTitle.appName.rawValue,
+//                message:AppSignInForgotSignUpAlertNessage.allowTermsConditionMessage,
+//                actions: .ok(handler: {
+//                }),
+//                from: self
+//            )
+//
+//        }
         else{
             signUpApi()
         }
@@ -241,7 +265,9 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
         rest.requestHttpHeaders.add(value: "application/json", forKey: "Content-Type")
         rest.httpBodyParameters.add(value: emailTextField.text ?? "", forKey: "email")
         rest.httpBodyParameters.add(value: passwordTextField.text ?? "", forKey: "password")
-        rest.httpBodyParameters.add(value: userTextField.text ?? "", forKey: "userName")
+        rest.httpBodyParameters.add(value: firstNameTextField.text ?? "", forKey: "first_name")
+        rest.httpBodyParameters.add(value: lastNameTextField.text ?? "", forKey: "last_name")
+
         rest.httpBodyParameters.add(value: phoneNumTF.text ?? "", forKey: "MobileNumber")
         rest.httpBodyParameters.add(value: getSAppDefault(key: "countryName") as? String ?? "", forKey: "country_code")
 
@@ -262,16 +288,13 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
                 guard let data = results.data else { return }
                 
                 let jsonResult = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:AnyHashable] ?? [:]
-                //                    let dataString = String(data: data, encoding: .utf8)
-                //                    let jsondata = dataString?.data(using: .utf8)
-                //                    let decoder = JSONDecoder()
-                //                    let jobUser = try? decoder.decode(LoginData, from: jsondata!)
+          
                 //
                 let loginResp =   LoginSignUpData.init(dict: jsonResult ?? [:])
                 if loginResp?.status == 1{
-                    setAppDefaults(loginResp?.user_id, key: "UserId")
-                    setAppDefaults(loginResp?.authtoken, key: "AuthToken")
-                    setAppDefaults(loginResp?.username, key: "UserName")
+                    self.saveDefaults(userId: loginResp?.user_id ?? "", authToken: loginResp?.authtoken ?? "", userName: "\(loginResp?.last_name ?? "") \( loginResp!.first_name)")
+
+
                 DispatchQueue.main.async {
                     Alert.present(
                         title: AppAlertTitle.appName.rawValue,

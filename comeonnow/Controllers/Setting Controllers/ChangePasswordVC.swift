@@ -16,6 +16,13 @@ class ChangePasswordVC: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var newPasswordTextField: UITextField!
     @IBOutlet weak var confirmNewView: UIView!
     @IBOutlet weak var confirmNewTextField: UITextField!
+    
+    @IBOutlet weak var seenCPImgView: UIImageView!
+    @IBOutlet weak var seenNPImgView: UIImageView!
+    @IBOutlet weak var seenCNPImgView: UIImageView!
+    
+    
+    
     let restCP = RestManager()
     func textFieldDidBeginEditing(_ textField: UITextField) {
       
@@ -24,16 +31,9 @@ class ChangePasswordVC: UIViewController,UITextFieldDelegate{
         switch textField {
         case currentPasswordTextField:
             currentPasswordView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-            newPasswordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            confirmNewView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-
         case newPasswordTextField :
-            currentPasswordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             newPasswordView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-            confirmNewView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         case confirmNewTextField :
-            currentPasswordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            newPasswordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             confirmNewView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
         default:break
             
@@ -60,11 +60,10 @@ class ChangePasswordVC: UIViewController,UITextFieldDelegate{
     open func changePasswordApi(){
         guard let url = URL(string: kBASEURL + WSMethods.changePassword) else { return }
     
-        let userId  = getSAppDefault(key: "UserId") as? String ?? ""
-        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
-        restCP.requestHttpHeaders.add(value: authToken, forKey: "token")
+
+        restCP.requestHttpHeaders.add(value: retrieveDefaults().1, forKey: "token")
         restCP.requestHttpHeaders.add(value: "application/json", forKey: "Content-Type")
-        restCP.httpBodyParameters.add(value:userId, forKey: "user_id")
+        restCP.httpBodyParameters.add(value:retrieveDefaults().0, forKey: "user_id")
         restCP.httpBodyParameters.add(value:newPasswordTextField.text ?? "", forKey: "newPassword")
         restCP.httpBodyParameters.add(value:currentPasswordTextField.text ?? "", forKey: "oldPassword")
         restCP.httpBodyParameters.add(value:confirmNewTextField.text ?? "", forKey: "confirmPassword")
@@ -135,6 +134,45 @@ class ChangePasswordVC: UIViewController,UITextFieldDelegate{
     
     @IBAction func backButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func seenUnseenCPBtnAction(_ sender: UIButton) {
+        if sender.tag == 0{
+            sender.tag = 1
+            seenCPImgView.image = #imageLiteral(resourceName: "eyeshow")
+            currentPasswordTextField.isSecureTextEntry = false
+        }else{
+            sender.tag = 0
+            seenCPImgView.image = #imageLiteral(resourceName: "eye")
+            currentPasswordTextField.isSecureTextEntry = true
+        }
+        
+    }
+    
+    
+    @IBAction func ssenUnseenNPBtnAction(_ sender: UIButton) {
+        if sender.tag == 0{
+            sender.tag = 1
+            seenNPImgView.image = #imageLiteral(resourceName: "eyeshow")
+            newPasswordTextField.isSecureTextEntry = false
+        }else{
+            sender.tag = 0
+            seenNPImgView.image = #imageLiteral(resourceName: "eye")
+            newPasswordTextField.isSecureTextEntry = true
+        }
+    }
+    
+    
+    @IBAction func seenUnseenCNPBtnAction(_ sender: UIButton) {
+        if sender.tag == 0{
+            sender.tag = 1
+            seenCNPImgView.image = #imageLiteral(resourceName: "eyeshow")
+            confirmNewTextField.isSecureTextEntry = false
+        }else{
+            sender.tag = 0
+            seenCNPImgView.image = #imageLiteral(resourceName: "eye")
+            confirmNewTextField.isSecureTextEntry = true
+        }
     }
     
     @IBAction func submitButton(_ sender: Any) {

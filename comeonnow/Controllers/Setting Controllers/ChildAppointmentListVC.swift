@@ -70,7 +70,8 @@ extension ChildAppointmentListVC : UITableViewDataSource , UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
-        vc.name = childDetailsData?.name
+        vc.first_name = childDetailsData?.first_name
+        vc.last_name = childDetailsData?.last_name
         vc.dob = childDetailsData?.actual_dob
         vc.gender = childDetailsData?.gender
         vc.image = childDetailsData?.image

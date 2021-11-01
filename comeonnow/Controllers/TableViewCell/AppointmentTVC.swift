@@ -15,6 +15,7 @@ class AppointmentTVC: UITableViewCell {
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
+    @IBOutlet weak var appointmentStatusLbl: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
     override func awakeFromNib() {

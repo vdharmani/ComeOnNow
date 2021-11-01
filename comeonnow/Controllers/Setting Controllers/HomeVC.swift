@@ -39,14 +39,13 @@ class HomeVC: UIViewController{
     
     open func homeChildListApi(){
         guard let url = URL(string: kBASEURL + WSMethods.getChildrenDetails) else { return }
-        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
-        let userId  = getSAppDefault(key: "UserId") as? String ?? ""
+
         
         
         restHCL.requestHttpHeaders.add(value: "application/json", forKey: "Content-Type")
-        restHCL.requestHttpHeaders.add(value: authToken, forKey: "token")
+        restHCL.requestHttpHeaders.add(value: retrieveDefaults().1, forKey: "token")
         
-        restHCL.httpBodyParameters.add(value: userId, forKey: "user_id")
+        restHCL.httpBodyParameters.add(value: retrieveDefaults().0, forKey: "user_id")
         restHCL.httpBodyParameters.add(value:lastChildId , forKey: "lastChildId")
         
         
@@ -109,9 +108,8 @@ class HomeVC: UIViewController{
                             title: AppAlertTitle.appName.rawValue,
                             message: loginResp?.message ?? "",
                             actions: .ok(handler: {
-                                removeAppDefaults(key:"AuthToken")
-                                removeAppDefaults(key:"UserName")
-                           
+                              
+                                self.removeDefaults()
 
                                 
                                 appDel.logOut()
@@ -179,17 +177,16 @@ class HomeVC: UIViewController{
      
         let strURL = kBASEURL + WSMethods.childDelete
         let urlwithPercentEscapes = strURL.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        let userId  = getSAppDefault(key: "UserId") as? String ?? ""
-        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
 
-        let paramds = ["user_id":userId,"child_id":childId] as [String : Any]
+
+        let paramds = ["user_id":retrieveDefaults().0,"child_id":childId] as [String : Any]
 
 //        DispatchQueue.main.async {
 //
 //        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
 //        }
         
-        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":authToken])
+        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":retrieveDefaults().1])
             .responseJSON { (response) in
 //                DispatchQueue.main.async {
 //
@@ -272,7 +269,7 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
 //        cell.mainImage.sd_setImage(with: URL(string: homeArray[indexPath.row].image), placeholderImage: UIImage(named: "notifyplaceholderImg"), options: SDWebImageOptions.continueInBackground, completed: nil)
         
         // }
-        cell.nameLabel.text = homeArray[indexPath.row].name
+        cell.nameLabel.text = "\(homeArray[indexPath.row].last_name) \(homeArray[indexPath.row].first_name)"
         cell.ageLabel.text = homeArray[indexPath.row].dob
         cell.genderLabel.text = homeArray[indexPath.row].gender
         
@@ -285,7 +282,8 @@ extension HomeVC : UITableViewDataSource , UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
-        vc.name = homeArray[indexPath.row].name
+        vc.first_name = homeArray[indexPath.row].first_name
+        vc.last_name = homeArray[indexPath.row].last_name
         vc.dob = homeArray[indexPath.row].dob
         vc.actualDob = homeArray[indexPath.row].actual_dob
         vc.gender = homeArray[indexPath.row].gender

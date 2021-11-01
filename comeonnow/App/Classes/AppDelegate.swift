@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         appDelegate?.window = self.window
-        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
+        
+        let authToken  = IDefaults.string(forKey: "AuthToken") ?? ""
         if authToken != ""{
            
                 appDelegate?.loginToHomePage()
@@ -238,7 +239,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                         if notificationType == "1"{
                             let storyBoard = UIStoryboard.init(name:StoryboardName.Setting, bundle: nil)
                             let rootVc = storyBoard.instantiateViewController(withIdentifier:"TabBarVC") as! TabBarVC
-                            rootVc.selectedIndex = 0
+                            rootVc.selectedIndex = 2
 
 
                             let nav =  UINavigationController(rootViewController: rootVc)

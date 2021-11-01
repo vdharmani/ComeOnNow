@@ -15,8 +15,13 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
 
     @IBOutlet weak var countryCodeBtn: UIButton!
     
-    @IBOutlet weak var userNameView: UIView!
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var firstNameView: UIView!
+    @IBOutlet weak var firstNameTF: UITextField!
+    
+    @IBOutlet weak var lastNameView: UIView!
+    
+    @IBOutlet weak var lastNameTF: UITextField!
+    
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var emailTextField: UITextField!
     
@@ -33,24 +38,15 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
     var getProfileResp: GetUserProfileData<Any>?
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-      
-        
-        
-        switch textField {
-        case usernameTextField:
-            userNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-
+       switch textField {
+        case firstNameTF:
+            firstNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+        case lastNameTF:
+            lastNameView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
         case emailTextField :
             emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-            userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            
         case phoneNumberTF :
             phoneView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-            userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
         default:break
             
@@ -60,7 +56,9 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
     
         
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            firstNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        lastNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
         phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
        
@@ -69,19 +67,23 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
     override func viewDidLoad() {
         super.viewDidLoad()
         emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        userNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        firstNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        lastNameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         phoneView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
         emailTextField.isUserInteractionEnabled = false
         emailTextField.delegate = self
-         usernameTextField.delegate = self
+         firstNameTF.delegate = self
+        lastNameTF.delegate = self
+
         phoneNumberTF.delegate = self
 
         bioTV.delegate = self
         self.userImgView.setRounded()
         emailTextField.text = getProfileResp?.email
         bioTV.text = getProfileResp?.description
-        usernameTextField.text = getProfileResp?.username
+        firstNameTF.text = getProfileResp?.first_name
+        lastNameTF.text = getProfileResp?.last_name
         phoneNumberTF.text = getProfileResp?.mobile_number
         var sPhotoStr = getProfileResp?.photo
         sPhotoStr = sPhotoStr?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
@@ -190,12 +192,11 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
     func requestWith(endUrl: String, parameters: [AnyHashable : Any]){
         
         let url = endUrl /* your API url */
-        let authToken = getSAppDefault(key: "AuthToken") as? String ?? ""
 
         let headers: HTTPHeaders = [
             /* "Authorization": "your_access_token",  in case you need authorization header */
             "Content-type": "multipart/form-data",
-            "token":authToken
+            "token":retrieveDefaults().1
         ]
         DispatchQueue.main.async {
 
@@ -264,9 +265,9 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
         imgArray.removeAll()
        
                 imgArray.append(compressedData)
-        let userId = getSAppDefault(key: "UserId") as? String ?? ""
+//        let userId = getSAppDefault(key: "UserId") as? String ?? ""
 
-        let paramds = ["userName":usernameTextField.text ?? "" ,"email":emailTextField.text ?? "","description":bioTV.text ?? "","user_id":userId,"MobileNumber":phoneNumberTF.text ?? "","country_code": getSAppDefault(key: "countryName") as? String ?? ""] as [String : Any]
+        let paramds = ["first_name":firstNameTF.text ?? "" ,"last_name":lastNameTF.text ?? "","email":emailTextField.text ?? "","description":bioTV.text ?? "","user_id":retrieveDefaults().0,"MobileNumber":phoneNumberTF.text ?? "","country_code": getSAppDefault(key: "countryName") as? String ?? ""] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.editProfile
         
@@ -319,10 +320,19 @@ class EditProfileVC: UIViewController,UINavigationControllerDelegate,UIImagePick
         }
     }
     @IBAction func saveButton(_ sender: Any) {
-        if usernameTextField.text?.trimmingCharacters(in: .whitespaces) == ""{
+        if firstNameTF.text?.trimmingCharacters(in: .whitespaces) == ""{
             Alert.present(
                 title: AppAlertTitle.appName.rawValue,
-                message: AppSignInForgotSignUpAlertNessage.enterName,
+                message: AppSignInForgotSignUpAlertNessage.enterFirstName,
+                actions: .ok(handler: {
+                }),
+                from: self
+            )
+        }
+       else if lastNameTF.text?.trimmingCharacters(in: .whitespaces) == ""{
+            Alert.present(
+                title: AppAlertTitle.appName.rawValue,
+                message: AppSignInForgotSignUpAlertNessage.enterLastName,
                 actions: .ok(handler: {
                 }),
                 from: self

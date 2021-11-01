@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -101,14 +102,22 @@
                                     <constraint firstAttribute="width" secondItem="vou-hN-h8l" secondAttribute="height" multiplier="1:1" id="7f0-ox-BJa"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsq-Ht-OG6">
+                                <rect key="frame" x="319.5" y="40.5" width="30.5" height="16"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
+                                <color key="textColor" red="0.0011665690690000001" green="0.48976916069999998" blue="0.56152278180000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RUL-li-xxf" firstAttribute="top" secondItem="dyP-54-A5G" secondAttribute="top" constant="13" id="06o-ix-xdw"/>
                             <constraint firstItem="vou-hN-h8l" firstAttribute="centerX" secondItem="jbb-y5-shz" secondAttribute="centerX" id="7Ec-yX-T4T"/>
                             <constraint firstItem="vou-hN-h8l" firstAttribute="centerY" secondItem="Vht-5i-WUE" secondAttribute="centerY" id="AQs-Ud-9hx"/>
                             <constraint firstItem="vQn-si-kgS" firstAttribute="leading" secondItem="RUL-li-xxf" secondAttribute="trailing" constant="12" id="EXs-Ib-Phb"/>
                             <constraint firstItem="RUL-li-xxf" firstAttribute="leading" secondItem="dyP-54-A5G" secondAttribute="leading" constant="10" id="G1K-Qa-aAT"/>
+                            <constraint firstItem="rsq-Ht-OG6" firstAttribute="trailing" secondItem="jbb-y5-shz" secondAttribute="trailing" id="KHp-Nf-TsP"/>
+                            <constraint firstItem="rsq-Ht-OG6" firstAttribute="centerY" secondItem="WaL-ht-41M" secondAttribute="centerY" id="KIv-4n-E6a"/>
                             <constraint firstItem="4EG-s8-aeh" firstAttribute="top" secondItem="gLI-yi-U3r" secondAttribute="bottom" constant="10" id="Klb-tc-nd5"/>
                             <constraint firstItem="jbb-y5-shz" firstAttribute="centerY" secondItem="Alj-IN-1KP" secondAttribute="centerY" id="Ozt-II-MFj"/>
                             <constraint firstAttribute="trailing" secondItem="jbb-y5-shz" secondAttribute="trailing" constant="12" id="SpR-mb-JS5"/>
@@ -147,6 +156,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="ageLabel" destination="WaL-ht-41M" id="Crq-Vg-VrI"/>
+                <outlet property="appointmentStatusLbl" destination="rsq-Ht-OG6" id="F9u-27-SXQ"/>
                 <outlet property="dateLabel" destination="Vht-5i-WUE" id="xth-NW-7Qr"/>
                 <outlet property="genderLabel" destination="jbb-y5-shz" id="hwd-zc-Lqz"/>
                 <outlet property="mainImage" destination="RUL-li-xxf" id="q2j-lg-T2w"/>
@@ -158,5 +168,8 @@
     </objects>
     <resources>
         <image name="calender" width="59" height="59"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

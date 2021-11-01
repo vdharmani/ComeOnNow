@@ -55,11 +55,8 @@ class NotificationsVC: UIViewController {
     
     open func getNotificationListApi(){
         
-        let userId = getSAppDefault(key: "UserId") as? String ?? ""
         
-        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
-        
-        let paramds = ["user_id":userId,"last_notification_id":lastChildId] as [String : Any]
+        let paramds = ["user_id":retrieveDefaults().0,"last_notification_id":lastChildId] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.notificationDetails
         
@@ -69,7 +66,7 @@ class NotificationsVC: UIViewController {
         AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
 
-        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":authToken])
+        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":retrieveDefaults().1])
             .responseJSON { (response) in
                 DispatchQueue.main.async {
 
@@ -180,11 +177,9 @@ class NotificationsVC: UIViewController {
     }
     open func acceptRejectApi(status:String,id:String,notificationId:String){
         
-        let userId = getSAppDefault(key: "UserId") as? String ?? ""
+
         
-        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
-        
-        let paramds = ["user_id":userId,"id":id,"status":status,"notification_id":notificationId] as [String : Any]
+        let paramds = ["user_id":retrieveDefaults().0,"id":id,"status":status,"notification_id":notificationId] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.approveRejectAppointment
         
@@ -194,7 +189,7 @@ class NotificationsVC: UIViewController {
         AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
 
-        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":authToken])
+        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":retrieveDefaults().1])
             .responseJSON { (response) in
                 DispatchQueue.main.async {
 
@@ -318,6 +313,15 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
             
             cell.daysLabel.text = createdDataDisplayString
             
+            if notificationArray[indexPath.row].notification_type == "1" && notificationArray[indexPath.row].document != ""{
+                cell.docImgView.image = #imageLiteral(resourceName: "docs")
+            }else if notificationArray[indexPath.row].notification_type == "1" && notificationArray[indexPath.row].document == ""{
+                cell.docImgView.image = #imageLiteral(resourceName: "logo")
+            }else{
+                cell.docImgView.image = #imageLiteral(resourceName: "appointment")
+
+            }
+            
             cell.datehideLbl.text = notificationArray[indexPath.row].description
             if notificationArray[indexPath.row].notification_type == "2"{
                 cell.appointmentLabel.text = notificationArray[indexPath.row].description
@@ -353,6 +357,14 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
         vc.childId = notificationArray[indexPath.row].detailDicts.child_id
         vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: false)
+        }else{
+            if notificationArray[indexPath.row].document != ""{
+            let vc = NotificationDetailVC.instantiate(fromAppStoryboard: .Setting)
+            vc.navBarTitleString = "Document"
+            
+            vc.webLinkUrlString = notificationArray[indexPath.row].document
+            self.navigationController?.pushViewController(vc, animated: false)
+            }
         }
     }
     

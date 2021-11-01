@@ -20,14 +20,16 @@ let appScene = (UIApplication.shared.delegate as! SceneDelegate)
 
 struct WSMethods {
     static let signIn = "logIn.php"
-    static let signUp = "signUp.php"
-    static let addchildren = "addchildren.php"
-    static let editChild = "editChild.php"
+    static let signUp = "signUpv2.php"
+    static let addchildren = "addchildrenv2.php"
+    static let editChild = "editChildv2.php"
     static let getChildrenDetails = "getChildrenDetails.php"
     static let getProfileDetails = "getProfileDetails.php"
     static let changePassword = "changePassword.php"
     static let resentVerficationEmail = "ResentVerficationEmail.php"
-    static let notificationDetails = "notificationDetails.php"
+
+    static let notificationDetails = "notificationDetailsv2.php"
+//    static let notificationDetails = "notificationDetails.php"
     static let getAppointmentDetails = "GetAppointmentDetails.php"
     static let approveRejectAppointment = "approveRejectAppointment.php"
     static let childDelete = "childDelete.php"
@@ -42,7 +44,7 @@ struct WSMethods {
     
     static let logOut = "logOut.php"
     static let getUserDetail = "getProfileDetails.php"
-    static let editProfile = "editProfile.php"
+    static let editProfile = "editProfilev2.php"
     static let forgotPassword = "forgetPassword.php"
     //getChildrenDetailsBychildId.php
    static let  getChildrenDetailsBychildId = "getChildrenDetailsBychildIdv2.php"

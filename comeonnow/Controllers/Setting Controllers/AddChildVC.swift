@@ -23,13 +23,17 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     
     @IBOutlet weak var navBarLbl: UILabel!
     
-    @IBOutlet weak var userNameTF: UITextField!
+    @IBOutlet weak var firstNameTF: UITextField!
     
     @IBOutlet weak var dOBTF: UITextField!
     
     @IBOutlet weak var genderTF: UITextField!
     
-    @IBOutlet weak var nameTFView: UIView!
+    @IBOutlet weak var firstNameTFView: UIView!
+    
+    @IBOutlet weak var lastNameTF: UITextField!
+    
+    @IBOutlet weak var lastNameTFView: UIView!
     
     @IBOutlet weak var dOBTFView: UIView!
     
@@ -44,7 +48,9 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
      var datePicker = UIDatePicker()
     lazy var genderPickerView = UIPickerView()
     var appointmentDetailsDict: AppointmentDetailsDict<AnyHashable>?
-    var name:String?
+    var first_name:String?
+    var last_name:String?
+
     var dob:String?
     var gender:String?
     var photo:String?
@@ -59,20 +65,13 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
-        case userNameTF:
-            nameTFView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-            dOBTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            genderTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-
-
+        case firstNameTF:
+            firstNameTFView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
+        case lastNameTF:
+            lastNameTFView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
         case dOBTF :
-            nameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             dOBTFView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-            genderTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            
         case genderTF :
-            nameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            dOBTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             genderTFView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
 
         default:break
@@ -81,7 +80,9 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
     
-        nameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        firstNameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        lastNameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
         dOBTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         genderTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
@@ -95,7 +96,8 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
             sPhotoStr = sPhotoStr?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
     //        if sPhotoStr != ""{
             userChildProfileImgView.sd_setImage(with: URL(string: sPhotoStr ?? ""), placeholderImage:#imageLiteral(resourceName: "notifyplaceholderImg"))
-            userNameTF.text = name
+            firstNameTF.text = first_name
+            lastNameTF.text = last_name
             dOBTF.text = convertDateFormat(inputDate:dob ?? "")
             genderTF.text = gender
             saveBtn.setTitle("Update", for: .normal)
@@ -109,11 +111,15 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
         }
         
         
-        nameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        firstNameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        lastNameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
         dOBTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         genderTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        genderArr = ["Boy","Girl","Other"]
-        userNameTF.delegate = self
+        genderArr = ["Male","Female","Other"]
+        firstNameTF.delegate = self
+        lastNameTF.delegate = self
+
         genderTF.delegate = self
         dOBTF.delegate = self
 
@@ -205,17 +211,16 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
      
         let strURL = kBASEURL + WSMethods.childDelete
         let urlwithPercentEscapes = strURL.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        let userId  = getSAppDefault(key: "UserId") as? String ?? ""
-        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
 
-        let paramds = ["user_id":userId,"child_id":childId] as [String : Any]
+
+        let paramds = ["user_id":retrieveDefaults().0,"child_id":childId] as [String : Any]
 
         DispatchQueue.main.async {
 
         AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
         
-        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":authToken])
+        AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":retrieveDefaults().1])
             .responseJSON { (response) in
                 DispatchQueue.main.async {
 
@@ -273,15 +278,25 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     }
     
     @IBAction func addChildBtnAction(_ sender: Any) {
-        if userNameTF.text?.trimmingCharacters(in: .whitespaces) == ""{
+        if firstNameTF.text?.trimmingCharacters(in: .whitespaces) == ""{
             Alert.present(
                 title: AppAlertTitle.appName.rawValue,
-                message: AppSignInForgotSignUpAlertNessage.enterName,
+                message: AppSignInForgotSignUpAlertNessage.enterFirstName,
                 actions: .ok(handler: {
                 }),
                 from: self
             )
-        }else if dOBTF.text?.trimmingCharacters(in: .whitespaces) == ""{
+        }
+        else if lastNameTF.text?.trimmingCharacters(in: .whitespaces) == ""{
+            Alert.present(
+                title: AppAlertTitle.appName.rawValue,
+                message: AppSignInForgotSignUpAlertNessage.enterLastName,
+                actions: .ok(handler: {
+                }),
+                from: self
+            )
+        }
+        else if dOBTF.text?.trimmingCharacters(in: .whitespaces) == ""{
             Alert.present(
                 title: AppAlertTitle.appName.rawValue,
                 message: AppSignInForgotSignUpAlertNessage.enterDOB,
@@ -388,12 +403,11 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     func requestWith(endUrl: String, parameters: [AnyHashable : Any]){
         
         let url = endUrl /* your API url */
-        let authToken = getSAppDefault(key: "AuthToken") as? String ?? ""
 
         let headers: HTTPHeaders = [
             /* "Authorization": "your_access_token",  in case you need authorization header */
             "Content-type": "multipart/form-data",
-            "token":authToken
+            "token":retrieveDefaults().1
         ]
         DispatchQueue.main.async {
 
@@ -476,17 +490,17 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
        
                 imgArray.append(compressedData)
         
-        let userId = getSAppDefault(key: "UserId") as? String ?? ""
+//        let userId = getSAppDefault(key: "UserId") as? String ?? ""
         if isFromEditChild == true{
 
-            let paramds = ["dob":dob ?? "" ,"gender":genderTF.text ?? "","name":userNameTF.text ?? "","user_id":userId,"child_id":childId ?? ""] as [String : Any]
+            let paramds = ["dob":dob ?? "" ,"gender":genderTF.text ?? "","first_name":firstNameTF.text ?? "","last_name":lastNameTF.text ?? "","user_id":retrieveDefaults().0,"child_id":childId ?? ""] as [String : Any]
     
         let strURL = kBASEURL + WSMethods.editChild
 
             self.requestWith(endUrl: strURL , parameters: paramds)
             
         }else{
-            let paramds = ["dob":dob ?? "" ,"gender":genderTF.text ?? "","name":userNameTF.text ?? "","user_id":userId] as [String : Any]
+            let paramds = ["dob":dob ?? "" ,"gender":genderTF.text ?? "","first_name":firstNameTF.text ?? "","last_name":lastNameTF.text ?? "","user_id":retrieveDefaults().0] as [String : Any]
         
             let strURL = kBASEURL + WSMethods.addchildren
 

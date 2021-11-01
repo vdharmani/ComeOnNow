@@ -7,12 +7,14 @@
 
 import Foundation
 
-struct LoginSignUpData<T>:Codable{
+struct LoginSignUpData<T>{
   
     var status:Int
     var alertMessage:String
     var user_id:String
     var username:String
+    var first_name:String
+    var last_name:String
     var email:String
     var password:String
     var photo:String
@@ -38,6 +40,9 @@ struct LoginSignUpData<T>:Codable{
         
         let user_id = dataDict["user_id"] as? String ?? ""
         let username = dataDict["username"] as? String ?? ""
+        let first_name = dataDict["first_name"] as? String ?? ""
+        let last_name = dataDict["last_name"] as? String ?? ""
+
         let email = dataDict["email"] as? String ?? ""
         let password = dataDict["password"] as? String ?? ""
         let photo = dataDict["photo"] as? String ?? ""
@@ -56,6 +61,9 @@ struct LoginSignUpData<T>:Codable{
         self.alertMessage = alertMessage
         self.user_id = user_id
         self.username = username
+        self.first_name = first_name
+        self.last_name = last_name
+
         self.email = email
         self.password = password
         self.photo = photo

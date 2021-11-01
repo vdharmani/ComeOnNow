@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -22,7 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         appDelegate?.window = self.window
-        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
+    
+        let authToken  = IDefaults.string(forKey: "AuthToken") ?? ""
         if authToken != ""{
            
                 appDelegate?.loginToHomePage()

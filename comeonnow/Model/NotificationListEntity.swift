@@ -99,6 +99,7 @@ struct NotificationListData<T>{
     var notification_read_status:String
     var created:String
     var image:String
+    var document:String
     var detailDicts: NotificationDetailDict<T>
     init?(dataDict:[String:T]) {
    
@@ -111,6 +112,8 @@ struct NotificationListData<T>{
         let notification_read_status = dataDict["notification_read_status"] as? String ?? ""
         let created = dataDict["created"] as? String ?? ""
         let image = dataDict["image"] as? String ?? ""
+        let document = dataDict["document"] as? String ?? ""
+
         let detailsDict = dataDict["details"] as? [String:T] ?? [:]
 
        
@@ -124,6 +127,7 @@ struct NotificationListData<T>{
         self.notification_read_status = notification_read_status
         self.created = created
         self.image = image
+        self.document = document
         self.detailDicts =  NotificationDetailDict(dataDict:detailsDict)!
     }
 

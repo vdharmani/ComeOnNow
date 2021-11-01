@@ -22,6 +22,7 @@ class NotificationsTVC: UITableViewCell {
    
     @IBOutlet weak var datehideLbl: UILabel!
     
+    @IBOutlet weak var docImgView: UIImageView!
     
     
     override func awakeFromNib() {

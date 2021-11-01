@@ -14,17 +14,19 @@ class LogInVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBOutlet weak var seenUnseenPasswordImgView: UIImageView!
+    
     let rest = RestManager()
+    var agreeTerms = false
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
         case emailTextField:
             emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-            passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
         case passwordTextField :
             passwordView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
         default:break
             
@@ -53,6 +55,14 @@ class LogInVC: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
        
         return true
+    }
+    
+    
+    @IBAction func seenUnseenPasswordBtnAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        self.agreeTerms = sender.isSelected
+        seenUnseenPasswordImgView.image = agreeTerms == true ? #imageLiteral(resourceName: "eyeshow") : #imageLiteral(resourceName: "eye")
+        passwordTextField.isSecureTextEntry = agreeTerms == true ? false : true
     }
     
 
@@ -198,10 +208,8 @@ class LogInVC: UIViewController, UITextFieldDelegate {
 
                 let loginResp =   LoginSignUpData.init(dict: jsonResult ?? [:])
                 if loginResp?.status == 1{
-                setAppDefaults(loginResp?.user_id, key: "UserId")
-                setAppDefaults(loginResp?.authtoken, key: "AuthToken")
-                setAppDefaults(loginResp?.username, key: "UserName")
-                   
+                    self.saveDefaults(userId: loginResp?.user_id ?? "", authToken: loginResp?.authtoken ?? "", userName: "\(loginResp?.last_name ?? "") \( loginResp!.first_name)")
+
 
                 DispatchQueue.main.async {
                  
@@ -272,3 +280,4 @@ class LogInVC: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
+

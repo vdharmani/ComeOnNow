@@ -28,6 +28,9 @@ struct AppSignInForgotSignUpAlertNessage {
     static let passwordNotMatched = "New and confirm password doesn’t match"
     static let enterDOB = "Please enter D.O.B"
     static let enterName = "Please enter name"
+    static let enterFirstName = "Please enter first name"
+    static let enterLastName = "Please enter last name"
+
     static let enterUserName = "Please enter user name"
     static let selectGender = "Please select gender"
 

@@ -89,6 +89,9 @@ struct ChildDetailDict<T>{
     var user_id:String
     var child_id:String
     var name:String
+    var first_name:String
+    var last_name:String
+
     var dob:String
     var gender:String
     var image:String
@@ -97,6 +100,9 @@ struct ChildDetailDict<T>{
         let user_id = dataDict["user_id"] as? String ?? ""
         let child_id = dataDict["child_id"] as? String ?? ""
         let name = dataDict["name"] as? String ?? ""
+        let first_name = dataDict["first_name"] as? String ?? ""
+        let last_name = dataDict["last_name"] as? String ?? ""
+
         let dob = dataDict["dob"] as? String ?? ""
         let gender = dataDict["gender"] as? String ?? ""
         let image = dataDict["image"] as? String ?? ""
@@ -106,6 +112,9 @@ struct ChildDetailDict<T>{
         self.user_id = user_id
         self.child_id = child_id
         self.name = name
+        self.first_name = first_name
+        self.last_name = last_name
+
         self.dob = dob
         self.gender = gender
         self.image = image
