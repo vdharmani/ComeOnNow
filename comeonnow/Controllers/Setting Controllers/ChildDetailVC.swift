@@ -50,7 +50,7 @@ class ChildDetailVC: UIViewController {
     
     var first_name:String?
     var last_name:String?
-
+    
     var dob:String?
     var actualDob:String?
     
@@ -60,9 +60,13 @@ class ChildDetailVC: UIViewController {
     
     var appointment_time_from:String?
     var appointment_time_to:String?
+    var appointment_time:String?
+    var duration:String?
+    
     var appointment_date:String?
     var appointmentType:String?
     var appointmentTitle:String?
+    var appointmentDescription:String?
     
     var childId:String?
     var desc:String?
@@ -80,16 +84,16 @@ class ChildDetailVC: UIViewController {
             editBtn.isHidden = true
             editBtnImgView.isHidden = true
             getChildDetailByIdApi(childId: childId ?? "")
-            seeMoreViewObj.isHidden = false
+            
+            descriptionView.isHidden = true
             
         }else{
             if isFromAppointment == true{
                 editBtn.isHidden = true
                 editBtnImgView.isHidden = true
-                //            descriptionView.isHidden = true
                 navBarLbl.text = "Appointment Detail"
                 descriptionLbl.text = desc
-                //                descStaticLbl.text = ""
+                
                 if appointment_date != ""{
                     appointmentChildDetailView.isHidden = false
                     appointmentTBViewHeightConstraint.constant = 79.0
@@ -102,37 +106,15 @@ class ChildDetailVC: UIViewController {
                     appointmentTBViewHeightConstraint.constant = 0
                 }
                 appointmentTypeLbl.text = appointmentType
-                appointmentTitleLbl.text = appointmentTitle
-                
+                appointmentTitleLbl.text = appointmentDescription
+                descriptionView.isHidden = false
                 dateLabel.text = appointment_date
-                let time1 = appointment_time_to ?? ""
-                let time2 = appointment_time_from ?? ""
-                if time1 != "" && time2 != ""{
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "h:mma"
-                    
-                    let date1 = formatter.date(from: time1)!
-                    let date2 = formatter.date(from: time2)!
-                    
-                    let elapsedTime = date2.timeIntervalSince(date1)
-                    
-                    // convert from seconds to hours, rounding down to the nearest hour
-                    let hours = floor(elapsedTime / 60 / 60)
-                    
-                    // we have to subtract the number of seconds in hours from minutes to get
-                    // the remaining minutes, rounding down to the nearest minute (in case you
-                    // want to get seconds down the road)
-                    let minutes = floor((elapsedTime - (hours * 60 * 60)) / 60)
-                    
-                    print("\(Int(hours)) hr and \(Int(minutes)) min")
-                    let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-                    timeLabel.text = "\(appointment_time_to ?? "") - \(appointment_time_from ?? "")"
-                    //(\(String(describing: hourMin)))
-                }
+                
+                let finalAppointmentTime = appointment_time == "N/A" ? appointment_time_to : appointment_time
+                timeLabel.text = "\(finalAppointmentTime ?? "") (\(duration ?? "") min)"
                 
             }else{
-                seeMoreViewObj.isHidden = false
-                
+                descriptionView.isHidden = true
                 editBtn.isHidden = false
                 editBtnImgView.isHidden = false
                 if desc != ""{
@@ -143,43 +125,15 @@ class ChildDetailVC: UIViewController {
                 }
                 
                 if appointmentDetailsDict?.appointment_date != ""{
-                    //                    appointmentChildDetailView.isHidden = false
-                    //                    appointmentViewHeightConstraint.constant = 79.0
                     getChildDetailByIdApi(childId: childId ?? "")
-                    
-                    //                    appointmentChildDetailView.isHidden = true
-                    //                    appointmentViewHeightConstraint.constant = 0
                 }else{
-                    //                    appointmentChildDetailView.isHidden = true
-                    //                    appointmentViewHeightConstraint.constant = 0
+                    seeMoreViewObj.isHidden = true
                 }
                 
                 dateLabel.text = appointmentDetailsDict?.appointment_date
-                let time1 = appointmentDetailsDict?.appointment_time_to ?? ""
-                let time2 = appointmentDetailsDict?.appointment_time_from ?? ""
-                if time1 != "" && time2 != ""{
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "h:mma"
-                    
-                    let date1 = formatter.date(from: time1)!
-                    let date2 = formatter.date(from: time2)!
-                    
-                    let elapsedTime = date2.timeIntervalSince(date1)
-                    
-                    // convert from seconds to hours, rounding down to the nearest hour
-                    let hours = floor(elapsedTime / 60 / 60)
-                    
-                    // we have to subtract the number of seconds in hours from minutes to get
-                    // the remaining minutes, rounding down to the nearest minute (in case you
-                    // want to get seconds down the road)
-                    let minutes = floor((elapsedTime - (hours * 60 * 60)) / 60)
-                    
-                    print("\(Int(hours)) hr and \(Int(minutes)) min")
-                    let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-                    timeLabel.text = "\(appointmentDetailsDict?.appointment_time_to ?? "") - \(appointmentDetailsDict?.appointment_time_from ?? "")"
-                    //            descriptionView.isHidden = false
-                    navBarLbl.text = "Child Detail"
-                }
+                navBarLbl.text = "Child Detail"
+                let finalAppointmentTime = appointmentDetailsDict?.appointment_time == "N/A" ? appointmentDetailsDict?.appointment_time_to : appointmentDetailsDict?.appointment_time
+                timeLabel.text = "\(finalAppointmentTime ?? "") (\(appointmentDetailsDict?.duration ?? "") min)"
             }
             nameLabel.text = "\(last_name ?? "") \(first_name ?? "")"
             ageLabel.text = dob
@@ -189,80 +143,16 @@ class ChildDetailVC: UIViewController {
             
             photo = image
             photo = photo?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-            //        if sPhotoStr != ""{
             mainImg.downloadImage(url:  photo ?? "")
-            //            mainImg.sd_setImage(with: URL(string: sPhotoStr ?? ""), placeholderImage:#imageLiteral(resourceName: "notifyplaceholderImg"))
-            // }
+            
         }
-        
-        
         
     }
     
     @IBAction func editChildDetailBtnAction(_ sender: Any) {
         
         let vc = AddChildVC.instantiate(fromAppStoryboard: .Setting)
-        //        if isFromAppointment == true{
-        //
-        //
-        //
-        //            vc.appointment_date = appointmentDetailsDict?.appointment_date
-        //            let time1 = appointmentDetailsDict?.appointment_time_to ?? ""
-        //               let time2 = appointmentDetailsDict?.appointment_time_from ?? ""
-        //            if time1 != "" && time2 != ""{
-        //               let formatter = DateFormatter()
-        //               formatter.dateFormat = "h:mma"
-        //
-        //               let date1 = formatter.date(from: time1)!
-        //               let date2 = formatter.date(from: time2)!
-        //
-        //               let elapsedTime = date2.timeIntervalSince(date1)
-        //
-        //               // convert from seconds to hours, rounding down to the nearest hour
-        //               let hours = floor(elapsedTime / 60 / 60)
-        //
-        //               // we have to subtract the number of seconds in hours from minutes to get
-        //               // the remaining minutes, rounding down to the nearest minute (in case you
-        //               // want to get seconds down the road)
-        //               let minutes = floor((elapsedTime - (hours * 60 * 60)) / 60)
-        //
-        //               print("\(Int(hours)) hr and \(Int(minutes)) min")
-        //               let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-        //                vc.appointmentTimeStr = "\(appointmentDetailsDict?.appointment_time_to ?? "") - \(appointmentDetailsDict?.appointment_time_from ?? "")"
-        //                //(\(String(describing: hourMin)))
-        //            }
-        //
-        //        }else{
-        //            vc.desc = desc
-        //
-        //
-        //            vc.appointment_date = appointment_date
-        //            let time1 = appointment_time_to ?? ""
-        //               let time2 = appointment_time_from ?? ""
-        //            if time1 != "" && time2 != ""{
-        //               let formatter = DateFormatter()
-        //               formatter.dateFormat = "h:mma"
-        //
-        //               let date1 = formatter.date(from: time1)!
-        //               let date2 = formatter.date(from: time2)!
-        //
-        //               let elapsedTime = date2.timeIntervalSince(date1)
-        //
-        //               // convert from seconds to hours, rounding down to the nearest hour
-        //               let hours = floor(elapsedTime / 60 / 60)
-        //
-        //               // we have to subtract the number of seconds in hours from minutes to get
-        //               // the remaining minutes, rounding down to the nearest minute (in case you
-        //               // want to get seconds down the road)
-        //               let minutes = floor((elapsedTime - (hours * 60 * 60)) / 60)
-        //
-        //               print("\(Int(hours)) hr and \(Int(minutes)) min")
-        //               let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-        //                vc.appointmentTimeStr = "\(appointment_time_to ?? "") - \(appointment_time_from ?? "")"
-        ////            descriptionView.isHidden = false
-        //            navBarLbl.text = "Child Detail"
-        //        }
-        //        }
+        
         if self.isFromEdit == true{
             vc.first_name = first_name
             vc.last_name = last_name
@@ -320,45 +210,28 @@ class ChildDetailVC: UIViewController {
 }
 extension ChildDetailVC : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if appointmentDetailArr.count > 0{
-            return appointmentDetailArr.count
-        }else{
-            return 0
-        }
+        
+        return appointmentDetailArr.count > 3 ? 3 : appointmentDetailArr.count
+        
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AppointmentChildDetailTBCell
         cell.dateLbl.text = appointmentDetailArr[indexPath.row].appointment_date
-        let time1 = appointmentDetailArr[indexPath.row].appointment_time_to
-        let time2 = appointmentDetailArr[indexPath.row].appointment_time_from
-        if time1 != "" && time2 != ""{
-            let formatter = DateFormatter()
-            formatter.dateFormat = "h:mma"
+        
+        let finalAppointmentTime = appointmentDetailArr[indexPath.row].appointment_time == "N/A" ? appointmentDetailArr[indexPath.row].appointment_time_to : appointmentDetailArr[indexPath.row].appointment_time
+        cell.timeLbl.text = "\(finalAppointmentTime) (\(appointmentDetailArr[indexPath.row].duration) min)"
+        
+        
+        //            cell.timeLbl.text = "\(appointmentDetailArr[indexPath.row].appointment_time_to) - \(appointmentDetailArr[indexPath.row].appointment_time_from)"
+        cell.appointmentTypeLbl.text = appointmentDetailArr[indexPath.row].appointments_type
+        cell.appointmentTitleLbl.text  = appointmentDetailArr[indexPath.row].title
+        DispatchQueue.main.async {
+            self.appointmentTBViewHeightConstraint.constant = self.appointmentChildTBView.contentSize.height
             
-            let date1 = formatter.date(from: time1)!
-            let date2 = formatter.date(from: time2)!
-            
-            let elapsedTime = date2.timeIntervalSince(date1)
-            
-            // convert from seconds to hours, rounding down to the nearest hour
-            let hours = floor(elapsedTime / 60 / 60)
-            
-            // we have to subtract the number of seconds in hours from minutes to get
-            // the remaining minutes, rounding down to the nearest minute (in case you
-            // want to get seconds down the road)
-            let minutes = floor((elapsedTime - (hours * 60 * 60)) / 60)
-            
-            print("\(Int(hours)) hr and \(Int(minutes)) min")
-            let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-            cell.timeLbl.text = "\(appointmentDetailArr[indexPath.row].appointment_time_to) - \(appointmentDetailArr[indexPath.row].appointment_time_from)"
-            cell.appointmentTypeLbl.text = appointmentDetailArr[indexPath.row].appointments_type
-            cell.appointmentTitleLbl.text  = appointmentDetailArr[indexPath.row].title
-            DispatchQueue.main.async {
-                self.appointmentTBViewHeightConstraint.constant = self.appointmentChildTBView.contentSize.height
-                
-            }
         }
+        
         
         
         
@@ -368,25 +241,25 @@ extension ChildDetailVC : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
         vc.first_name = childDetailsData?.name
-        vc.dob = childDetailsData?.actual_dob
+        vc.dob = childDetailsData?.dob
         vc.gender = childDetailsData?.gender
         vc.image = childDetailsData?.image
         vc.isFromAppointment = true
-        if appointmentDetailArr.count > 1{
-            
+        if appointmentDetailArr.count > 0{
             vc.desc = appointmentDetailArr[indexPath.row].description
+            vc.appointment_time = appointmentDetailArr[indexPath.row].appointment_time
+            vc.duration = appointmentDetailArr[indexPath.row].duration
             vc.appointment_time_to = appointmentDetailArr[indexPath.row].appointment_time_to
             vc.appointment_time_from = appointmentDetailArr[indexPath.row].appointment_time_from
             vc.appointment_date = appointmentDetailArr[indexPath.row].appointment_date
             vc.appointmentType = appointmentDetailArr[indexPath.row].appointments_type
+            vc.appointmentDescription = appointmentDetailArr[indexPath.row].title
         }
-        //        vc.delegate = self
-        //            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
+        
         
         self.navigationController?.pushViewController(vc, animated: false)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //        return UIScreen.main.bounds.size.height * 0.13
         return UITableView.automaticDimension
         
     }
@@ -413,39 +286,23 @@ extension ChildDetailVC:SendingDataToBackPageDelegateProtocol{
             }
             
             dateLabel.text = dict?.appointmentDetailArr[0].appointment_date
-            let time1 = dict?.appointmentDetailArr[0].appointment_time_to ?? ""
-            let time2 = dict?.appointmentDetailArr[0].appointment_time_from ?? ""
-            if time1 != "" && time2 != ""{
-                let formatter = DateFormatter()
-                formatter.dateFormat = "h:mma"
-                
-                let date1 = formatter.date(from: time1)!
-                let date2 = formatter.date(from: time2)!
-                
-                let elapsedTime = date2.timeIntervalSince(date1)
-                
-                // convert from seconds to hours, rounding down to the nearest hour
-                let hours = floor(elapsedTime / 60 / 60)
-                
-                // we have to subtract the number of seconds in hours from minutes to get
-                // the remaining minutes, rounding down to the nearest minute (in case you
-                // want to get seconds down the road)
-                let minutes = floor((elapsedTime - (hours * 60 * 60)) / 60)
-                
-                print("\(Int(hours)) hr and \(Int(minutes)) min")
-                let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-                timeLabel.text = "\(dict?.appointmentDetailArr[0].appointment_time_to ?? "") - \(dict?.appointmentDetailArr[0].appointment_time_from ?? "")"
-                //            descriptionView.isHidden = false
-                if isFromNotification == true{
-                    navBarLbl.text = "Notification Detail"
-                }else{
-                    navBarLbl.text = "Child Detail"
-                }
+            seeMoreViewObj.isHidden = self.appointmentDetailArr.count > 3 ? false : true
+            
+            
+            let finalAppointmentTime = appointmentDetailArr[0].appointment_time == "N/A" ? appointmentDetailArr[0].appointment_time_to : appointmentDetailArr[0].appointment_time
+            timeLabel.text = "\(finalAppointmentTime) (\(appointmentDetailArr[0].duration) min)"
+            //                timeLabel.text = "\(dict?.appointmentDetailArr[0].appointment_time_to ?? "") - \(dict?.appointmentDetailArr[0].appointment_time_from ?? "")"
+            //            descriptionView.isHidden = false
+            if isFromNotification == true{
+                navBarLbl.text = "Notification Detail"
+            }else{
+                navBarLbl.text = "Child Detail"
             }
+            
         }
         
         nameLabel.text = "\(dict?.last_name ?? "") \( dict!.first_name)"
-
+        
         ageLabel.text = dict?.dob
         genderLabel.text = dict?.gender
         let userName = getSAppDefault(key:"UserName") as? String ?? ""
@@ -458,7 +315,7 @@ extension ChildDetailVC:SendingDataToBackPageDelegateProtocol{
     }
     open func getChildDetailByIdApi(childId:String){
         
-
+        
         
         let paramds = ["user_id":retrieveDefaults().0,"child_id":childId] as [String : Any]
         
@@ -484,10 +341,8 @@ extension ChildDetailVC:SendingDataToBackPageDelegateProtocol{
                         self.childDetailsData =  ChildDetailData(dict:JSON)
                         
                         if self.childDetailsData?.status == 1{
-                            //                            let userDetailDict = getProfileResp?.user_detail as? [String:AnyHashable] ?? [:]
-                            //                            self.userDetailDict = getProfileResp?.user_detail as? [String:AnyHashable] ?? [:]
-                            self.setUIValuesUpdate(dict:self.childDetailsData)
                             self.appointmentDetailArr = self.childDetailsData!.appointmentDetailArr
+                            self.setUIValuesUpdate(dict:self.childDetailsData)
                             self.appointmentChildTBView.reloadData()
                             
                             

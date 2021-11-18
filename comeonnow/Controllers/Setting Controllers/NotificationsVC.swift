@@ -13,7 +13,7 @@ import KRPullLoader
 class NotificationsVC: UIViewController {
     var delegate: SendingAddBOToBOMainPageDelegateProtocol? = nil
     var loaderBool = Bool()
-
+    
     @IBOutlet weak var notificationsTableView: UITableView!
     @IBOutlet weak var noDataFoundView: UIView!
     
@@ -27,11 +27,10 @@ class NotificationsVC: UIViewController {
         
         notificationsTableView.dataSource = self
         notificationsTableView.delegate = self
-        
         notificationsTableView.register(UINib(nibName: "NotificationsTVC", bundle: nil), forCellReuseIdentifier: "NotificationsTVC")
         
-//        notificationsTableView.register(UINib(nibName: "NotificationTVST", bundle: nil), forCellReuseIdentifier: "NotificationTVST")
-
+        //        notificationsTableView.register(UINib(nibName: "NotificationTVST", bundle: nil), forCellReuseIdentifier: "NotificationTVST")
+        
         let loadMoreView = KRPullLoadView()
         loadMoreView.delegate = self
         notificationsTableView.addPullLoadableView(loadMoreView, type: .loadMore)
@@ -62,17 +61,17 @@ class NotificationsVC: UIViewController {
         
         let urlwithPercentEscapes = strURL.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)
         DispatchQueue.main.async {
-
-        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+            
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
-
+        
         AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":retrieveDefaults().1])
             .responseJSON { (response) in
                 DispatchQueue.main.async {
-
-                AFWrapperClass.svprogressHudDismiss(view: self)
+                    
+                    AFWrapperClass.svprogressHudDismiss(view: self)
                 }
-
+                
                 switch response.result {
                 case .success(let value):
                     if let JSON = value as? [String: Any] {
@@ -119,10 +118,10 @@ class NotificationsVC: UIViewController {
                                     actions: .ok(handler: {
                                         removeAppDefaults(key:"AuthToken")
                                         removeAppDefaults(key:"UserName")
-                                      
-
+                                        
+                                        
                                         appDel.logOut()
-                                     
+                                        
                                     }),
                                     from: self
                                 )
@@ -132,27 +131,17 @@ class NotificationsVC: UIViewController {
                         else{
                             if self.notificationArray.count>0{
                                 DispatchQueue.main.async {
-
-                                self.noDataFoundView.isHidden = true
+                                    
+                                    self.noDataFoundView.isHidden = true
                                 }
                             }else{
                                 DispatchQueue.main.async {
-
-                                self.noDataFoundView.isHidden = false
+                                    
+                                    self.noDataFoundView.isHidden = false
                                 }
                             }
-                          
-//                            DispatchQueue.main.async {
-//
-//                                Alert.present(
-//                                    title: AppAlertTitle.appName.rawValue,
-//                                    message: getProfileResp?.message ?? "",
-//                                    actions: .ok(handler: {
-//
-//                                    }),
-//                                    from: self
-//                                )
-//                            }
+                            
+                            
                         }
                         
                         
@@ -177,7 +166,7 @@ class NotificationsVC: UIViewController {
     }
     open func acceptRejectApi(status:String,id:String,notificationId:String){
         
-
+        
         
         let paramds = ["user_id":retrieveDefaults().0,"id":id,"status":status,"notification_id":notificationId] as [String : Any]
         
@@ -185,17 +174,17 @@ class NotificationsVC: UIViewController {
         
         let urlwithPercentEscapes = strURL.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)
         DispatchQueue.main.async {
-
-        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+            
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
-
+        
         AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":retrieveDefaults().1])
             .responseJSON { (response) in
                 DispatchQueue.main.async {
-
-                AFWrapperClass.svprogressHudDismiss(view: self)
+                    
+                    AFWrapperClass.svprogressHudDismiss(view: self)
                 }
-
+                
                 switch response.result {
                 case .success(let value):
                     if let JSON = value as? [String: Any] {
@@ -238,16 +227,7 @@ class NotificationsVC: UIViewController {
                 case .failure(let error):
                     let error : NSError = error as NSError
                     print(error)
-                //                    DispatchQueue.main.async {
-                //
-                //                    Alert.present(
-                //                        title: AppAlertTitle.appName.rawValue,
-                //                        message: AppAlertTitle.connectionError.rawValue,
-                //                        actions: .ok(handler: {
-                //                        }),
-                //                        from: self
-                //                    )
-                //                    }
+                   
                 }
             }
         
@@ -298,9 +278,7 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
         if notificationArray.count > 0{
             var sPhotoStr = notificationArray[indexPath.row].image
             sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-            //        if sPhotoStr != ""{
-            
-            //}
+          
             cell.acceptButton.addTarget(self, action: #selector(acceptBtnAction(_:)), for: .touchUpInside)
             cell.declineButton.addTarget(self, action: #selector(rejectBtnAction(_:)), for: .touchUpInside)
             
@@ -319,21 +297,25 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
                 cell.docImgView.image = #imageLiteral(resourceName: "logo")
             }else{
                 cell.docImgView.image = #imageLiteral(resourceName: "appointment")
-
+                
             }
             
             cell.datehideLbl.text = notificationArray[indexPath.row].description
+            
             if notificationArray[indexPath.row].notification_type == "2"{
                 cell.appointmentLabel.text = notificationArray[indexPath.row].description
                 cell.stackView.isHidden = false
+                cell.stackViewHeightConstraint.constant = 25
                 cell.datehideLbl.isHidden = true
                 cell.mainImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:UIImage(named:"notifyplaceholderImg"))
-
+                
             }else{
                 cell.appointmentLabel.text = notificationArray[indexPath.row].title
                 cell.mainImage.sd_setImage(with: URL(string: sPhotoStr), placeholderImage:UIImage(named:"AppIcN"))
-
+                
                 cell.stackView.isHidden = true
+                cell.stackViewHeightConstraint.constant = 0
+
                 cell.datehideLbl.isHidden = false
                 cell.daysLabel.isHidden = false
             }
@@ -344,26 +326,26 @@ extension NotificationsVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         
-//        if notificationArray[indexPath.row].notification_type == "2"{
+        //        if notificationArray[indexPath.row].notification_type == "2"{
         return UITableView.automaticDimension
-//        }else{
-//            return UIScreen.main.bounds.size.height * 0.1
-//        }
+        //        }else{
+        //            return UIScreen.main.bounds.size.height * 0.1
+        //        }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if notificationArray[indexPath.row].notification_type != "2" && notificationArray[indexPath.row].notification_type != "1" {
-        let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
-        vc.isFromNotification = true
-        vc.childId = notificationArray[indexPath.row].detailDicts.child_id
-        vc.delegate = self
-        self.navigationController?.pushViewController(vc, animated: false)
+            let vc = ChildDetailVC.instantiate(fromAppStoryboard: .Setting)
+            vc.isFromNotification = true
+            vc.childId = notificationArray[indexPath.row].detailDicts.child_id
+            vc.delegate = self
+            self.navigationController?.pushViewController(vc, animated: false)
         }else{
             if notificationArray[indexPath.row].document != ""{
-            let vc = NotificationDetailVC.instantiate(fromAppStoryboard: .Setting)
-            vc.navBarTitleString = "Document"
-            
-            vc.webLinkUrlString = notificationArray[indexPath.row].document
-            self.navigationController?.pushViewController(vc, animated: false)
+                let vc = NotificationDetailVC.instantiate(fromAppStoryboard: .Setting)
+                vc.navBarTitleString = "Document"
+                
+                vc.webLinkUrlString = notificationArray[indexPath.row].document
+                self.navigationController?.pushViewController(vc, animated: false)
             }
         }
     }
@@ -456,7 +438,7 @@ extension NotificationsVC:KRPullLoadViewDelegate{
 }
 extension NotificationsVC:SendingAddBOToBOMainPageDelegateProtocol{
     func sendDataToBO(myData: Bool) {
-    loaderBool = myData
+        loaderBool = myData
     }
     
     

@@ -16,7 +16,7 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     var userDetailDict = [String:AnyHashable]()
     var imgArray = [Data]()
     var delegate: SendingDataToBackPageDelegateProtocol? = nil
-
+    
     var isFromEditChild = Bool()
     
     @IBOutlet weak var userChildProfileImgView: UIImageView!
@@ -45,12 +45,12 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     
     @IBOutlet weak var deleteChildBtn: UIButton!
     var genderArr = [AnyHashable]()
-     var datePicker = UIDatePicker()
+    var datePicker = UIDatePicker()
     lazy var genderPickerView = UIPickerView()
     var appointmentDetailsDict: AppointmentDetailsDict<AnyHashable>?
     var first_name:String?
     var last_name:String?
-
+    
     var dob:String?
     var gender:String?
     var photo:String?
@@ -73,20 +73,20 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
             dOBTFView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
         case genderTF :
             genderTFView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-
+            
         default:break
             
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-    
+        
         firstNameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         lastNameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-
+        
         dOBTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         genderTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-
-       
+        
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +94,6 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
             navBarLbl.text = "Edit Child"
             var sPhotoStr = photo
             sPhotoStr = sPhotoStr?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-    //        if sPhotoStr != ""{
             userChildProfileImgView.sd_setImage(with: URL(string: sPhotoStr ?? ""), placeholderImage:#imageLiteral(resourceName: "notifyplaceholderImg"))
             firstNameTF.text = first_name
             lastNameTF.text = last_name
@@ -113,16 +112,16 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
         
         firstNameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         lastNameTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-
+        
         dOBTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         genderTFView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         genderArr = ["Male","Female","Other"]
         firstNameTF.delegate = self
         lastNameTF.delegate = self
-
+        
         genderTF.delegate = self
         dOBTF.delegate = self
-
+        
         genderPickerView.delegate = self
         genderPickerView.dataSource = self
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(closePicker))
@@ -137,19 +136,19 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
         // Do any additional setup after loading the view.
     }
     func convertDateFormat(inputDate: String) -> String {
-      
-         let olDateFormatter = DateFormatter()
-         olDateFormatter.dateFormat = "yyyy-MM-dd"
-
-         let oldDate = olDateFormatter.date(from: inputDate)
-
-         let convertDateFormatter = DateFormatter()
-         convertDateFormatter.dateFormat = "MM-dd-yyyy"
+        
+        let olDateFormatter = DateFormatter()
+        olDateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let oldDate = olDateFormatter.date(from: inputDate)
+        
+        let convertDateFormatter = DateFormatter()
+        convertDateFormatter.dateFormat = "MM-dd-yyyy"
         if oldDate == nil{
             return ""
         }else{
             return convertDateFormatter.string(from: oldDate!)
-
+            
         }
     }
     @objc func closePicker() {
@@ -174,10 +173,8 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     }
     @objc func showSelectedDate() {
         if dOBTF.isFirstResponder{
-//            datePlaceholderLbl.isHidden = true
             let formatter = DateFormatter()
             
-            //   [formatter setDateFormat:@"dd MMMM yyyy"];
             formatter.dateFormat = "YYYY-MM-dd"
             dob = "\(formatter.string(from: datePicker.date))"
             formatter.dateFormat = "MM-dd-yyyy"
@@ -186,61 +183,61 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
         }
         
     }
- 
+    
     @IBAction func deleteChildBtnAction(_ sender: Any) {
         let alert = UIAlertController(title:AppAlertTitle.appName.rawValue, message: "Are you sure want to delete child?", preferredStyle: .alert)
-            let Ok = UIAlertAction(title: "Confirm", style: .default, handler: { [self] action in
+        let Ok = UIAlertAction(title: "Confirm", style: .default, handler: { [self] action in
+            alert.dismiss(animated: true)
+            deleteChildApi(childId: childId ?? "")
+            
+            
+        })
+        let cancel = UIAlertAction(
+            title: "Cancel",
+            style: .default,
+            handler: { action in
                 alert.dismiss(animated: true)
-                deleteChildApi(childId: childId ?? "")
-
-
             })
-                let cancel = UIAlertAction(
-                    title: "Cancel",
-                    style: .default,
-                    handler: { action in
-                        alert.dismiss(animated: true)
-                    })
-                alert.addAction(Ok)
-                alert.addAction(cancel)
+        alert.addAction(Ok)
+        alert.addAction(cancel)
         self.present(alert, animated: true)
-
+        
     }
     open func deleteChildApi(childId:String){
-       
-     
+        
+        
         let strURL = kBASEURL + WSMethods.childDelete
         let urlwithPercentEscapes = strURL.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)
-
-
+        
+        
         let paramds = ["user_id":retrieveDefaults().0,"child_id":childId] as [String : Any]
-
+        
         DispatchQueue.main.async {
-
-        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+            
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
         
         AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":retrieveDefaults().1])
             .responseJSON { (response) in
                 DispatchQueue.main.async {
-
-                AFWrapperClass.svprogressHudDismiss(view:self)
+                    
+                    AFWrapperClass.svprogressHudDismiss(view:self)
                 }
-
+                
                 switch response.result {
                 case .success(let value):
                     if let JSON = value as? [String: Any] {
                         print(JSON as NSDictionary)
                         let status = JSON["status"] as? Int ?? 0
                         let message = JSON["message"] as? String ?? ""
-
+                        
                         if status == 1{
                             for controller in self.navigationController!.viewControllers as Array {
-                                        if controller.isKind(of: TabBarVC.self) {
-                                            self.navigationController!.popToViewController(controller, animated: true)
-                                            break
-                                        }
-                                    }
+                                if controller.isKind(of: TabBarVC.self) {
+                                    self.navigationController!.popToViewController(controller, animated: true)
+                                    break
+                                }
+                            }
                         }else{
                             DispatchQueue.main.async {
                                 
@@ -273,11 +270,13 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
                     }
                 }
             }
-
+        
         
     }
     
     @IBAction func addChildBtnAction(_ sender: Any) {
+        let defaultImage = UIImage(named: "notifyplaceholderImg")
+
         if firstNameTF.text?.trimmingCharacters(in: .whitespaces) == ""{
             Alert.present(
                 title: AppAlertTitle.appName.rawValue,
@@ -312,7 +311,17 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
                 }),
                 from: self
             )
-        }else{
+        }
+            else if userChildProfileImgView.image?.pngData() == defaultImage?.pngData(){
+            Alert.present(
+                title: AppAlertTitle.appName.rawValue,
+                message: AppSignInForgotSignUpAlertNessage.selectImage,
+                actions: .ok(handler: {
+                }),
+                from: self
+            )
+        }
+        else{
             addChildApi()
         }
         
@@ -354,7 +363,7 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
         let chosenImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
         userChildProfileImgView.image = chosenImage
         picker.dismiss(animated: true)
-
+        
     }
     @IBAction func choosePhotoBtnAction(_ sender: Any) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -397,29 +406,29 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
     
     @IBAction func backBtnAction(_ sender: Any) {
         navigationController?.popViewController(animated: true)
-
+        
     }
     
     func requestWith(endUrl: String, parameters: [AnyHashable : Any]){
         
         let url = endUrl /* your API url */
-
+        
         let headers: HTTPHeaders = [
             /* "Authorization": "your_access_token",  in case you need authorization header */
             "Content-type": "multipart/form-data",
             "token":retrieveDefaults().1
         ]
         DispatchQueue.main.async {
-
-        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+            
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
-
+        
         AF.upload(multipartFormData: { (multipartFormData) in
             
             for (key, value) in parameters {
                 multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as! String)
             }
-          
+            
             
             for i in 0..<self.imgArray.count{
                 let imageData1 = self.imgArray[i]
@@ -440,74 +449,72 @@ class AddChildVC: UIViewController,UINavigationControllerDelegate,UIImagePickerC
             
         }, to: url, usingThreshold: UInt64.init(), method: .post, headers: headers, interceptor: nil, fileManager: .default)
         
-        .uploadProgress(closure: { (progress) in
-            print("Upload Progress: \(progress.fractionCompleted)")
-            
-        })
-        .responseJSON { (response) in
-            DispatchQueue.main.async {
-            AFWrapperClass.svprogressHudDismiss(view: self)
-            }
-
-            print("Succesfully uploaded\(response)")
-            let respDict =  response.value as? [String : AnyObject] ?? [:]
-            if respDict.count != 0{
-                if self.isFromEditChild == true{
-                    let signUpStepData =  EditChildData(dict: respDict)
-                    if signUpStepData?.status == 1{
-                        if self.delegate != nil{
-                            self.delegate?.sendDataToBO(childId:signUpStepData?.editedCdataDict.child_id ?? "", isFromEdit: true)
-                        }
-                        self.navigationController?.popViewController(animated: true)
-                    }else{
-                        
-                    }
-                }else{
-                    let signUpStepData =  ForgotPasswordData(dict: respDict)
-                    if signUpStepData?.status == 1{
-                       
-                        self.navigationController?.popViewController(animated: true)
-                    }else{
-                        
-                    }
+            .uploadProgress(closure: { (progress) in
+                print("Upload Progress: \(progress.fractionCompleted)")
+                
+            })
+            .responseJSON { (response) in
+                DispatchQueue.main.async {
+                    AFWrapperClass.svprogressHudDismiss(view: self)
                 }
                 
-              
-            }else{
+                print("Succesfully uploaded\(response)")
+                let respDict =  response.value as? [String : AnyObject] ?? [:]
+                if respDict.count != 0{
+                    if self.isFromEditChild == true{
+                        let signUpStepData =  EditChildData(dict: respDict)
+                        if signUpStepData?.status == 1{
+                            if self.delegate != nil{
+                                self.delegate?.sendDataToBO(childId:signUpStepData?.editedCdataDict.child_id ?? "", isFromEdit: true)
+                            }
+                            self.navigationController?.popViewController(animated: true)
+                        }else{
+                            
+                        }
+                    }else{
+                        let signUpStepData =  ForgotPasswordData(dict: respDict)
+                        if signUpStepData?.status == 1{
+                            
+                            self.navigationController?.popViewController(animated: true)
+                        }else{
+                            
+                        }
+                    }
+                    
+                    
+                }else{
+                    
+                }
+                
                 
             }
-            
-            
-        }
         
         
         
     }
     func addChildApi() {
-//        let compressedData = (userChildProfileImgView.image?.pngData(compressionQuality: 0.3))!
         let compressedData = (userChildProfileImgView.image?.pngData())!
         imgArray.removeAll()
-       
-                imgArray.append(compressedData)
         
-//        let userId = getSAppDefault(key: "UserId") as? String ?? ""
+        imgArray.append(compressedData)
+        
         if isFromEditChild == true{
-
+            
             let paramds = ["dob":dob ?? "" ,"gender":genderTF.text ?? "","first_name":firstNameTF.text ?? "","last_name":lastNameTF.text ?? "","user_id":retrieveDefaults().0,"child_id":childId ?? ""] as [String : Any]
-    
-        let strURL = kBASEURL + WSMethods.editChild
-
+            
+            let strURL = kBASEURL + WSMethods.editChild
+            
             self.requestWith(endUrl: strURL , parameters: paramds)
             
         }else{
             let paramds = ["dob":dob ?? "" ,"gender":genderTF.text ?? "","first_name":firstNameTF.text ?? "","last_name":lastNameTF.text ?? "","user_id":retrieveDefaults().0] as [String : Any]
-        
+            
             let strURL = kBASEURL + WSMethods.addchildren
-
-                self.requestWith(endUrl: strURL , parameters: paramds)
+            
+            self.requestWith(endUrl: strURL , parameters: paramds)
         }
         
-
+        
     }
 }
 extension AddChildVC:UIPickerViewDelegate,UIPickerViewDataSource{
@@ -520,16 +527,16 @@ extension AddChildVC:UIPickerViewDelegate,UIPickerViewDataSource{
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-            return genderArr[row] as? String ?? ""
-
+        return genderArr[row] as? String ?? ""
+        
         
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-       
+        
         genderTF.text = genderArr[row] as? String ?? ""
         
-                
+        
         
     }
     

@@ -9,7 +9,7 @@ import UIKit
 import SVProgressHUD
 
 class LogInVC: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordView: UIView!
@@ -19,25 +19,25 @@ class LogInVC: UIViewController, UITextFieldDelegate {
     
     let rest = RestManager()
     var agreeTerms = false
-
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
         case emailTextField:
             emailView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-
+            
         case passwordTextField :
             passwordView.borderColor = #colorLiteral(red: 0.5187928081, green: 0.1490950882, blue: 0.4675421715, alpha: 1)
-
+            
         default:break
             
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-    
-            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-
-       
+        
+        emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        
+        
     }
     
     
@@ -45,15 +45,15 @@ class LogInVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-
+        
         emailTextField.delegate = self
         passwordTextField.delegate = self
-
+        
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-       
+        
         textField.resignFirstResponder()
-       
+        
         return true
     }
     
@@ -65,7 +65,7 @@ class LogInVC: UIViewController, UITextFieldDelegate {
         passwordTextField.isSecureTextEntry = agreeTerms == true ? false : true
     }
     
-
+    
     @IBAction func forgotPasswordButton(_ sender: Any) {
         let vc = ForgotPasswordVC.instantiate(fromAppStoryboard: .Main)
         self.navigationController?.pushViewController(vc, animated: true)
@@ -100,31 +100,31 @@ class LogInVC: UIViewController, UITextFieldDelegate {
         }
         
         else{
-           
+            
             loginApi()
         }
         
-
-      
-
+        
+        
+        
     }
     open func resendEmailVerificationApi(){
         
         
         guard let url = URL(string: kBASEURL + WSMethods.resentVerficationEmail) else { return }
-    
+        
         rest.requestHttpHeaders.add(value: "application/json", forKey: "Content-Type")
         rest.httpBodyParameters.add(value:emailTextField.text ?? "", forKey:"email")
-
+        
         DispatchQueue.main.async {
-
-        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+            
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
-
+        
         rest.makeRequest(toURL: url, withHttpMethod: .post) { (results) in
             DispatchQueue.main.async {
-
-            AFWrapperClass.svprogressHudDismiss(view: self)
+                
+                AFWrapperClass.svprogressHudDismiss(view: self)
             }
             guard let response = results.response else { return }
             if response.httpStatusCode == 200 {
@@ -133,7 +133,7 @@ class LogInVC: UIViewController, UITextFieldDelegate {
                 let jsonResult = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:AnyHashable] ?? [:]
                 
                 let forgotResp = ForgotPasswordData.init(dict: jsonResult ?? [:])
-
+                
                 if forgotResp?.status == 1{
                     DispatchQueue.main.async {
                         Alert.present(
@@ -145,29 +145,29 @@ class LogInVC: UIViewController, UITextFieldDelegate {
                             from: self
                         )
                     }                }else{
-                    DispatchQueue.main.async {
-
+                        DispatchQueue.main.async {
+                            
+                            Alert.present(
+                                title: AppAlertTitle.appName.rawValue,
+                                message: forgotResp?.message ?? "",
+                                actions: .ok(handler: {
+                                }),
+                                from: self
+                            )
+                        }
+                    }
+                
+                
+            }else{
+                DispatchQueue.main.async {
+                    
                     Alert.present(
                         title: AppAlertTitle.appName.rawValue,
-                        message: forgotResp?.message ?? "",
+                        message: AppAlertTitle.connectionError.rawValue,
                         actions: .ok(handler: {
                         }),
                         from: self
                     )
-                    }
-                }
-
-               
-            }else{
-                DispatchQueue.main.async {
-
-                Alert.present(
-                    title: AppAlertTitle.appName.rawValue,
-                    message: AppAlertTitle.connectionError.rawValue,
-                    actions: .ok(handler: {
-                    }),
-                    from: self
-                )
                 }
             }
         }
@@ -185,15 +185,15 @@ class LogInVC: UIViewController, UITextFieldDelegate {
         rest.httpBodyParameters.add(value: deviceToken, forKey: "deviceToken")
         rest.httpBodyParameters.add(value: "1", forKey: "deviceType")
         DispatchQueue.main.async {
-
-        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+            
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
         rest.makeRequest(toURL: url, withHttpMethod: .post) { (results) in
             DispatchQueue.main.async {
-
-            AFWrapperClass.svprogressHudDismiss(view: self)
+                
+                AFWrapperClass.svprogressHudDismiss(view: self)
             }
-
+            
             guard let response = results.response else { return }
             if response.httpStatusCode == 200 {
                 guard let data = results.data else { return }
@@ -205,50 +205,45 @@ class LogInVC: UIViewController, UITextFieldDelegate {
                 //                    let jobUser = try? decoder.decode(LoginData, from: jsondata!)
                 //
                 print(jsonResult!)
-
+                
                 let loginResp =   LoginSignUpData.init(dict: jsonResult ?? [:])
                 if loginResp?.status == 1{
                     self.saveDefaults(userId: loginResp?.user_id ?? "", authToken: loginResp?.authtoken ?? "", userName: "\(loginResp?.last_name ?? "") \( loginResp!.first_name)")
-
-
-                DispatchQueue.main.async {
-                 
-                            
-                       
-                            
-                          let storyBoard = UIStoryboard(name: "Setting", bundle: nil)
-                            let vc = storyBoard.instantiateViewController(withIdentifier:"TabBarVC") as? TabBarVC
-                            if let vc = vc {
-                              self.navigationController?.pushViewController(vc, animated: true)
-                            }
-                       
-                }
+                    
+                    
+                    DispatchQueue.main.async {
+                        
+                        
+                        
+                        
+                        let storyBoard = UIStoryboard(name: "Setting", bundle: nil)
+                        let vc = storyBoard.instantiateViewController(withIdentifier:"TabBarVC") as? TabBarVC
+                        if let vc = vc {
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                        
+                    }
                 }
                 
-              else if loginResp?.status == 2{
-                DispatchQueue.main.async {
-
-//                    Alert.present(title: <#T##String?#>, message: <#T##String#>, actions: .retry(handler: {
-//
-//                    }),.ok(handler: {
-//
-//                    }), from: self)
-                    
-                    
-                let alert = UIAlertController(title: AppAlertTitle.appName.rawValue, message: loginResp?.alertMessage, preferredStyle: UIAlertController.Style.alert)
-
-                alert.addAction(UIAlertAction(title: "Skip", style: UIAlertAction.Style.default, handler: { _ in
-                           //Cancel Action
-                       }))
-                       alert.addAction(UIAlertAction(title: "Resend",
-                                                     style: UIAlertAction.Style.destructive,
-                                                     handler: {(_: UIAlertAction!) in
-                                                       //Sign out action
-                                                        self.resendEmailVerificationApi()
-                       }))
-                       self.present(alert, animated: true, completion: nil)
+                else if loginResp?.status == 2{
+                    DispatchQueue.main.async {
+                        
+                        
+                        
+                        let alert = UIAlertController(title: AppAlertTitle.appName.rawValue, message: loginResp?.alertMessage, preferredStyle: UIAlertController.Style.alert)
+                        
+                        alert.addAction(UIAlertAction(title: "Skip", style: UIAlertAction.Style.default, handler: { _ in
+                            //Cancel Action
+                        }))
+                        alert.addAction(UIAlertAction(title: "Resend",
+                                                      style: UIAlertAction.Style.destructive,
+                                                      handler: {(_: UIAlertAction!) in
+                            //Sign out action
+                            self.resendEmailVerificationApi()
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
                 }
-              }
                 else{
                     DispatchQueue.main.async {
                         Alert.present(
@@ -263,14 +258,14 @@ class LogInVC: UIViewController, UITextFieldDelegate {
                 
             }else{
                 DispatchQueue.main.async {
-
-                Alert.present(
-                    title: AppAlertTitle.appName.rawValue,
-                    message: AppAlertTitle.connectionError.rawValue,
-                    actions: .ok(handler: {
-                    }),
-                    from: self
-                )
+                    
+                    Alert.present(
+                        title: AppAlertTitle.appName.rawValue,
+                        message: AppAlertTitle.connectionError.rawValue,
+                        actions: .ok(handler: {
+                        }),
+                        from: self
+                    )
                 }
             }
         }

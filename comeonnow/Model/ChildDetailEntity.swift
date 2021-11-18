@@ -147,6 +147,7 @@ struct AppointmentCDetailsDict<T>{
     var child_id:String
     var title:String
     var appointment_date:String
+    var appointment_time:String
     var appointment_time_to:String
     var appointment_time_from:String
     var appointments_type:String
@@ -154,12 +155,14 @@ struct AppointmentCDetailsDict<T>{
     var description:String
     var status:String
     var create_date:String
+    var duration:String
     init?(dataDict:[String:T]) {
         let id = dataDict["id"] as? String ?? ""
         let user_id = dataDict["user_id"] as? String ?? ""
         let child_id = dataDict["child_id"] as? String ?? ""
         let title = dataDict["title"] as? String ?? ""
         let appointment_date = dataDict["appointment_date"] as? String ?? ""
+        let appointment_time = dataDict["appointment_time"] as? String ?? ""
         let appointment_time_to = dataDict["appointment_time_to"] as? String ?? ""
         let appointment_time_from = dataDict["appointment_time_from"] as? String ?? ""
         let status = dataDict["status"] as? String ?? ""
@@ -167,7 +170,8 @@ struct AppointmentCDetailsDict<T>{
         let description = dataDict["description"] as? String ?? ""
         let is_delete = dataDict["is_delete"] as? String ?? ""
         let appointments_type = dataDict["appointments_type"] as? String ?? ""
-        
+        let duration = dataDict["duration"] as? String ?? ""
+
         
         self.id = id
         self.user_id = user_id
@@ -177,12 +181,14 @@ struct AppointmentCDetailsDict<T>{
         self.appointments_type = appointments_type
         
         self.appointment_date = appointment_date
+        self.appointment_time = appointment_time
         self.appointment_time_to = appointment_time_to
         self.appointment_time_from = appointment_time_from
         self.status = status
         self.create_date = create_date
         self.description = description
-        
+        self.duration = duration
+
     }
     
 }

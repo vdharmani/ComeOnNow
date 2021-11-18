@@ -29,32 +29,25 @@ struct WSMethods {
     static let resentVerficationEmail = "ResentVerficationEmail.php"
 
     static let notificationDetails = "notificationDetailsv2.php"
-//    static let notificationDetails = "notificationDetails.php"
     static let getAppointmentDetails = "GetAppointmentDetails.php"
     static let approveRejectAppointment = "approveRejectAppointment.php"
     static let childDelete = "childDelete.php"
-    static let getListOfItem = "GetListOfItem.php"
-    static let addIngredient = "AddIngredient.php"
-    static let addIngredientProductDetail = "AddIngredientProductDetail.php"
-    static let addMaping = "AddMaping.php"
-    static let matchMappingUnit = "MatchMappingUnit.php"
-    static let getAllBuildOrderDetail = "GetAllBuildOrderDetail.php"
-    static let addBuildOrder = "AddBuildOrder.php"
-    static let getNotificationDetailById = "GetNotificationDetailById.php"
     
     static let logOut = "logOut.php"
     static let getUserDetail = "getProfileDetails.php"
     static let editProfile = "editProfilev2.php"
     static let forgotPassword = "forgetPassword.php"
-    //getChildrenDetailsBychildId.php
-   static let  getChildrenDetailsBychildId = "getChildrenDetailsBychildIdv2.php"
-//    getChildrenDetailsBychildIdv2.php
+    static let  getChildrenDetailsBychildId = "getChildrenDetailsBychildIdv2.php"
 }
 
-let WS_Live = "https://comeonnow.io/webservice/"
-let WS_Staging = "https://www.dharmani.com/ComeOnNow/webservice/"
+//MARK: V2 LIVE BASE URL
+// https://www.comeonnow.io/v2/webservice/
+//MARK: LIVE BASE URL
+// https://comeonnow.io/webservice/
+//MARK: STAGING BASE URL
+// https://www.dharmani.com/ComeOnNow/webservice/
 
-let kBASEURL = WS_Live
+let kBASEURL = "https://www.comeonnow.io/v2/webservice/"
 
 struct SettingWebLinks {
     static let privacyPolicy = "PrivacyAndPolicy.html"
@@ -111,59 +104,3 @@ struct StoryboardName {
 }
 
 
-struct PhoneNumberFormat {
-    static let uk = "+NN NNN NNN NNNN"
-}
-
-struct InputFiledFormat {
-    static let passport = "xxxxxxxxxxxxxxxxxxxxxxxxx"
-    static let licence = "xxxxxxxxxxxxxxxxxxxxxxxxx"
-    static let Insurance = "xx xx xx xx x"
-}
-
-
-struct PostCodeFormat {
-    static let chars7 = "xxxx xxx"
-    static let chars6 = "xxx xxx"
-    static let chars5 = "xxx xx"
-}
-
-struct AppInputRestrictions {
-    static let _charNumbers = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-/ "
-    static let charNumbersOnly = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-    static let charOnly = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-    static let numbersOnly = "0123456789"
-}
-
-struct AppRegex {
-    static let minOneCapitalChar = "([^A-Z]{1,})"
-    static let minOneDigitChar = "([^0-9]{1,})"
-    static let minOneSpecialChar = "([^\\W]{1,})"
-}
-
-struct AppNotifications {
-    static let signInInputs = NSNotification.Name(rawValue: "nc_signIn")
-    static let signUpInputs = NSNotification.Name(rawValue: "nc_signUp")
-    static let otpInputs = NSNotification.Name(rawValue: "nc_otpInput")
-    static let idAddressInputs = NSNotification.Name(rawValue: "nc_address")
-    static let idPassportInputs = NSNotification.Name(rawValue: "nc_passport")
-    static let setSecurityInputs = NSNotification.Name(rawValue: "nc_setQues")
-    static let forgotpassswordSecurityInputs = NSNotification.Name(rawValue: "nc_fpSecurityQues")
-    
-    static let nonregisteredUser = NSNotification.Name(rawValue: "nc_helpNonRegisteredUser")
-    static let registeredUserSignInInputs = NSNotification.Name(rawValue: "nc_helpRegisteredUserSignIn")
-    
-    static let setTradingPin = NSNotification.Name(rawValue: "nc_setPin")
-    static let setConfirmPin = NSNotification.Name(rawValue: "nc_setConfirmPin")
-    static let insertPasscode = NSNotification.Name(rawValue: "nc_insertPasscode")
-    static let forgotPasswordInputs = NSNotification.Name(rawValue: "nc_forgotPasswordInputs")
-    static let signUpPassword = NSNotification.Name(rawValue: "passwordChanged")
-    static let newPassword = NSNotification.Name(rawValue: "newPasswordChanged")
-}
-
-let kZoomDelta : Float = 100000000.0
-let kRadiusInMeters  = 2
-let kRadiusInKm  = 1000
-let kRadiusInMiles = 1609.34
-let kRegionDefaultValue = 100
-let kMapPinAnnotIdentifier = "pinAnnot"

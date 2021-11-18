@@ -41,12 +41,12 @@ class NotificationDetailVC: UIViewController,WKNavigationDelegate,WKUIDelegate{
         DispatchQueue.main.async {
             AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
-
+        
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         AFWrapperClass.svprogressHudDismiss(view: self)
-
+        
         //        webView.frame.size.height = 1
         webView.frame.size = webView.sizeThatFits(.zero)
         //        webView.scrollView.isScrollEnabled=false;
@@ -68,7 +68,7 @@ class NotificationDetailVC: UIViewController,WKNavigationDelegate,WKUIDelegate{
     }
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         AFWrapperClass.svprogressHudDismiss(view: self)
-
+        
     }
     
 }

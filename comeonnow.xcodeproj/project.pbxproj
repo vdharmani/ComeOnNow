@@ -1696,8 +1696,8 @@
 				B32D1C8926849D78003103E5 /* NotificationsVC.swift */,
 				B3BEB82B2685A7F500C9DE3E /* ChildDetailVC.swift */,
 				18111A7826945A3C0052DECA /* WebVC.swift */,
-				184D302E26E0BB4B00ED14CC /* ChildAppointmentListVC.swift */,
 				1835A0072722DEC700CC71F6 /* NotificationDetailVC.swift */,
+				184D302E26E0BB4B00ED14CC /* ChildAppointmentListVC.swift */,
 			);
 			path = "Setting Controllers";
 			sourceTree = "<group>";
@@ -2870,7 +2870,7 @@
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Dr. Shelley Cooper (BMFBQPH9CZ)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -2896,7 +2896,7 @@
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Dr. Shelley Cooper (BMFBQPH9CZ)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;

@@ -13,7 +13,7 @@ import KRPullLoader
 class AppointmentVC: UIViewController {
     var lastChildId = "0"
     var loaderBool = Bool()
-
+    
     var appointmentType = String()
     @IBOutlet weak var appointmentTableView: UITableView!
     @IBOutlet weak var allLabel: UILabel!
@@ -48,12 +48,11 @@ class AppointmentVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        self.appointmentArray.removeAll()
         if loaderBool == false{
             if appointmentType == "2"{
                 self.appointmentNUArray.removeAll()
-            lastChildId = ""
-            getAppointmentListApi(type: "2")
+                lastChildId = ""
+                getAppointmentListApi(type: "2")
             }
             else if appointmentType == "1"{
                 self.confirmedAppointmentNUArray.removeAll()
@@ -68,12 +67,12 @@ class AppointmentVC: UIViewController {
             appointmentTableView.reloadData()
             loaderBool = false
         }
-       
+        
     }
     
     open func getAppointmentListApi(type:String){
         appointmentType = type
-
+        
         
         let paramds = ["user_id":retrieveDefaults().0,"last_id":lastChildId,"type":type] as [String : Any]
         
@@ -81,18 +80,18 @@ class AppointmentVC: UIViewController {
         
         let urlwithPercentEscapes = strURL.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)
         DispatchQueue.main.async {
-
-        AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+            
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
-
+        
         
         AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":retrieveDefaults().1])
             .responseJSON { (response) in
                 DispatchQueue.main.async {
-
-                AFWrapperClass.svprogressHudDismiss(view:self)
+                    
+                    AFWrapperClass.svprogressHudDismiss(view:self)
                 }
-
+                
                 switch response.result {
                 case .success(let value):
                     if let JSON = value as? [String: Any] {
@@ -202,9 +201,9 @@ class AppointmentVC: UIViewController {
                                     actions: .ok(handler: {
                                         removeAppDefaults(key:"AuthToken")
                                         removeAppDefaults(key:"UserName")
-                                      
+                                        
                                         appDel.logOut()
-                                     
+                                        
                                     }),
                                     from: self
                                 )
@@ -215,59 +214,47 @@ class AppointmentVC: UIViewController {
                         else{
                             
                             if type == "2"{
-
+                                
                                 if self.appointmentArray.count>0{
                                     DispatchQueue.main.async {
-
-                                    self.noDataFoundView.isHidden = true
+                                        
+                                        self.noDataFoundView.isHidden = true
                                     }
                                 }else{
                                     DispatchQueue.main.async {
-
-                                    self.noDataFoundView.isHidden = false
+                                        
+                                        self.noDataFoundView.isHidden = false
                                     }
                                 }
                             }else if type == "1"{
                                 if self.confirmedAppointmentArray.count>0{
                                     DispatchQueue.main.async {
-
-                                    self.noDataFoundView.isHidden = true
+                                        
+                                        self.noDataFoundView.isHidden = true
                                     }
                                 }else{
                                     DispatchQueue.main.async {
-
-                                    self.noDataFoundView.isHidden = false
+                                        
+                                        self.noDataFoundView.isHidden = false
                                     }
                                 }
                             }else if type == "0"{
                                 self.pendingAppointmentArray.removeAll()
                                 if self.pendingAppointmentArray.count>0{
                                     DispatchQueue.main.async {
-
-                                    self.noDataFoundView.isHidden = true
+                                        
+                                        self.noDataFoundView.isHidden = true
                                     }
                                 }else{
                                     DispatchQueue.main.async {
-
-                                    self.noDataFoundView.isHidden = false
+                                        
+                                        self.noDataFoundView.isHidden = false
                                     }
                                 }
                             }
                             
-                         
                             
-                         
-//                            DispatchQueue.main.async {
-//                                self.appointmentTableView.isHidden = true
-//                                Alert.present(
-//                                    title: AppAlertTitle.appName.rawValue,
-//                                    message: getProfileResp?.message ?? "",
-//                                    actions: .ok(handler: {
-//
-//                                    }),
-//                                    from: self
-//                                )
-//                            }
+                            
                         }
                         
                         
@@ -335,97 +322,74 @@ class AppointmentVC: UIViewController {
 
 extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if appointmentType == "2"{
-            return appointmentArray.count
-        }else if appointmentType == "1"{
-            return confirmedAppointmentArray.count
-        }else{
-            return pendingAppointmentArray.count
-        }
+        let count = appointmentType == "2" ?  appointmentArray.count : appointmentType == "1" ? confirmedAppointmentArray.count : pendingAppointmentArray.count
+        return count
+//        if appointmentType == "2"{
+//            return appointmentArray.count
+//        }else if appointmentType == "1"{
+//            return confirmedAppointmentArray.count
+//        }else{
+//            return pendingAppointmentArray.count
+//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AppointmentTVC", for: indexPath) as! AppointmentTVC
         if appointmentType == "2"{
-     
-        cell.appointmentStatusLbl.text = appointmentArray[indexPath.row].status == "0" ? "Pending" : "Confirmed"
+            
+            cell.appointmentStatusLbl.text = appointmentArray[indexPath.row].status == "0" ? "Pending" : "Confirmed"
             cell.appointmentStatusLbl.textColor = appointmentArray[indexPath.row].status == "0" ? .red : .systemGreen
-        cell.nameLabel.text = "\(appointmentArray[indexPath.row].childDetailsDict.last_name) \(appointmentArray[indexPath.row].childDetailsDict.first_name)"
-        cell.ageLabel.text = appointmentArray[indexPath.row].childDetailsDict.dob
-        cell.genderLabel.text = appointmentArray[indexPath.row].childDetailsDict.gender
-        
-        var sPhotoStr = appointmentArray[indexPath.row].childDetailsDict.image
-        sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        //        if sPhotoStr != ""{
-        cell.mainImage.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"notifyplaceholderImg"))
-        //}
-        cell.dateLabel.text = appointmentArray[indexPath.row].appointment_date
-        let time1 = appointmentArray[indexPath.row].appointment_time_to
-        let time2 = appointmentArray[indexPath.row].appointment_time_from
-        if time1 != "" && time2 != ""{
-            let formatter = DateFormatter()
-            formatter.dateFormat = "h:mma"
+            cell.nameLabel.text = "\(appointmentArray[indexPath.row].childDetailsDict.last_name) \(appointmentArray[indexPath.row].childDetailsDict.first_name)"
+            cell.ageLabel.text = appointmentArray[indexPath.row].childDetailsDict.dob
+            cell.genderLabel.text = appointmentArray[indexPath.row].childDetailsDict.gender
             
-            let date1 = formatter.date(from: time1)!
-            let date2 = formatter.date(from: time2)!
+            var sPhotoStr = appointmentArray[indexPath.row].childDetailsDict.image
+            sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+            cell.mainImage.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"notifyplaceholderImg"))
+            cell.dateLabel.text = appointmentArray[indexPath.row].appointment_date
+            let finalAppointmentTime = appointmentArray[indexPath.row].appointment_time == "N/A" ? appointmentArray[indexPath.row].appointment_time_to : appointmentArray[indexPath.row].appointment_time
+            cell.timeLabel.text = "\(finalAppointmentTime) (\(appointmentArray[indexPath.row].duration) min)"
             
-            let elapsedTime = date2.timeIntervalSince(date1)
-            
-            // convert from seconds to hours, rounding down to the nearest hour
-            let hours = floor(elapsedTime / 60 / 60)
-            
-            // we have to subtract the number of seconds in hours from minutes to get
-            // the remaining minutes, rounding down to the nearest minute (in case you
-            // want to get seconds down the road)
-            let minutes = floor((elapsedTime - (hours * 60 * 60)) / 60)
-            
-            print("\(Int(hours)) hr and \(Int(minutes)) min")
-            let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-            cell.timeLabel.text = "\(appointmentArray[indexPath.row].appointment_time_to ) - \(appointmentArray[indexPath.row].appointment_time_from )"
-            //(\(String(describing: hourMin)))
-            
-        }
+            //            if time1 != "" && time2 != ""{
+            //                let formatter = DateFormatter()
+            //                formatter.dateFormat = "h:mma"
+            //
+            //                let date1 = formatter.date(from: time1)!
+            //                let date2 = formatter.date(from: time2)!
+            //
+            //                let elapsedTime = date2.timeIntervalSince(date1)
+            //
+            //                // convert from seconds to hours, rounding down to the nearest hour
+            //                let hours = floor(elapsedTime / 60 / 60)
+            //
+            //                // we have to subtract the number of seconds in hours from minutes to get
+            //                // the remaining minutes, rounding down to the nearest minute (in case you
+            //                // want to get seconds down the road)
+            //                let minutes = floor((elapsedTime - (hours * 60 * 60)) / 60)
+            //
+            //                print("\(Int(hours)) hr and \(Int(minutes)) min")
+            //                let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
+            //                //(\(String(describing: hourMin)))
+            //
+            //            }
         }else if appointmentType == "1"{
             if confirmedAppointmentArray.count > 0{
                 cell.appointmentStatusLbl.text = confirmedAppointmentArray[indexPath.row].status == "0" ? "Pending" : "Confirmed"
                 cell.appointmentStatusLbl.textColor = confirmedAppointmentArray[indexPath.row].status == "0" ? .red : .systemGreen
-
+                
                 cell.nameLabel.text = "\(confirmedAppointmentArray[indexPath.row].childDetailsDict.last_name) \(confirmedAppointmentArray[indexPath.row].childDetailsDict.first_name)"
                 cell.ageLabel.text = confirmedAppointmentArray[indexPath.row].childDetailsDict.dob
                 cell.genderLabel.text = confirmedAppointmentArray[indexPath.row].childDetailsDict.gender
                 
                 var sPhotoStr = confirmedAppointmentArray[indexPath.row].childDetailsDict.image
                 sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-                //        if sPhotoStr != ""{
                 cell.mainImage.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"notifyplaceholderImg"))
-                //}
                 cell.dateLabel.text = confirmedAppointmentArray[indexPath.row].appointment_date
-                let time1 = confirmedAppointmentArray[indexPath.row].appointment_time_to
-                let time2 = confirmedAppointmentArray[indexPath.row].appointment_time_from
-                if time1 != "" && time2 != ""{
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "h:mma"
-                    
-                    let date1 = formatter.date(from: time1)!
-                    let date2 = formatter.date(from: time2)!
-                    
-                    let elapsedTime = date2.timeIntervalSince(date1)
-                    
-                    // convert from seconds to hours, rounding down to the nearest hour
-                    let hours = floor(elapsedTime / 60 / 60)
-                    
-                    // we have to subtract the number of seconds in hours from minutes to get
-                    // the remaining minutes, rounding down to the nearest minute (in case you
-                    // want to get seconds down the road)
-                    let minutes = floor((elapsedTime - (hours * 60 * 60)) / 60)
-                    
-                    print("\(Int(hours)) hr and \(Int(minutes)) min")
-                    let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-                    cell.timeLabel.text = "\(confirmedAppointmentArray[indexPath.row].appointment_time_to ) - \(confirmedAppointmentArray[indexPath.row].appointment_time_from )"
-                    
-                }
+                let finalAppointmentTime = confirmedAppointmentArray[indexPath.row].appointment_time == "N/A" ? confirmedAppointmentArray[indexPath.row].appointment_time_to : confirmedAppointmentArray[indexPath.row].appointment_time
+                cell.timeLabel.text = "\(finalAppointmentTime) (\(confirmedAppointmentArray[indexPath.row].duration) min)"
+                
             }
-       
+            
         }else{
             cell.appointmentStatusLbl.text = pendingAppointmentArray[indexPath.row].status == "0" ? "Pending" : "Confirmed"
             cell.appointmentStatusLbl.textColor = pendingAppointmentArray[indexPath.row].status == "0" ? .red : .systemGreen
@@ -435,35 +399,13 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
             
             var sPhotoStr = pendingAppointmentArray[indexPath.row].childDetailsDict.image
             sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-            //        if sPhotoStr != ""{
             cell.mainImage.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"notifyplaceholderImg"))
-            //}
             cell.dateLabel.text = pendingAppointmentArray[indexPath.row].appointment_date
-            let time1 = pendingAppointmentArray[indexPath.row].appointment_time_to
-            let time2 = pendingAppointmentArray[indexPath.row].appointment_time_from
-            if time1 != "" && time2 != ""{
-                let formatter = DateFormatter()
-                formatter.dateFormat = "h:mma"
-                
-                let date1 = formatter.date(from: time1)!
-                let date2 = formatter.date(from: time2)!
-                
-                let elapsedTime = date2.timeIntervalSince(date1)
-                
-                // convert from seconds to hours, rounding down to the nearest hour
-                let hours = floor(elapsedTime / 60 / 60)
-                
-                // we have to subtract the number of seconds in hours from minutes to get
-                // the remaining minutes, rounding down to the nearest minute (in case you
-                // want to get seconds down the road)
-                let minutes = floor((elapsedTime - (hours * 60 * 60)) / 60)
-                
-                print("\(Int(hours)) hr and \(Int(minutes)) min")
-                let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-                cell.timeLabel.text = "\(pendingAppointmentArray[indexPath.row].appointment_time_to ) - \(pendingAppointmentArray[indexPath.row].appointment_time_from )"
-                
-            }
-            }
+            let finalAppointmentTime = pendingAppointmentArray[indexPath.row].appointment_time == "N/A" ? pendingAppointmentArray[indexPath.row].appointment_time_to : pendingAppointmentArray[indexPath.row].appointment_time
+            cell.timeLabel.text = "\(finalAppointmentTime) (\(pendingAppointmentArray[indexPath.row].duration) min)"
+            
+            
+        }
         return cell
         
     }
@@ -479,11 +421,12 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
             vc.desc = appointmentArray[indexPath.row].description
             vc.appointment_time_to = appointmentArray[indexPath.row].appointment_time_to
             vc.appointment_time_from = appointmentArray[indexPath.row].appointment_time_from
+            vc.appointment_time = appointmentArray[indexPath.row].appointment_time
+            vc.duration = appointmentArray[indexPath.row].duration
             vc.appointment_date = appointmentArray[indexPath.row].appointment_date
             vc.appointmentType = appointmentArray[indexPath.row].appointments_type
             vc.appointmentTitle = appointmentArray[indexPath.row].title
             vc.delegate = self
-//            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
             
             self.navigationController?.pushViewController(vc, animated: false)
         }else if appointmentType == "1"{
@@ -498,11 +441,12 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
             vc.desc = confirmedAppointmentArray[indexPath.row].description
             vc.appointment_time_to = confirmedAppointmentArray[indexPath.row].appointment_time_to
             vc.appointment_time_from = confirmedAppointmentArray[indexPath.row].appointment_time_from
+            vc.appointment_time = confirmedAppointmentArray[indexPath.row].appointment_time
+            vc.duration = confirmedAppointmentArray[indexPath.row].duration
             vc.appointment_date = confirmedAppointmentArray[indexPath.row].appointment_date
             vc.appointmentTitle = confirmedAppointmentArray[indexPath.row].title
             vc.appointmentType = confirmedAppointmentArray[indexPath.row].appointments_type
-
-//            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
+            
             
             self.navigationController?.pushViewController(vc, animated: false)
         }else{
@@ -516,13 +460,13 @@ extension AppointmentVC : UITableViewDataSource , UITableViewDelegate {
             vc.isFromAppointment = true
             vc.appointment_time_to = pendingAppointmentArray[indexPath.row].appointment_time_to
             vc.appointment_time_from = pendingAppointmentArray[indexPath.row].appointment_time_from
-
+            vc.appointment_time = pendingAppointmentArray[indexPath.row].appointment_time
+            vc.duration = pendingAppointmentArray[indexPath.row].duration
             vc.desc = pendingAppointmentArray[indexPath.row].description
             vc.appointment_date = pendingAppointmentArray[indexPath.row].appointment_date
             vc.appointmentTitle = pendingAppointmentArray[indexPath.row].title
             vc.appointmentType = pendingAppointmentArray[indexPath.row].appointments_type
-
-//            vc.appointmentDetailsDict = appointmentArray[indexPath.row].appointmentDetailsDict
+            
             
             self.navigationController?.pushViewController(vc, animated: false)
         }
@@ -578,7 +522,7 @@ extension AppointmentVC:SendingAddBOToBOMainPageDelegateProtocol{
     
     func sendDataToBO(myData: Bool) {
         loaderBool = myData
-
+        
     }
     
     

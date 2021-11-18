@@ -84,7 +84,6 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
         }
         countryCodeBtn.setTitle(country.countryCode, for: .highlighted)
         countryCodeBtn.clipsToBounds = true
-//        setAppDefaults(country.countryName, key: "countryName")
         setAppDefaults("United States", key: "countryName")
 
     }
@@ -240,18 +239,7 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
             )
         }
      
-//        let defaultImage = UIImage(named: "addBtnImage.png")
-//        if firstBtnImage?.pngData() != defaultImage?.pngData(){
-//        else if checkUncheckBtn.currentImage?.pngData() == UIImage(named:"unCheck")?.pngData() {
-//            Alert.present(
-//                title: AppAlertTitle.appName.rawValue,
-//                message:AppSignInForgotSignUpAlertNessage.allowTermsConditionMessage,
-//                actions: .ok(handler: {
-//                }),
-//                from: self
-//            )
-//
-//        }
+
         else{
             signUpApi()
         }

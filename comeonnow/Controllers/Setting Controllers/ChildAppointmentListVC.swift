@@ -33,33 +33,14 @@ extension ChildAppointmentListVC : UITableViewDataSource , UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AppointmentChildDetailTBCell
-        let time1 = appointmentDetailArr[indexPath.row].appointment_time_to
-        let time2 = appointmentDetailArr[indexPath.row].appointment_time_from
-        if time1 != "" && time2 != ""{
-            let formatter = DateFormatter()
-            formatter.dateFormat = "h:mma"
-            
-            let date1 = formatter.date(from: time1)!
-            let date2 = formatter.date(from: time2)!
-            
-            let elapsedTime = date2.timeIntervalSince(date1)
-            
-            // convert from seconds to hours, rounding down to the nearest hour
-            let hours = floor(elapsedTime / 60 / 60)
-            
-            // we have to subtract the number of seconds in hours from minutes to get
-            // the remaining minutes, rounding down to the nearest minute (in case you
-            // want to get seconds down the road)
-            let minutes = floor((elapsedTime - (hours * 60 * 60)) / 60)
-            
-            print("\(Int(hours)) hr and \(Int(minutes)) min")
-            let hourMin = (hours != 0 ? "\(hours) hr" : "\(minutes) min")
-            cell.timeLbl.text = "\(appointmentDetailArr[indexPath.row].appointment_time_to) - \(appointmentDetailArr[indexPath.row].appointment_time_from)"
+     
+          
+        let finalAppointmentTime = appointmentDetailArr[indexPath.row].appointment_time == "N/A" ? appointmentDetailArr[indexPath.row].appointment_time_to : appointmentDetailArr[indexPath.row].appointment_time
+        cell.timeLbl.text = "\(finalAppointmentTime) (\(appointmentDetailArr[indexPath.row].duration) min)"
             cell.dateLbl.text = appointmentDetailArr[indexPath.row].appointment_date
             cell.appointmentTypeLbl.text = appointmentDetailArr[indexPath.row].appointments_type
             cell.appointmentTitleLbl.text  = appointmentDetailArr[indexPath.row].title
-
-        }
+        
         
         return cell
     }
@@ -78,6 +59,8 @@ extension ChildAppointmentListVC : UITableViewDataSource , UITableViewDelegate {
         vc.isFromAppointment = true
         vc.desc = appointmentDetailArr[indexPath.row].description
         vc.appointment_time_to = appointmentDetailArr[indexPath.row].appointment_time_to
+        vc.appointment_time = appointmentDetailArr[indexPath.row].appointment_time
+        vc.duration = appointmentDetailArr[indexPath.row].duration
         vc.appointment_time_from = appointmentDetailArr[indexPath.row].appointment_time_from
         vc.appointment_date = appointmentDetailArr[indexPath.row].appointment_date
         vc.appointmentType = appointmentDetailArr[indexPath.row].appointments_type

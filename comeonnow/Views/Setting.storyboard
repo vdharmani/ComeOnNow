@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -37,6 +37,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="JBS-tA-UkV" kind="relationship" relationship="viewControllers" id="cDV-Hj-s4J"/>
@@ -2514,7 +2515,7 @@
                                                             <constraint firstItem="pjL-E9-vKo" firstAttribute="centerY" secondItem="Mpd-RB-6IS" secondAttribute="centerY" id="fX8-sI-akv"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbl-Eu-Bj6">
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbl-Eu-Bj6">
                                                         <rect key="frame" x="0.0" y="386" width="320" height="139"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment Date / Time" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="366-jA-7xt">
@@ -2603,7 +2604,7 @@
                                                         </constraints>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="137" id="GSs-ai-VIK" customClass="AppointmentChildDetailTBCell" customModule="comeonnow" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="24.5" width="320" height="137"/>
+                                                                <rect key="frame" x="0.0" y="44.5" width="320" height="137"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GSs-ai-VIK" id="Yfc-kR-Tjv">
                                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="137"/>
@@ -2612,13 +2613,13 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oz2-cb-uoZ">
                                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="137"/>
                                                                             <subviews>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment Date / Time" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SuU-MT-7QE">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Appointment Date / Time" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SuU-MT-7QE">
                                                                                     <rect key="frame" x="15" y="48.5" width="148" height="16"/>
                                                                                     <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="13"/>
                                                                                     <color key="textColor" red="0.59308516980000003" green="0.28895783419999999" blue="0.54976183180000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment Type" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pY0-KI-DxX">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Appointment Type" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pY0-KI-DxX">
                                                                                     <rect key="frame" x="15" y="7" width="106.5" height="16"/>
                                                                                     <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="13"/>
                                                                                     <color key="textColor" red="0.59308516980000003" green="0.28895783419999999" blue="0.54976183180000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2633,29 +2634,29 @@
                                                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7m-5n-laV">
                                                                                     <rect key="frame" x="284" y="57.5" width="22.5" height="22"/>
                                                                                 </button>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointment type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQi-Pn-2aL">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Appointment type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQi-Pn-2aL">
                                                                                     <rect key="frame" x="15" y="28" width="89" height="13.5"/>
                                                                                     <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="11"/>
                                                                                     <color key="textColor" red="0.1019446626" green="0.10197005419999999" blue="0.1019430831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="PIA-bS-fgB">
-                                                                                    <rect key="frame" x="15" y="67.5" width="146.5" height="48.5"/>
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="PIA-bS-fgB">
+                                                                                    <rect key="frame" x="15" y="67.5" width="146.5" height="54.5"/>
                                                                                     <subviews>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8x-i8-FXk">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="146.5" height="14.5"/>
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8x-i8-FXk">
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="146.5" height="20.5"/>
                                                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                                                             <color key="textColor" red="0.20389500260000001" green="0.20393687490000001" blue="0.20389232039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="26, Jan 2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xp2-Ln-oOS">
-                                                                                            <rect key="frame" x="0.0" y="17.5" width="146.5" height="14.5"/>
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="26, Jan 2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xp2-Ln-oOS">
+                                                                                            <rect key="frame" x="0.0" y="23.5" width="146.5" height="14.5"/>
                                                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                                                             <color key="textColor" red="0.20389500260000001" green="0.20393687490000001" blue="0.20389232039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00 AM - 10:30AM (30 min)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zlr-dF-bob">
-                                                                                            <rect key="frame" x="0.0" y="35" width="146.5" height="13.5"/>
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="10:00 AM - 10:30AM (30 min)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zlr-dF-bob">
+                                                                                            <rect key="frame" x="0.0" y="41" width="146.5" height="13.5"/>
                                                                                             <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="11"/>
                                                                                             <color key="textColor" red="0.1019446626" green="0.10197005419999999" blue="0.1019430831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <nil key="highlightedColor"/>
@@ -2667,7 +2668,7 @@
                                                                                     </constraints>
                                                                                 </stackView>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaS-KS-jAP">
-                                                                                    <rect key="frame" x="15" y="129" width="305" height="1"/>
+                                                                                    <rect key="frame" x="15" y="135" width="305" height="1"/>
                                                                                     <color key="backgroundColor" red="0.84521673139999998" green="0.84521673139999998" blue="0.84521673139999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="1" id="pIR-bj-Iqq"/>
@@ -2698,7 +2699,7 @@
                                                                                 <constraint firstItem="pY0-KI-DxX" firstAttribute="top" secondItem="Oz2-cb-uoZ" secondAttribute="top" constant="7" id="m7v-GZ-FLs"/>
                                                                                 <constraint firstItem="z7m-5n-laV" firstAttribute="centerY" secondItem="Oz2-cb-uoZ" secondAttribute="centerY" id="tPw-wM-qDR"/>
                                                                                 <constraint firstItem="PIA-bS-fgB" firstAttribute="leading" secondItem="SuU-MT-7QE" secondAttribute="leading" id="yX0-yz-gIu"/>
-                                                                                <constraint firstAttribute="bottom" secondItem="OaS-KS-jAP" secondAttribute="bottom" constant="7" id="zfY-rM-wz6"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="OaS-KS-jAP" secondAttribute="bottom" constant="1" id="zfY-rM-wz6"/>
                                                                             </constraints>
                                                                         </view>
                                                                     </subviews>
@@ -2931,7 +2932,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="137" id="DKc-HG-NeY" customClass="AppointmentChildDetailTBCell" customModule="comeonnow" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="320" height="137"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="320" height="137"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DKc-HG-NeY" id="YL5-pX-DDu">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="137"/>

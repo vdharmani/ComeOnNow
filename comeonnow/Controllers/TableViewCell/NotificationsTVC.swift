@@ -24,6 +24,7 @@ class NotificationsTVC: UITableViewCell {
     
     @IBOutlet weak var docImgView: UIImageView!
     
+    @IBOutlet weak var stackViewHeightConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
