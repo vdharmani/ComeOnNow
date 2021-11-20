@@ -541,6 +541,7 @@
 		FCC6AD9026833F0100F99B9C /* AppointmentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC6AD8F26833F0100F99B9C /* AppointmentTVC.swift */; };
 		FCC6AD9A26833F1300F99B9C /* ProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC6AD9926833F1300F99B9C /* ProfileTVC.swift */; };
 		FCC6ADA926833F2600F99B9C /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC6ADA826833F2600F99B9C /* ProfileVC.swift */; };
+		FCCE959B2747F63200777F1A /* AppIBDesignableUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCE959A2747F63200777F1A /* AppIBDesignableUI.swift */; };
 		FCCED0FA268460050071E12B /* HomeChildListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCED0F9268460050071E12B /* HomeChildListEntity.swift */; };
 		FCCED1052684682F0071E12B /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCED1042684682F0071E12B /* ChangePasswordVC.swift */; };
 		FCCED10A2684687E0071E12B /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCED1092684687E0071E12B /* EditProfileVC.swift */; };
@@ -1117,6 +1118,7 @@
 		FCC6AD8F26833F0100F99B9C /* AppointmentTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentTVC.swift; sourceTree = "<group>"; };
 		FCC6AD9926833F1300F99B9C /* ProfileTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTVC.swift; sourceTree = "<group>"; };
 		FCC6ADA826833F2600F99B9C /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		FCCE959A2747F63200777F1A /* AppIBDesignableUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppIBDesignableUI.swift; sourceTree = "<group>"; };
 		FCCED0F9268460050071E12B /* HomeChildListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChildListEntity.swift; sourceTree = "<group>"; };
 		FCCED1042684682F0071E12B /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		FCCED1092684687E0071E12B /* EditProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
@@ -1864,6 +1866,7 @@
 			children = (
 				B3FF55332680A20E006B6901 /* AppDelegate.swift */,
 				B3FF55352680A20E006B6901 /* SceneDelegate.swift */,
+				FCCE959A2747F63200777F1A /* AppIBDesignableUI.swift */,
 				B324B11A2680CBE00082590E /* Storyboard Class.swift */,
 				B324B0FC2680B0110082590E /* AppExtensions.swift */,
 				FC41D8E12682417C0095B24A /* AppDefaults.swift */,
@@ -2668,6 +2671,7 @@
 				B3BEB82C2685A7F600C9DE3E /* ChildDetailVC.swift in Sources */,
 				FC41D8D026823F200095B24A /* RestManager.swift in Sources */,
 				B324B1162680CAAC0082590E /* ForgotPasswordVC.swift in Sources */,
+				FCCE959B2747F63200777F1A /* AppIBDesignableUI.swift in Sources */,
 				FCC6ADA926833F2600F99B9C /* ProfileVC.swift in Sources */,
 				FCC6AD9A26833F1300F99B9C /* ProfileTVC.swift in Sources */,
 				FCCED11426846AE30071E12B /* NotificationsTVC.swift in Sources */,
@@ -2870,7 +2874,7 @@
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Dr. Shelley Cooper (BMFBQPH9CZ)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.4;
+				CURRENT_PROJECT_VERSION = 1.5;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -2896,7 +2900,7 @@
 				CODE_SIGN_ENTITLEMENTS = comeonnow/comeonnow.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Dr. Shelley Cooper (BMFBQPH9CZ)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.4;
+				CURRENT_PROJECT_VERSION = 1.5;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = comeonnow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;

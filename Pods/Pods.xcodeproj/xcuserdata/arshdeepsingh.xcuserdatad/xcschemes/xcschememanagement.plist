@@ -21,7 +21,7 @@
 		<key>KRPullLoader.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>9</integer>
 		</dict>
 		<key>Pods-comeonnow-comeonnowUITests.xcscheme</key>
 		<dict>
@@ -50,6 +50,16 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>6</integer>
+		</dict>
+		<key>SKCountryPicker-CountryPickerController.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>SKCountryPicker.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 		<key>SVProgressHUD.xcscheme</key>
 		<dict>

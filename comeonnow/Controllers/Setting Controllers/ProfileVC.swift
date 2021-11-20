@@ -54,8 +54,9 @@ class ProfileVC: UIViewController {
     
     
     open func setUIValuesUpdate(dict:GetUserProfileData<Any>?){
-        nameLabel.text = "\(dict?.last_name ?? "") \( dict!.first_name)"
-        setAppDefaults("\(dict?.last_name ?? "") \( dict!.first_name)", key: "UserName")
+        let fName = "\(dict?.last_name ?? "") \( dict!.first_name)"
+        nameLabel.text = fName == "" ? dict?.username : fName
+        setAppDefaults(nameLabel.text, key: "UserName")
         
         emailLabel.text = dict?.email ?? ""
         
@@ -69,7 +70,11 @@ class ProfileVC: UIViewController {
         getProfileDetail()
         
     }
-    
+    func logOutApp(){
+        removeAppDefaults(key:"countryName")
+        self.removeDefaults()
+        self.appDel.logOut()
+    }
     open func logOutApi(){
         
         let paramds = ["user_id":retrieveDefaults().0] as [String : Any]
@@ -96,10 +101,8 @@ class ProfileVC: UIViewController {
                         
                         if getProfileResp?.status == 1{
                             
-                            removeAppDefaults(key:"countryName")
-                            self.removeDefaults()
-                            self.appDel.logOut()
-                            
+                           
+                            self.logOutApp()
                             
                             
                         }else{
@@ -109,6 +112,7 @@ class ProfileVC: UIViewController {
                                     title: AppAlertTitle.appName.rawValue,
                                     message: getProfileResp?.message ?? "",
                                     actions: .ok(handler: {
+                                       
                                     }),
                                     from: self
                                 )
@@ -160,8 +164,8 @@ class ProfileVC: UIViewController {
                                 Alert.present(
                                     title: AppAlertTitle.appName.rawValue,
                                     message: self.getProfileResp?.message ?? "",
-                                    actions: .ok(handler: {
-                                        
+                                    actions: .ok(handler: { [self] in
+                                        getProfileResp?.message == "This user does not exist." ? self.logOutApp() : nil
                                     }),
                                     from: self
                                 )

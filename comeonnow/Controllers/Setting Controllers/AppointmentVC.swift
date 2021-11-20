@@ -84,7 +84,6 @@ class AppointmentVC: UIViewController {
             AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
         
-        
         AF.request(urlwithPercentEscapes!, method: .post, parameters: paramds, encoding: JSONEncoding.default, headers: ["Content-Type":"application/json","token":retrieveDefaults().1])
             .responseJSON { (response) in
                 DispatchQueue.main.async {
@@ -182,14 +181,7 @@ class AppointmentVC: UIViewController {
                                     }
                                 }
                             }
-                            
-                            
-                            
-                            DispatchQueue.main.async {
-                                self.appointmentTableView.reloadData()
-                            }
-                            
-                            
+                     
                             
                         }
                         else if getProfileResp?.status == 3{
@@ -210,11 +202,11 @@ class AppointmentVC: UIViewController {
                             }
                         }
                         
-                        
                         else{
                             
                             if type == "2"{
-                                
+                                self.appointmentArray.count == 1 ? self.appointmentArray.removeAll() : nil
+
                                 if self.appointmentArray.count>0{
                                     DispatchQueue.main.async {
                                         
@@ -222,11 +214,12 @@ class AppointmentVC: UIViewController {
                                     }
                                 }else{
                                     DispatchQueue.main.async {
-                                        
                                         self.noDataFoundView.isHidden = false
                                     }
                                 }
                             }else if type == "1"{
+                                self.confirmedAppointmentArray.count == 1 ? self.appointmentArray.removeAll() : nil
+
                                 if self.confirmedAppointmentArray.count>0{
                                     DispatchQueue.main.async {
                                         
@@ -257,7 +250,9 @@ class AppointmentVC: UIViewController {
                             
                         }
                         
-                        
+                        DispatchQueue.main.async {
+                            self.appointmentTableView.reloadData()
+                        }
                     }
                 case .failure(let error):
                     let error : NSError = error as NSError

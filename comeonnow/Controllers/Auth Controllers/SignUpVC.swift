@@ -244,6 +244,48 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
             signUpApi()
         }
     }
+    
+//    open func signUpApi(){
+//        DispatchQueue.main.async {
+//            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+//        }
+//        let headers: HTTPHeaders = ["Token": AToken]
+//
+//        AFWrapperClass.requestPOSTURL(kBASEURL + WSMethods.signUp, params: generatingParameters(), headers: nil) { response in
+//            AFWrapperClass.svprogressHudDismiss(view: self)
+//            print(response)
+//            let message = response["message"] as? String ?? ""
+//            if let status = response["status"] as? Int {
+//                if status == 200{
+//                    showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
+//                        self.navigationController?.popViewController(animated: true)
+//                    }
+//                }else{
+//                    alert(AppAlertTitle.appName.rawValue, message: message, view: self)
+//                }
+//            }
+//
+//        } failure: { error in
+//            AFWrapperClass.svprogressHudDismiss(view: self)
+//            alert(AppAlertTitle.appName.rawValue, message: error.localizedDescription, view: self)
+//        }
+//    }
+//    func generatingParameters() -> [String:AnyObject] {
+//        var parameters:[String:AnyObject] = [:]
+//        parameters["username"] = txtEmail.text  as AnyObject
+//        parameters["password"] = txtPswrd.text  as AnyObject
+//        parameters["first_name"] = txtFirstName.text  as AnyObject
+//        parameters["last_name"] = txtLastName.text  as AnyObject
+//        parameters["cellno"] = "\(txtPhoneNum.text ?? "")" as AnyObject
+//        parameters["countrycode"] = (getSAppDefault(key: "countryName") as? String ?? "")  as AnyObject
+//        parameters["usertype"] = "1" as AnyObject
+//
+//        print(parameters)
+//        return parameters
+//    }
+    
+    
+    
     open func signUpApi(){
         guard let url = URL(string: kBASEURL + WSMethods.signUp) else { return }
         var deviceToken  = getSAppDefault(key: "DeviceToken") as? String ?? ""
@@ -280,7 +322,9 @@ class SignUpVC: UIViewController , UITextFieldDelegate {
                 //
                 let loginResp =   LoginSignUpData.init(dict: jsonResult ?? [:])
                 if loginResp?.status == 1{
-                    self.saveDefaults(userId: loginResp?.user_id ?? "", authToken: loginResp?.authtoken ?? "", userName: "\(loginResp?.last_name ?? "") \( loginResp!.first_name)")
+                    let fName = loginResp?.first_name == "" && loginResp?.last_name == "" ? loginResp?.username : "\(loginResp?.last_name ?? "") \( loginResp!.first_name)"
+
+                    self.saveDefaults(userId: loginResp?.user_id ?? "", authToken: loginResp?.authtoken ?? "", userName: fName ?? "")
 
 
                 DispatchQueue.main.async {

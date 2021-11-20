@@ -199,16 +199,16 @@ class LogInVC: UIViewController, UITextFieldDelegate {
                 guard let data = results.data else { return }
                 
                 let jsonResult = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:AnyHashable] ?? [:]
-                //                    let dataString = String(data: data, encoding: .utf8)
-                //                    let jsondata = dataString?.data(using: .utf8)
-                //                    let decoder = JSONDecoder()
-                //                    let jobUser = try? decoder.decode(LoginData, from: jsondata!)
-                //
+
+                
                 print(jsonResult!)
                 
                 let loginResp =   LoginSignUpData.init(dict: jsonResult ?? [:])
                 if loginResp?.status == 1{
-                    self.saveDefaults(userId: loginResp?.user_id ?? "", authToken: loginResp?.authtoken ?? "", userName: "\(loginResp?.last_name ?? "") \( loginResp!.first_name)")
+                    let fName = loginResp?.first_name == "" && loginResp?.last_name == "" ? loginResp?.username : "\(loginResp?.last_name ?? "") \( loginResp!.first_name)"
+
+                    
+                    self.saveDefaults(userId: loginResp?.user_id ?? "", authToken: loginResp?.authtoken ?? "", userName: fName ?? "")
                     
                     
                     DispatchQueue.main.async {

@@ -286,7 +286,6 @@ extension ChildDetailVC:SendingDataToBackPageDelegateProtocol{
             }
             
             dateLabel.text = dict?.appointmentDetailArr[0].appointment_date
-            seeMoreViewObj.isHidden = self.appointmentDetailArr.count > 3 ? false : true
             
             
             let finalAppointmentTime = appointmentDetailArr[0].appointment_time == "N/A" ? appointmentDetailArr[0].appointment_time_to : appointmentDetailArr[0].appointment_time
@@ -300,7 +299,8 @@ extension ChildDetailVC:SendingDataToBackPageDelegateProtocol{
             }
             
         }
-        
+        seeMoreViewObj.isHidden = self.appointmentDetailArr.count > 3 ? false : true
+
         nameLabel.text = "\(dict?.last_name ?? "") \( dict!.first_name)"
         
         ageLabel.text = dict?.dob
